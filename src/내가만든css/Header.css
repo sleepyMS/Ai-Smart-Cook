@@ -1,0 +1,9 @@
+.buttonMagin button{
+    margin-left: 50px; /* 버튼과 입력창 사이의 간격 조절 */
+  }
+  
+  input[type='text'] {
+    display: flex;
+    margin-left: 50px; /* 입력창과 왼쪽 버튼 사이의 간격 조절 */
+  }
+  

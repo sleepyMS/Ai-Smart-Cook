@@ -5,7 +5,7 @@ const Board = () => {
     <div>
         <h1 className='header_logo'>
                 <a href="/">
-                    <span>MOTIV1231311</span>
+                    <span>MOTIV123131dsadsa1</span>
                 </a>
         </h1>
     </div>

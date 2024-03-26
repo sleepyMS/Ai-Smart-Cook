@@ -1,24 +1,19 @@
 {
   "peoples": [
     {
-      "id": "5491",
-      "ID": "com1@example.co.kr",
-      "name": "김정호",
-      "pwd": "12345"
-    },
-    {
       "id": "2dad",
-      "ID": "qweasd@com.plr",
-      "name": "김정호",
-      "pwd": "ewqewqe213213@@@",
-      "num": "010-2569-8715"
+      "ID": "qwer@naver.com",
+      "name": "홍길동",
+      "pwd": "qwe123!!",
+      "num": "010-1234-5678"
     },
     {
-      "id": "be06",
-      "ID": "kjhgfd44@naver.com",
-      "name": "김정호",
-      "pwd": "rhkgkr0812!!",
-      "num": "010-3924-1032"
+      "id": "5870",
+      "ID": "rlaqhals@naver.com",
+      "name": "김보민",
+      "pwd": "qwer1234!!",
+      "birth": "2003-06-13",
+      "num": "010-6242-2494"
     }
   ]
 }

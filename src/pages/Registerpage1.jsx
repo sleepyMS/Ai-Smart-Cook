@@ -5,33 +5,40 @@ import useFetch from '../hooks/useFetch';
 import style from '../내가만든css/loginpage.module.css';
 
 const Loginpage = () => {
+
+    const handleBirthDateChange = (e) => {
+        setBirthDate(e.target.value);
+    };
+
     const navigate = useNavigate();
 
     useEffect(() => {
         nameRef.current.focus();
     }, []);
 
-    // Function to format phone number
-    const formatPhoneNumber = (value) => {
-        // Remove all non-numeric characters
-        const phoneNumber = value.replace(/\D/g, '');
-        // Format phone number as: XXX-XXXX-XXXX
-        if (phoneNumber.length >= 4 && phoneNumber.length < 8) {
-            return `${phoneNumber.slice(0, 3)}-${phoneNumber.slice(3)}`;
-        } else if (phoneNumber.length >= 8) {
-            return `${phoneNumber.slice(0, 3)}-${phoneNumber.slice(3, 7)}-${phoneNumber.slice(7)}`;
+    // 번호 유효 검사.
+    const handlePhoneNumberChange = (e) => {
+        const value = e.target.value;
+        const formattedPhoneNumber = value.replace(/\D/g, '');
+        if (formattedPhoneNumber.length > 11) {
+            alert("휴대폰 번호는 11자리 이하여야 합니다. 다시 입력해주세요.");
+            e.target.disabled = true;
+            setPhoneNumber('');
+            setTimeout(() => {
+                e.target.disabled = false;
+                e.target.focus();
+            }, 100); // 
         } else {
-            return phoneNumber;
+            if (formattedPhoneNumber.length >= 4 && formattedPhoneNumber.length < 8) {
+                setPhoneNumber(`${formattedPhoneNumber.slice(0, 3)}-${formattedPhoneNumber.slice(3)}`);
+            } else if (formattedPhoneNumber.length >= 8) {
+                setPhoneNumber(`${formattedPhoneNumber.slice(0, 3)}-${formattedPhoneNumber.slice(3, 7)}-${formattedPhoneNumber.slice(7)}`);
+            } else {
+                setPhoneNumber(formattedPhoneNumber);
+            }
         }
     };
-
-    // Function to handle phone number input change
-    const handlePhoneNumberChange = (e) => {
-        const formattedPhoneNumber = formatPhoneNumber(e.target.value);
-        setPhoneNumber(formattedPhoneNumber);
-    };
-
-    async function onSubmit(e) {
+    const onSubmit = async(e) => {
         e.preventDefault();
 
         // 유효성 검사 수행
@@ -88,7 +95,7 @@ const Loginpage = () => {
                         ID: IDRef.current.value,
                         name: nameRef.current.value,
                         pwd: pwdRef.current.value,
-                        birth: birthRef.current.value,
+                        birth: birthDate,
                         num: phoneNumber
                     }),
                 });
@@ -105,7 +112,7 @@ const Loginpage = () => {
     const IDRef = useRef(null);
     const pwdRef = useRef(null);
     const nameRef = useRef(null);
-    const birthRef = useRef(null);
+    const [birthDate, setBirthDate] = useState("2000-01-01");
     const [phoneNumber, setPhoneNumber] = useState('');
 
     return (
@@ -127,7 +134,7 @@ const Loginpage = () => {
                     <label>Password</label>
                     <input type="password" placeholder="*********" ref ={pwdRef}/>
                     <label>생년월일</label>
-                    <input type="date" value = "2000-01-01" ref ={birthRef}/>
+                    <input type="date" value={birthDate} onChange={handleBirthDateChange}/>
                     <label>휴대폰번호</label>
                     <input type="text" placeholder="010-1234-5678" value={phoneNumber} onChange={handlePhoneNumberChange} />
                     <br />
