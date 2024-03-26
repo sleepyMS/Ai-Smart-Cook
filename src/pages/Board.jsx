@@ -5,9 +5,9 @@ const Board = () => {
     <div>
         <h1 className='header_logo'>
                 <a href="/">
-                    <span>MOTIV</span>
+                    <span>MOTIV1231311</span>
                 </a>
-            </h1>
+        </h1>
     </div>
   )
 }
