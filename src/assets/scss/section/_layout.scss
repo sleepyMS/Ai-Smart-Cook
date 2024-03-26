@@ -1,0 +1,29 @@
+#header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 150px;
+    z-index: 10000;
+    background-color: #555;
+}
+#nav {
+    position: fixed;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    z-index: 9000;
+    background-color: #999;
+}
+#main {
+    max-width: 2000px;
+    min-height: 100vh;
+    margin: 150px 0 0 auto;
+    padding-left: 250px;
+    background-color: #333;
+}
+#footer {
+    text-align: center;
+    background-color: #777;
+    padding: 20px 20px 20px 260px;
+} 
+
