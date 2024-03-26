@@ -9,6 +9,8 @@ const Registerpage1 = lazy(() => import('./pages/Registerpage1'));
 const Board = lazy(() => import('./pages/Board'));
 const Question = lazy(() => import('./pages/Question'));
 const Koreafood = lazy(() => import('./pages/Koreafood'));
+const Recipe = lazy(() => import('./pages/Recipe'));
+
 
 const App = () => {
     return (
@@ -22,6 +24,7 @@ const App = () => {
                     <Route path='/board' element={<Board />} />
                     <Route path='/question' element={<Question />} />
                     <Route path='/koreafood' element={<Koreafood />} />
+                    <Route path='/recipe' element={<Recipe />} />
                 </Routes>
             </Suspense>
         </BrowserRouter>
