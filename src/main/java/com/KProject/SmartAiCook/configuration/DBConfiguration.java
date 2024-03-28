@@ -2,6 +2,9 @@ package com.KProject.SmartAiCook.configuration;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
@@ -48,7 +51,7 @@ public class DBConfiguration {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
         factoryBean.setMapperLocations(applicationContext.getResources("classpath:/mapper/**/*Mapper.xml"));
-        factoryBean.setTypeAliasesPackage("com.demo.dto");
+        factoryBean.setTypeAliasesPackage("com.KProject.SmartAiCook.dto");
 
         return factoryBean.getObject();
     }
@@ -57,6 +60,6 @@ public class DBConfiguration {
     @Bean
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
 
-        return new SqlSessionTemplate(sqlSessionFactory());
+        return new SqlSessionTemplate(sqlSessionFactory);
     }
 }
