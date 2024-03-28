@@ -38,4 +38,5 @@ out/
 
 # minseok
 /src/main/resources/application.properties
+application.properties
 
