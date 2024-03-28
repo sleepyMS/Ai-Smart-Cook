@@ -25,6 +25,10 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'com.zaxxer:HikariCP'
+	implementation 'org.mybatis:mybatis'
+
+
 
 
 
