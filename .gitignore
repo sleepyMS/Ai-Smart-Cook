@@ -37,5 +37,5 @@ out/
 .vscode/
 
 # minseok
-application.properties
+/src/main/resources/application.properties
 
