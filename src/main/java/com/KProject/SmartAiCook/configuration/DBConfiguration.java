@@ -51,7 +51,7 @@ public class DBConfiguration {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
         factoryBean.setMapperLocations(applicationContext.getResources("classpath:/mapper/**/*Mapper.xml"));
-        factoryBean.setTypeAliasesPackage("com.KProject.SmartAiCook.dto");
+        factoryBean.setTypeAliasesPackage("com.KProject.SmartAiCook.mapper");
 
         return factoryBean.getObject();
     }

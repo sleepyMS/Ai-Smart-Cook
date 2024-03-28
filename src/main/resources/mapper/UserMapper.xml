@@ -1,0 +1,19 @@
+<!--<?xml version="1.0" encoding="utf-8" ?>-->
+<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/schema/mybatis-mapper>-->
+
+<mapper namespace="com.KProject.SmartAiCook.mapper.UserMapper">
+
+    <insert id="insertUser" parameterType="UserDTO">
+<!--        INSERT INTO user (name, id, phone) VALUES ('최민석', 'minseok', '010-1234-1234');-->
+        INSERT INTO user (
+            name,
+            id,
+            phone
+        ) VALUES (
+            #{name},
+            #{id},
+            #{phone}
+        );
+    </insert>
+
+</mapper>
