@@ -14,9 +14,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class UserDTO {
-    private String userName;
-    private String userId;
-    private String userPhone;
+    private String name;
+    private String id;
+    private String phone;
 }
 
 //public class UserDTO {

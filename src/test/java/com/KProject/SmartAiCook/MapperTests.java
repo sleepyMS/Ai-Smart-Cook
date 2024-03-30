@@ -17,14 +17,13 @@ public class MapperTests {
     public void testInsert() {
         UserDTO u1 = new UserDTO();
 
-        u1.setUserName("최민석");
-        u1.setUserId("abc");
-        u1.setUserPhone("010-1234-1234");
+        u1.setName("최민석");
+        u1.setId("new");
+        u1.setPhone("010-1234-1234");
 
         System.out.println(u1);
-//        userMapper.insertUser(u1);
-//
-//        System.out.println("--------------------------------");
+        userMapper.insertUser(u1);
+        System.out.println("------------ 테이블 insert ------------");
     }
 
 }

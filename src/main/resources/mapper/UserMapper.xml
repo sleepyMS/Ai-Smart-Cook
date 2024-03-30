@@ -6,7 +6,7 @@
 
     <insert id="insertUser" parameterType="UserDTO">
 <!--        INSERT INTO user (name, id, phone) VALUES ('최민석', 'minseok', '010-1234-1234');-->
-        INSERT INTO user (
+        INSERT INTO users (
             name,
             id,
             phone
