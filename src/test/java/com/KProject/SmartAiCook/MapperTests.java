@@ -13,6 +13,8 @@ public class MapperTests {
     @Autowired
     private UserMapper userMapper;
 
+//    CRUD 테스트
+
     @Test
     public void testInsert() {
         UserDTO u1 = new UserDTO();
@@ -37,8 +39,8 @@ public class MapperTests {
     public void testUpdate() {
         String userId = "new2";
         UserDTO user = userMapper.getUserById(userId);
-        user.setName("update");
-        user.setPhone("010-5555-5555");
+        user.setName("update name");
+        user.setPhone("010-1234-1234");
         userMapper.updateUser(user);
         System.out.println("User updated: " + user);
     }
