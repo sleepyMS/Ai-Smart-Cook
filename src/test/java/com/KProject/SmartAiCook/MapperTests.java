@@ -18,8 +18,8 @@ public class MapperTests {
         UserDTO u1 = new UserDTO();
 
         u1.setName("최민석");
-        u1.setId("new");
-        u1.setPhone("010-1234-1234");
+        u1.setId("new2");
+        u1.setPhone("010-2222-2222");
 
         System.out.println(u1);
         userMapper.insertUser(u1);
