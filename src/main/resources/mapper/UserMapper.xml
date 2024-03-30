@@ -4,6 +4,7 @@
 
 <mapper namespace="com.KProject.SmartAiCook.mapper.UserMapper">
 
+    <!-- 새로운 사용자 추가 -->
     <insert id="insertUser" parameterType="UserDTO">
 <!--        INSERT INTO user (name, id, phone) VALUES ('최민석', 'minseok', '010-1234-1234');-->
         INSERT INTO users (
@@ -16,5 +17,22 @@
             #{phone}
         );
     </insert>
+
+    <!-- ID로 사용자 조회 -->
+    <select id="getUserById" parameterType="string" resultType="UserDTO">
+        SELECT * FROM users WHERE id = #{id};
+    </select>
+
+    <!-- 사용자 정보 업데이트 -->
+    <update id="updateUser" parameterType="UserDTO">
+        UPDATE users
+        SET name = #{name}, phone = #{phone}
+        WHERE id = #{id}
+    </update>
+
+    <!-- ID로 사용자 삭제 -->
+    <delete id="deleteUser" parameterType="string">
+        DELETE FROM users WHERE id = #{id};
+    </delete>
 
 </mapper>
