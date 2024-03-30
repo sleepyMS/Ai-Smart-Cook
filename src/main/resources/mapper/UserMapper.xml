@@ -5,25 +5,18 @@
 <mapper namespace="com.KProject.SmartAiCook.mapper.UserMapper">
 
     <!-- 새로운 사용자 추가 -->
-    <insert id="insertUser" parameterType="UserDTO">
-<!--        INSERT INTO user (name, id, phone) VALUES ('최민석', 'minseok', '010-1234-1234');-->
-        INSERT INTO users (
-            name,
-            id,
-            phone
-        ) VALUES (
-            #{name},
-            #{id},
-            #{phone}
-        );
+    <insert id="insertUser" parameterType="SignUpDTO">
+        INSERT INTO users (name, id, password, confirmPassword, phone, nick, birth, email, token, createdAt, editedAt, lastLoginAt)
+        VALUES (#{name}, #{id}, #{password}, #{confirmPassword}, #{phone}, #{nick}, #{birth}, #{email}, #{token}, NOW(), NOW(), NOW())
     </insert>
+<!--    레시피 테이블 제작할 것-->
 
     <!-- ID로 사용자 조회 -->
     <select id="getUserById" parameterType="string" resultType="UserDTO">
         SELECT * FROM users WHERE id = #{id};
     </select>
 
-    <!-- 사용자 정보 업데이트 -->
+    <!-- ID로 사용자 정보 업데이트 -->
     <update id="updateUser" parameterType="UserDTO">
         UPDATE users
         SET name = #{name}, phone = #{phone}
@@ -34,5 +27,9 @@
     <delete id="deleteUser" parameterType="string">
         DELETE FROM users WHERE id = #{id};
     </delete>
+
+    <select id="getUserSelectById" resultType="boolean">
+        SELECT * FROM users WHERE id = #{userId}
+    </select>
 
 </mapper>
