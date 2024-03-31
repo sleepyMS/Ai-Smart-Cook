@@ -1,42 +1,108 @@
 import React from 'react';
-import "../내가만든css/media.css"
-import "../내가만든css/style.css"
+import "../내가만든css/media.css";
+import "../내가만든css/style.css";
+import style from '../내가만든css/loginpage.module.css';
+import { useNavigate } from 'react-router-dom';
+import { useRef,useEffect,useState } from 'react';
+
 
 const Write = () => {
+  const navigate = useNavigate();
+  const titleRef = useRef(null);
+  const postRef = useRef(null);
+  const [peopleName, setPeopleName] = useState("로그인");
+
+  // 아이디 이름으로 바꾸기
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      setPeopleName(user.name);
+    }
+  }, []);
+
+  //로그인/로그아웃 기능
+  const handleLogout = () => {
+    if(!localStorage.getItem('user')){
+      alert("로그인이 되어있지않습니다.")
+      const confirmLogin = window.confirm("로그인 하시겠습니까?");
+      if(confirmLogin){
+        navigate('/loginpage')
+      }
+    }
+    else {
+      const confirmLogout = window.confirm("로그아웃 하시겠습니까?");
+      if(confirmLogout){
+        setPeopleName("로그인"); // 이름 초기화
+        localStorage.removeItem('user'); // 로컬 스토리지에서 사용자 정보 삭제
+      }
+    }
+  }
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const ID = JSON.parse(localStorage.getItem('user'));
+
+    if (!localStorage.getItem('user')) {
+      alert("로그인 후 이용해주세요.");
+      return;
+    }
+
+    if (!titleRef.current.value || !postRef.current.value) {
+      alert("제목과 내용을 입력해주세요.");
+      return;
+    }
+
+    try {
+      const res = await fetch(`http://localhost:817/boards/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: ID.name,
+          titleBoard: titleRef.current.value,
+          post: postRef.current.value,
+        }),
+      });
+
+      if (res.ok) {
+        alert("생성이 완료되었습니다.");
+        // 게시물 데이터 설정
+        navigate('/board');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
-    <div className="board_wrap">
-      <div className="board_title">
-        <strong>공지사항</strong>
-        <p>공지사항을 빠르고 정확하게 안내해드립니다</p>
+    <>
+     <h1 className='header_logo'>
+          <a href="/">
+              <span>MOTIV</span>
+          </a>
+          <button onClick={handleLogout}>{peopleName}</button>
+      </h1>
+      <div>
+          <form onSubmit={onSubmit}>
+              <h3>게시판 글 등록</h3>
+                <div className='board_write'>
+                  <div className='title'>
+                    <label>제목</label>
+                    <input type="text" placeholder="제목" ref ={titleRef}/>
+                  </div>
+                  <div className='info'>
+                    글쓴이
+                  </div>
+                  <div className='cont'>
+                    <label>글 내용</label>
+                    <textarea placeholder='내용입력' ref ={postRef}></textarea>
+                  </div>
+                  <button>등록하기</button>
+                </div>
+          </form>
       </div>
-      <div className="board_write_wrap">
-        <div className="board_write">
-            <div className='title'></div>
-                <dl>
-                    <dt>제목</dt>
-                    <dd><input type='text' placeholder='제목 입력'></input></dd>
-                    
-                </dl>
-                <dl>
-                    <dt>글쓴이</dt>
-                    <dd><input type='text' placeholder='글쓴이 입력'></input></dd>
-                </dl>
-                <dl>
-                    <dt>비밀번호</dt>
-                    <dd><input type='password' placeholder='비밀번호 입력'></input></dd>
-                </dl>
-            <div className='info'></div>
-            <div className='cont'></div>
-    
-
-        </div>
-            <div className="bt_wrap">
-                <a href='Write.jsx' className='on'>등록</a>
-                <a href='InBord.jsx'>취소</a>
-            </div>
-        </div>
-    </div>
-
+    </>
   );
 }
 

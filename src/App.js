@@ -10,6 +10,11 @@ const Board = lazy(() => import('./pages/Board'));
 const Question = lazy(() => import('./pages/Question'));
 const Koreafood = lazy(() => import('./pages/Koreafood'));
 const Recipe = lazy(() => import('./pages/Recipe'));
+const Inboard = lazy(() => import('./pages/Inboard'));
+const Write = lazy(() => import('./pages/Write'));
+const Checkbox = lazy(() => import('./components/Checkbox'));
+const Buttonrecipe = lazy(() => import('./pages/Buttonrecipe'));
+const Emptypage = lazy(() => import('./pages/Emptypage'));
 
 
 const App = () => {
@@ -25,6 +30,11 @@ const App = () => {
                     <Route path='/question' element={<Question />} />
                     <Route path='/koreafood' element={<Koreafood />} />
                     <Route path='/recipe' element={<Recipe />} />
+                    <Route path='/inboard/:id' element={<Inboard />} />
+                    <Route path='/write' element={<Write />} />
+                    <Route path='/check' element={<Checkbox />} />
+                    <Route path='/buttonrecipe' element={<Buttonrecipe />} />
+                    <Route element={<Emptypage />} />
                 </Routes>
             </Suspense>
         </BrowserRouter>

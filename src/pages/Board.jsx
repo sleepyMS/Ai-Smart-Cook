@@ -1,92 +1,56 @@
-import React from 'react';
-import "../내가만든css/media.css";
-import "../내가만든css/style.css";
-import { useNavigate } from 'react-router-dom';
-
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Link 추가
+import "../내가만든css/Board.css"
 
 const Board = () => {
-  const navigate = useNavigate(); 
-  function onSubmitRegister() {
-    navigate('/inboard'); 
-  }
+  const [boards, setBoards] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:817/boards/');
+        const data = await response.json();
+        setBoards(data); 
+
+        if (!response.ok) {
+          throw new Error('데이터를 불러오는데 실패했습니다');
+        }
+      } catch (error) {
+        console.error('데이터를 불러오는 중 오류 발생:', error);
+      } finally {
+        setLoading(false); // 데이터 로딩 완료 후 로딩 상태를 false로 변경
+      }
+    };
+    
+    fetchData(); // fetchData 함수 호출
+  }, []); // 배열의 값이 바뀔 떄만 실행 -> 의존성 배열 , 빈 배열은 실행 한번만
 
   return (
-    <div className="board_wrap">
-      <div className="board_title">
-        <h1 className='header_logo'>
-            <a href="/">
-                <span>MOTIV</span>
-            </a>
-        </h1>
-        <div className="UploadButton">
-        <a href="#" className="on">등록</a>
-          <a href="#">수정</a>
-      </div>
-      <div className="board_list_wrap">
-        <div className="board_list">
-          {/* 각 게시글 항목 */}
-          <div className="top">
-            <div className='num'>번호</div>
-            <div className='title'>제목</div>
-            <div className='writer'>글쓴이</div> {/* 닫는 태그가 누락됨 */}
-            <div className='date'>작성일</div>
-            <div className='count'>조회</div>
-          </div>
-          
-          {/* 실제 게시글 데이터 */}
-          <div>
-            <div className='num'>5</div>
-            <div className='title' onClick={onSubmitRegister}>글 제목</div>
-            <div className='writer'>아무개</div>
-            <div className='date'>작성일</div>
-            <div className='count'>조회</div>
-          </div>
-          <div>
-            <div className='num'>4</div>
-            <div className='title'><a href='InBord.jsx'>글 제목</a></div>
-            <div className='writer'>아무개</div>
-            <div className='date'>작성일</div>
-            <div className='count'>조회</div>
-          </div>
-          <div>
-            <div className='num'>3</div>
-            <div className='title'><a href='InBord.jsx'>글 제목</a></div>
-            <div className='writer'>아무개</div>
-            <div className='date'>작성일</div>
-            <div className='count'>조회</div>
-          </div>
-          <div>
-            <div className='num'>2</div>
-            <div className='title'><a href='InBord.jsx'>글 제목</a></div>
-            <div className='writer'>아무개</div>
-            <div className='date'>작성일</div>
-            <div className='count'>조회</div>
-          </div>
-          <div>
-            <div className='num'>1</div>
-            <div className='title'><a href='InBord.jsx'>글 제목</a></div>
-            <div className='writer'>아무개</div>
-            <div className='date'>작성일</div>
-            <div className='count'>조회</div>
-          </div>
-        </div>
-        <div className="board_page">
-          <a href="#" className="bt first">{"<<"}</a>
-          <a href="#" className="bt prev">{"<"}</a>
-          <a href="#" className="num on">1</a>
-          <a href="#" className="num">2</a>
-          <a href="#" className="num">3</a>
-          <a href="#" className="num">4</a>
-          <a href="#" className="num">5</a>
-          <a href="#" className="bt next">{'>'}</a>
-          <a href="#" className="bt last">'{'>>'}</a>
-        </div>
-        
-          
-        </div>
+    <div>
+      <h1 className='header_logo'>
+        <Link to= '/'>MOTIV</Link>
+      </h1>
+      <div className="board-container">
+        <h2>게시물 목록</h2>
+        {loading ? (
+          <p>Loading...</p> // 로딩 중일 때 표시될 내용
+        ) : (
+          <ul className="board-list">
+            {boards.length > 0 && boards.map((board, index) => (
+              <li key={index} className="board-item">
+                {/* Link를 이용해 클릭 시 URL 변경 */}
+                <Link to={`/inboard/${board.id}`}>
+                  <h3>제목: {board.titleBoard}</h3>
+                </Link>
+                <p>{board.name}</p>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
-}
+};
 
 export default Board;

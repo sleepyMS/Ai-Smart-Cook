@@ -11,7 +11,8 @@ const Header = () => {
   const [isLoading, setIsLoading] = useState(false); // 로딩 중인지 여부를 나타내는 상태
   const [searchInput, setSearchInput] = useState(""); // 검색 입력값을 관리하는 상태
   const [isInputEmpty, setIsInputEmpty] = useState(false); // 입력값이 비었는지 여부를 나타내는 상태
-
+ 
+  //로그인 됐을 때 이름 변경
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
@@ -27,6 +28,10 @@ const Header = () => {
     navigate('/registerpage1');
   }
 
+  const onSubmitInboard = () => {
+    navigate('/inboard');
+  }
+
   const onSubmitBoard = () => {
     navigate('/board');
   }
@@ -35,6 +40,10 @@ const Header = () => {
     navigate('/question');
   }
 
+  const onSubmitWrite = () =>{
+    navigate('/write');
+  }
+  //로그아웃 관련
   const handleLogout = () => {
     if(!localStorage.getItem('user')){
       alert("로그인이 되어있지않습니다.")
@@ -95,8 +104,9 @@ const Header = () => {
         <button onClick={onSubmitRegister}>회원가입 창으로 이동</button>
         <button onClick={handleLogout}>로그아웃</button>
         <button onClick={onSubmitBoard}>게시판 등록</button>
-        <button onClick={onSubmitRegister}>????</button>
+        <button onClick={onSubmitInboard}>????</button>
         <button onClick={onSubmitQuestion}>Q&A</button>
+        <button onClick={onSubmitWrite}>레시피 등록</button>
         <form onSubmit={onSubmit}>
           <input type='text' placeholder='재료 -> 음식 or 음식 -> 재료를 검색하시오.' value={searchInput} onChange={handleChange}></input>
           <button type="submit">검색</button>

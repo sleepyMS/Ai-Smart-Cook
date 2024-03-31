@@ -13,6 +13,7 @@
     height: 100%;
     z-index: 9000;
     background-color: #999;
+    overflow-y: auto; /* 세로 스크롤 추가 */
 }
 #main {
     max-width: 2000px;
