@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Link 추가
-import "../내가만든css/Board.css"
+import "../Board/Board.css"
 
 const Board = () => {
   const [boards, setBoards] = useState([]);

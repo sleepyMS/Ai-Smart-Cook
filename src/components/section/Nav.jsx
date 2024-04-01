@@ -3,7 +3,7 @@ import Checkbox from '../Checkbox';
 import data from '../../db/data.json';
 import styles from '../../내가만든css/Nav.module.css'; // CSS 모듈 불러오기
 import gpt_nav from '../../api/gpt_nav';
-import LoadingModal from "../../components/Loadingmodal"; // LoadingModal 추가
+import LoadingModal from "../Loadingmodal/Loadingmodal"; // LoadingModal 추가
 import { useNavigate } from 'react-router-dom';
 
 

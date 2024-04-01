@@ -1,7 +1,7 @@
 import React from 'react';
-import "../내가만든css/media.css";
-import "../내가만든css/style.css";
-import style from '../내가만든css/loginpage.module.css';
+import "../../내가만든css/media.css";
+import "../../내가만든css/style.css";
+import style from './loginpage.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useRef,useEffect,useState } from 'react';
 

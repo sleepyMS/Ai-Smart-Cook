@@ -1,0 +1,58 @@
+/* Mypage.css */
+
+/* 전체 컨테이너 스타일 */
+.mypage-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* 사용자 정보 스타일 */
+.user-info {
+    margin-bottom: 20px;
+}
+
+/* 각 정보 항목 라벨 스타일 */
+.info-label {
+    font-weight: bold;
+}
+
+/* 비밀번호 변경 링크 스타일 */
+.change-password-link {
+    margin-top: 5px;
+}
+
+/* 비밀번호 변경 버튼 스타일 */
+.change-password {
+    color: blue;
+    cursor: pointer;
+}
+
+/* 숨겨진 정보(이메일, 비밀번호, 전화번호) 스타일 */
+.hidden-info {
+    display: none;
+}
+
+/* 사용자 게시물 목록 스타일 */
+.user-posts {
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}
+
+/* 각 게시물 스타일 */
+.post {
+    margin-bottom: 10px;
+}
+
+/* 게시물 제목 링크 스타일 */
+.post-link {
+    color: #333;
+    text-decoration: none;
+}
+
+/* 게시물 제목 스타일 */
+.post-title {
+    margin: 0;
+    font-size: 18px;
+}

@@ -1,12 +1,14 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import peoplesData from '../db/data.json'; 
-import style from '../내가만든css/loginpage.module.css';
+import peoplesData from '../../db/data.json'; 
+import './loginpage.module.css';
+import { useState } from 'react';
 
 const Loginpage = () => {
     const navigate = useNavigate();
     const IDRef = useRef(null);
     const pwdRef = useRef(null);
+    const [passwordVisible, setPasswordVisible] = useState(false);
 
     const onSubmitRegister = () => {
         navigate('/registerpage1');
@@ -60,7 +62,14 @@ const Loginpage = () => {
                     <label>Email</label>
                     <input type="text" placeholder="com@example.co.kr" ref={IDRef} />
                     <label>Password</label>
-                    <input type="password" placeholder="*********" ref={pwdRef} />
+                    <input 
+                        type={passwordVisible ? "text" : "password"} 
+                        placeholder="*********" 
+                        ref ={pwdRef}
+                        onClick={(e) => e.stopPropagation()}
+                        onBlur={() => pwdRef.current.type = "password"}
+                        required
+                    />
                     <br />
                     <button type="submit">로그인</button>
                 </form>

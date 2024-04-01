@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 const Inboard = () => {
   const {id} = useParams();
@@ -41,6 +41,9 @@ const Inboard = () => {
           </div>
           )}
       </div>
+      <Link to={`/board`}>
+          <h2>게시판 이동</h2>
+      </Link>
     </div>
   );
 };

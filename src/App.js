@@ -2,19 +2,22 @@ import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './components/section/Main';
 
-const Home = lazy(() => import('./pages/Home'));
-const Search = lazy(() => import('./pages/Search'));
-const Loginpage = lazy(() => import('./pages/Loginpage'));
-const Registerpage1 = lazy(() => import('./pages/Registerpage1'));
-const Board = lazy(() => import('./pages/Board'));
-const Question = lazy(() => import('./pages/Question'));
-const Koreafood = lazy(() => import('./pages/Koreafood'));
-const Recipe = lazy(() => import('./pages/Recipe'));
-const Inboard = lazy(() => import('./pages/Inboard'));
-const Write = lazy(() => import('./pages/Write'));
+const Home = lazy(() => import('./components/Home/Home'));
+const Search = lazy(() => import('./components/Search/Search'));
+const Loginpage = lazy(() => import('./components/Loginpage/Loginpage'));
+const Registerpage1 = lazy(() => import('./components/Registerpage/Registerpage1'));
+const Board = lazy(() => import('./components/Board/Board'));
+const Question = lazy(() => import('./components/Question/Question'));
+const Koreafood = lazy(() => import('./components/Koreafood/Koreafood'));
+const Recipe = lazy(() => import('./components/Recipe/Recipe'));
+const Inboard = lazy(() => import('./components/Inboard/Inboard'));
+const Write = lazy(() => import('./components/Write/Write'));
 const Checkbox = lazy(() => import('./components/Checkbox'));
-const Buttonrecipe = lazy(() => import('./pages/Buttonrecipe'));
-const Emptypage = lazy(() => import('./pages/Emptypage'));
+const Buttonrecipe = lazy(() => import('./components/Buttonrecipe/Buttonrecipe'));
+const Emptypage = lazy(() => import('./components/Emptypage/Emptypage'));
+const Mypage = lazy(() => import('./components/Mypage/Mypage'));
+const Changepwd = lazy(() => import('./components/Changepwd/Changepwd'));
+
 
 
 const App = () => {
@@ -34,6 +37,8 @@ const App = () => {
                     <Route path='/write' element={<Write />} />
                     <Route path='/check' element={<Checkbox />} />
                     <Route path='/buttonrecipe' element={<Buttonrecipe />} />
+                    <Route path='/mypage' element={<Mypage />} />
+                    <Route path='/changepwd' element={<Changepwd />} />
                     <Route element={<Emptypage />} />
                 </Routes>
             </Suspense>

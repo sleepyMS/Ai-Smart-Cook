@@ -1,29 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRef, useEffect } from 'react';
-import useFetch from '../hooks/useFetch';
-import style from '../내가만든css/loginpage.module.css';
+import './loginpage.module.css';
 
 const Loginpage = () => {
+    const navigate = useNavigate();
+    const [birthDate, setBirthDate] = useState("2000-01-01");
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const IDRef = useRef(null);
+    const pwdRef = useRef(null);
+    const nameRef = useRef(null);
+    const nickRef = useRef(null);
 
     const handleBirthDateChange = (e) => {
         setBirthDate(e.target.value);
     };
-
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        nameRef.current.focus();
-    }, []);
-
-    // 번호 유효 검사.
+    //폰 번호 유효성 검사
     const handlePhoneNumberChange = (e) => {
         const value = e.target.value;
         const formattedPhoneNumber = value.replace(/\D/g, '');
         if (formattedPhoneNumber.length > 11) {
             alert("휴대폰 번호는 11자리 이하여야 합니다. 다시 입력해주세요.");
             e.target.disabled = true;
-            setPhoneNumber('');
             setTimeout(() => {
                 e.target.disabled = false;
                 e.target.focus();
@@ -38,14 +36,9 @@ const Loginpage = () => {
             }
         }
     };
+
     const onSubmit = async(e) => {
         e.preventDefault();
-
-        // 유효성 검사 수행
-        if (!IDRef.current.value || !nameRef.current.value || !pwdRef.current.value || !phoneNumber) {
-            alert("모든 입력칸에 값을 입력해주세요.");
-            return;
-        }
 
         // 이메일 형식 검사
         const emailPattern = /\S+@\S+\.\S+/;
@@ -68,10 +61,12 @@ const Loginpage = () => {
             const emailResponse = await fetch(`http://localhost:817/peoples/?ID=${IDRef.current.value}`);
             const numResponse = await fetch(`http://localhost:817/peoples/?num=${phoneNumber}`);
             const pwdResponse = await fetch(`http://localhost:817/peoples/?pwd=${pwdRef.current.value}`);
+            const nickResponse = await fetch(`http://localhost:817/peoples/?nick=${nickRef.current.value}`);
     
             const emailData = await emailResponse.json();
             const numData = await numResponse.json();
             const pwdData = await pwdResponse.json();
+            const nickData = await nickResponse.json();
     
             if (emailData.length > 0 ){
                 alert("이미 같은 이메일 정보가 존재합니다. 다시 입력해주세요.");
@@ -85,6 +80,10 @@ const Loginpage = () => {
                 alert("이미 같은 비밀번호 정보가 존재합니다. 다시 입력해주세요.");
                 return;
             }
+            else if(nickData.length > 0){
+                alert("이미 같은 닉네임 정보가 존재합니다. 다시 입력해주세요.");
+                return;
+            }
             else {
                 const res = await fetch(`http://localhost:817/peoples/`, {
                     method: 'POST',
@@ -96,7 +95,8 @@ const Loginpage = () => {
                         name: nameRef.current.value,
                         pwd: pwdRef.current.value,
                         birth: birthDate,
-                        num: phoneNumber
+                        num: phoneNumber,
+                        nick: nickRef.current.value
                     }),
                 });
                 if (res.ok) {
@@ -108,12 +108,6 @@ const Loginpage = () => {
             console.error('Error:', error);
         }
     }
-
-    const IDRef = useRef(null);
-    const pwdRef = useRef(null);
-    const nameRef = useRef(null);
-    const [birthDate, setBirthDate] = useState("2000-01-01");
-    const [phoneNumber, setPhoneNumber] = useState('');
 
     return (
         <>
@@ -128,15 +122,24 @@ const Loginpage = () => {
                 }}>
                 <form  style={{ display: 'flex', flexDirection: 'column'}} onSubmit={onSubmit} >
                     <label>이름</label>
-                    <input type="text" placeholder="김정호" ref ={nameRef} />
+                    <input type="text" placeholder="김정호" ref ={nameRef} required/>
+                    <label>별명</label>
+                    <input type="text" placeholder="필수 사항 아님" ref ={nickRef}/>
                     <label>Email</label>
-                    <input type="email" placeholder="com@example.co.kr" ref ={IDRef} />
+                    <input type="email" placeholder="com@example.co.kr" ref ={IDRef} required/>
                     <label>Password</label>
-                    <input type="password" placeholder="*********" ref ={pwdRef}/>
+                    <input 
+                        type={passwordVisible ? "text" : "password"} 
+                        placeholder="*********" 
+                        ref ={pwdRef}
+                        onClick={(e) => e.stopPropagation()}
+                        onBlur={() => pwdRef.current.type = "password"}
+                        required
+                    />
                     <label>생년월일</label>
                     <input type="date" value={birthDate} onChange={handleBirthDateChange}/>
                     <label>휴대폰번호</label>
-                    <input type="text" placeholder="010-1234-5678" value={phoneNumber} onChange={handlePhoneNumberChange} />
+                    <input type="text" placeholder="010-1234-5678" value={phoneNumber} onChange={handlePhoneNumberChange} required/>
                     <br />
                     <button>완료</button>
                 </form>

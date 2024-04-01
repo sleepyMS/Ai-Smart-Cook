@@ -1,5 +1,5 @@
 import React from 'react'
-import Main from '../components/section/Main';
+import Main from '../section/Main';
 import { useLocation } from 'react-router-dom';
 
 

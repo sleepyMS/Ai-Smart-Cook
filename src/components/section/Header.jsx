@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gpt from "../../api/gpt"
-import LoadingModal from "../../components/Loadingmodal"; // LoadingModal 추가
+import LoadingModal from "../Loadingmodal/Loadingmodal"; // LoadingModal 추가
 import "../../내가만든css/Header.css";
-import Aialert1 from '../../components/Aialert1';
+import Aialert1 from '../Aialert/Aialert1';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -16,12 +16,16 @@ const Header = () => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
-      setPeopleName(user.name);
+      setPeopleName(user.nick);
     }
   }, []);
 
   const onSubmitLogin = () => {
-    navigate('/loginpage');
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user)
+      navigate('/Mypage');
+    else
+      navigate('loginpage')
   }
 
   const onSubmitRegister = () => {
@@ -42,6 +46,10 @@ const Header = () => {
 
   const onSubmitWrite = () =>{
     navigate('/write');
+  }
+
+  const handleMyPage = () => {
+    navigate('/Mypage');
   }
   //로그아웃 관련
   const handleLogout = () => {
@@ -101,7 +109,7 @@ const Header = () => {
       </h1>
       <div className="buttonMagin">
         <button onClick={onSubmitLogin}>{peopleName}</button>
-        <button onClick={onSubmitRegister}>회원가입 창으로 이동</button>
+        {peopleName === "로그인" && <button onClick={onSubmitRegister}>회원가입 창으로 이동</button>}
         <button onClick={handleLogout}>로그아웃</button>
         <button onClick={onSubmitBoard}>게시판 등록</button>
         <button onClick={onSubmitInboard}>????</button>

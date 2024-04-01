@@ -1,7 +1,7 @@
 // LoadingModal.jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../내가만든css/LoadingModal.css';
+import './LoadingModal.css';
 
 const Loadingmodal = () => {
   return ReactDOM.createPortal(
