@@ -13,7 +13,7 @@
 
 # misc
 .DS_Store
-data.json 
+/src/db/data.json
 .env
 .env.local
 .env.development.local

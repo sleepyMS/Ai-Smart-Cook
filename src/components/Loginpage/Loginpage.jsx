@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import peoplesData from '../../db/data.json'; 
-import './loginpage.module.css';
+import './loginpage.css';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import "boxicons";
 
 const Loginpage = () => {
     const navigate = useNavigate();
@@ -49,7 +51,7 @@ const Loginpage = () => {
 
     return (
         <>
-            <h1 className='header_logo'>
+            {/* <h1 className='header_logo'>
                 <a href="/">
                     <span>MOTIV</span>
                 </a>
@@ -75,6 +77,41 @@ const Loginpage = () => {
                 </form>
                 <div>
                     <button onClick={onSubmitRegister}>회원가입 하러가기</button>
+                </div>
+            </div> */}
+            <div className='wrapper'>
+                <div className='login-box'>
+                    <form onSubmit={onSubmit}>
+                        <h1>
+                            <Link to={'/'}>
+                                <span>MOTIV</span>
+                            </Link>
+                        </h1>
+                        <div className='input-box'>
+                            <input type='text' placeholder='Username' required ref={IDRef}></input>
+                            <box-icon type ="solid" name = "user" color="white"></box-icon>
+                        </div>
+                        <div className='input-box'>
+                            <input type='password' placeholder='Password' required ref ={pwdRef}></input>
+                            <box-icon type ="solid" name = "lock-alt" color="white"></box-icon>
+                        </div>
+                        <div className="remember-forgod">
+                            <label>
+                            <input type="checkbox" /> 아이디 기억하기
+                            </label>
+                            <a href="#"> 비밀번호 찾기</a>
+                        </div>
+
+                        <button type="submit" className="btn">
+                            Login
+                        </button>
+
+                        <div className="register-link">
+                            <p>
+                            계정이 없으신가요? <Link to={"/registerpage1"}>회원가입</Link>
+                            </p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </>
