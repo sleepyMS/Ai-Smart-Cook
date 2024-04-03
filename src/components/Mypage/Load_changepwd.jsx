@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './Load_changepwd.css';
+import { useNavigate } from 'react-router-dom';
 
 const Loadingmodal = ({ onClose }) => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  const [peoples, setPeoples] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
+  const navigator = useNavigate();
 
   const handleChangeCurrent = (e) => {
     setCurrentPassword(e.target.value);
@@ -22,62 +23,50 @@ const Loadingmodal = ({ onClose }) => {
     setConfirmPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const currentUser = peoples.find(person => person.ID === user.ID);
 
-    if (!currentUser) {
-      setError('사용자 정보를 찾을 수 없습니다.');
-      return;
+    const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
+        if (!passwordPattern.test(newPassword)) {
+            alert("패스워드는 영어, 숫자, 특수문자를 포함한 6~20자 이내로 입력해주세요.");
+            return;
+        }
+        if(currentPassword === newPassword){
+          alert("현재 사용 중인 비밀번호입니다.")
+          return;
+        }
+    try {
+      const response = await fetch(`http://localhost:817/peoples/${user.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+            ID: user.ID,
+            name: user.name,
+            pwd: newPassword ,
+            birth: user.birth,
+            num: user.num,
+            nick: user.nick
+        })
+      });
+        
+      if (!response.ok) {
+        throw new Error('비밀번호 변경에 실패했습니다.');
+      }
+
+      alert('비밀번호가 성공적으로 변경되었습니다.');
+      localStorage.removeItem('user');
+      navigator('/');
+      onClose(); // 패스워드 변경 후 모달 닫기
+    } catch (error) {
+      console.error('비밀번호 변경 중 오류 발생:', error);
+      setError('비밀번호 변경에 실패했습니다.');
     }
-
-    if (currentPassword !== currentUser.pwd) {
-      setError('현재 비밀번호가 일치하지 않습니다.');
-      return;
-    }
-
-    if (newPassword !== confirmPassword) {
-      setError('새로운 비밀번호가 일치하지 않습니다.');
-      return;
-    }
-
-    changePassword(currentUser, newPassword);
-    onClose(); // 제출 후 모달 닫기
   };
 
   const handleClose = () => {
     onClose(); // 모달 닫기
-  };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:817/peoples'); // data.json 경로를 수정해주세요.
-        const data = await response.json();
-        setPeoples(data);
-
-        if (!response.ok) {
-          throw new Error('데이터를 불러오는데 실패했습니다');
-        }
-      } catch (error) {
-        console.error('데이터를 불러오는 중 오류 발생:', error);
-      }
-    };
-
-    fetchData(); // fetchData 함수 호출
-  }, []);
-
-  const changePassword = (currentUser, newPassword) => {
-    const updatedPeoples = peoples.map(person => {
-      if (person.ID === currentUser.ID) {
-        return { ...person, pwd: newPassword };
-      }
-      return person;
-    });
-
-    // 변경된 비밀번호를 적용한 후 로컬 스토리지에 저장 또는 서버에 전송할 수 있습니다.
-    console.log('비밀번호가 성공적으로 변경되었습니다.');
-    console.log('변경된 사용자 정보:', updatedPeoples);
   };
 
   return ReactDOM.createPortal(

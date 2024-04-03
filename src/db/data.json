@@ -8,13 +8,13 @@
       "num": "010-1234-5678"
     },
     {
-      "id": "dea0",
       "ID": "kjhgfd44@naver.com",
       "name": "김정호",
-      "pwd": "rhkgkr0812!!",
+      "pwd": "tngkr0812!!",
       "birth": "2000-08-16",
       "num": "010-3924-1032",
-      "nick": "tiger"
+      "nick": "tiger",
+      "id": "dea0"
     }
   ],
   "boards": [

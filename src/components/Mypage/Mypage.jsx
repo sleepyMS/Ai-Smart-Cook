@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 import './Mypage.css'; // CSS 파일 추가
 import LoadingModal from './Load_changepwd'; // LoadingModal 추가
 
 const Mypage = () => {
     const user = JSON.parse(localStorage.getItem('user'));
-    const { name } = useParams();
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(false); // 로딩 상태를 나타내는 상태
 
@@ -52,9 +50,7 @@ const Mypage = () => {
 
     // 비밀번호 변경 클릭 시
     const handlePasswordChange = () => {
-        setIsLoading(true); // 로딩 상태를 true로 변경
-        // 비밀번호 변경 로직 작성
-        // 예를 들어, 비밀번호 변경 API 호출 등
+        setIsLoading(true); 
     };
 
     // LoadingModal 닫기 함수
