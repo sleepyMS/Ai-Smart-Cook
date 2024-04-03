@@ -19,38 +19,39 @@ const Header = () => {
       setPeopleName(user.nick);
     }
   }, []);
-
+  // 로그인 되면 마이페이지 아니면 로그인 창
   const onSubmitLogin = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     if(user)
       navigate('/Mypage');
     else
-      navigate('loginpage')
+      alert("로그인이 되어있지않습니다.")
+      const confirmLogin = window.confirm("로그인 하시겠습니까?");
+      if(confirmLogin){
+        navigate('/loginpage')
+      }
   }
 
   const onSubmitRegister = () => {
     navigate('/registerpage1');
   }
 
-  const onSubmitInboard = () => {
-    navigate('/inboard');
+  const onSubmitRecipeboard = () => {
+    navigate('/recipeboard');
   }
 
-  const onSubmitBoard = () => {
-    navigate('/board');
+  const onSubmitRecipewrite = () => {
+    navigate('/recipewrite');
   }
 
   const onSubmitQuestion = () =>{
-    navigate('/question');
+    navigate('/questionboard');
   }
 
   const onSubmitWrite = () =>{
     navigate('/write');
   }
 
-  const handleMyPage = () => {
-    navigate('/Mypage');
-  }
   //로그아웃 관련
   const handleLogout = () => {
     if(!localStorage.getItem('user')){
@@ -110,11 +111,11 @@ const Header = () => {
       <div className="buttonMagin">
         <button onClick={onSubmitLogin}>{peopleName}</button>
         {peopleName === "로그인" && <button onClick={onSubmitRegister}>회원가입 창으로 이동</button>}
-        <button onClick={handleLogout}>로그아웃</button>
-        <button onClick={onSubmitBoard}>게시판 등록</button>
-        <button onClick={onSubmitInboard}>????</button>
-        <button onClick={onSubmitQuestion}>Q&A</button>
-        <button onClick={onSubmitWrite}>레시피 등록</button>
+        {peopleName !== "로그인" && <button onClick={handleLogout}>로그아웃</button>}
+        <button onClick={onSubmitRecipewrite}>레시피 등록</button>
+        <button onClick={onSubmitRecipeboard}>레시피 게시판</button>
+        <button onClick={onSubmitQuestion}>Q&A 게시판</button>
+        <button onClick={onSubmitWrite}>Q&A 등록</button>
         <form onSubmit={onSubmit}>
           <input type='text' placeholder='재료 -> 음식 or 음식 -> 재료를 검색하시오.' value={searchInput} onChange={handleChange}></input>
           <button type="submit">검색</button>

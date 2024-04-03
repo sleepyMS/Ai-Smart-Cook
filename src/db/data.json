@@ -61,9 +61,21 @@
       "post": "sadsadad"
     }
   ],
-  "checkList": [
+  "recipes": [
+    {},
     {
-      "id": "0f98"
+      "id": "2495",
+      "name": "김정호",
+      "ingredient": "wewqe",
+      "titleBoard": "ewqe",
+      "post": "1.ㄷㅈㅂㄷㅈㄷ\n2. ㅈㄷㅈㅂㄷ\n3. ㅈㄷㅂㅈㄷ\n4. ㅈㅂㄷㅈㅂㄷㅈ\n5. ㅂㄷㅂㄷㅂㄷ\n6. ㅈㅂㄷㅈㅂㄷ"
+    },
+    {
+      "id": "866e",
+      "name": "김정호",
+      "ingredient": "ㅇㅁㄴㅇㅁ",
+      "titleBoard": "ㄴㅁㅇㄴㅁ",
+      "post": "ㄴㅇㅁㅇㅁㅇ"
     }
   ],
   "meats": [

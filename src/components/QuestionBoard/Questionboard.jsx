@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Link 추가
-import "../Board/Board.css"
+import "./Questionboard.css"
 
-const Board = () => {
+const Question = () => {
   const [boards, setBoards] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -53,4 +53,4 @@ const Board = () => {
   );
 };
 
-export default Board;
+export default Question;
