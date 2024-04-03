@@ -10,11 +10,6 @@ const Loginpage = () => {
     const navigate = useNavigate();
     const IDRef = useRef(null);
     const pwdRef = useRef(null);
-    const [passwordVisible, setPasswordVisible] = useState(false);
-
-    const onSubmitRegister = () => {
-        navigate('/registerpage1');
-    }
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -51,34 +46,6 @@ const Loginpage = () => {
 
     return (
         <>
-            {/* <h1 className='header_logo'>
-                <a href="/">
-                    <span>MOTIV</span>
-                </a>
-            </h1>
-            <div style={{ 
-                display: 'flex', justifyContent: 'center', alignItems: 'center', 
-                width: '100%', height: '100vh'
-                }}>
-                <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmit}>
-                    <label>Email</label>
-                    <input type="text" placeholder="com@example.co.kr" ref={IDRef} />
-                    <label>Password</label>
-                    <input 
-                        type={passwordVisible ? "text" : "password"} 
-                        placeholder="*********" 
-                        ref ={pwdRef}
-                        onClick={(e) => e.stopPropagation()}
-                        onBlur={() => pwdRef.current.type = "password"}
-                        required
-                    />
-                    <br />
-                    <button type="submit">로그인</button>
-                </form>
-                <div>
-                    <button onClick={onSubmitRegister}>회원가입 하러가기</button>
-                </div>
-            </div> */}
             <div className='wrapper'>
                 <div className='login-box'>
                     <form onSubmit={onSubmit}>

@@ -57,6 +57,11 @@ const Mypage = () => {
         // 예를 들어, 비밀번호 변경 API 호출 등
     };
 
+    // LoadingModal 닫기 함수
+    const handleCloseModal = () => {
+        setIsLoading(false); // 로딩 상태를 false로 변경하여 모달을 닫음
+    };
+
     return (
         <div className='mypage-container'>
             <h1 className='header_logo'>
@@ -83,7 +88,7 @@ const Mypage = () => {
                     </div>
                 )}
             </div>
-            {isLoading && <LoadingModal />} {/* isLoading이 true일 때 LoadingModal을 렌더링 */}
+            {isLoading && <LoadingModal onClose={handleCloseModal} />} {/* isLoading이 true일 때 LoadingModal을 렌더링 */}
         </div>
     );
 }
