@@ -19,16 +19,19 @@ const Header = () => {
       setPeopleName(user.nick);
     }
   }, []);
+  
   // 로그인 되면 마이페이지 아니면 로그인 창
   const onSubmitLogin = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     if(user)
       navigate('/Mypage');
     else
-      alert("로그인이 되어있지않습니다.")
-      const confirmLogin = window.confirm("로그인 하시겠습니까?");
-      if(confirmLogin){
-        navigate('/loginpage')
+      {
+        alert("로그인이 되어있지않습니다.")
+        const confirmLogin = window.confirm("로그인 하시겠습니까?");
+        if(confirmLogin){
+          navigate('/loginpage')
+        }
       }
   }
 

@@ -95,7 +95,7 @@ const Loginpage = () => {
                         name: nameRef.current.value,
                         pwd: pwdRef.current.value,
                         birth: birthDate,
-                        num: phoneNumber,
+                        phone: phoneNumber,
                         nick: nickRef.current.value
                     }),
                 });
