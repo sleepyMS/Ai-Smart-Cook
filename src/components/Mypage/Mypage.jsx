@@ -46,7 +46,7 @@ const Mypage = () => {
         };
 
         fetchData(); // fetchData 함수 호출
-    }, [user.nick]);
+    }, [user.name]);
 
     // 비밀번호 변경 클릭 시
     const handlePasswordChange = () => {
@@ -72,8 +72,8 @@ const Mypage = () => {
                     <div className='change-password'>비밀번호 변경</div>
                 </Link>
                 <div className='hidden-info'>{user.pwd}</div>
-                <div className='info-label'>전화번호: {hidePhoneNumber(user.num)}</div>
-                <div className='hidden-info'>{user.num}</div>
+                <div className='info-label'>전화번호: {hidePhoneNumber(user.phone)}</div>
+                <div className='hidden-info'>{user.phone}</div>
             </div>
             <div className='user-posts'>
                 {posts.map(board =>

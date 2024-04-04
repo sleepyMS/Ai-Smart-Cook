@@ -3,7 +3,7 @@
     {
       "id": "2dad",
       "ID": "qwer@naver.com",
-      "name": "홍길동",
+      "name": "홍길동1",
       "pwd": "qwe123!!",
       "phone": "010-1234-5678"
     },
@@ -16,56 +16,39 @@
       "nick": "tiger",
       "id": "dea0",
       "picture": "pppp"
+    },
+    {
+      "id": "f96c",
+      "ID": "qwe123@naver.com",
+      "name": "홍길동",
+      "pwd": "qwer1234!!",
+      "birth": "2000-01-01",
+      "phone": "010-2626-2626",
+      "nick": "dragon"
+    },
+    {
+      "id": "w21e",
+      "ID": "aprk@naver.com",
+      "name": "뽀글",
+      "pwd": "zjvl12!@",
+      "birth": "2000-01-01",
+      "phone": "010-2626-2626",
+      "nick": "ice tea"
     }
   ],
   "boards": [
     {
-      "id": "1",
-      "name": "김정호",
-      "titleBoard": "연습버전111",
-      "post": "연습하는고야~~~~~~11."
+      "like": {
+        "name": "{\"id\":\"w21e\",\"ID\":\"aprk@naver.com\",\"name\":\"뽀글\",\"pwd\":\"zjvl12!@\",\"birth\":\"2000-01-01\",\"phone\":\"010-2626-2626\",\"nick\":\"ice tea\"}"
+      },
+      "id": "a238"
     },
     {
-      "id": "3123",
-      "name": "김정호",
-      "titleBoard": "연습버전222",
-      "post": "연습하는고야~~~~~~22."
-    },
-    {
-      "id": "2",
-      "name": "김정호2",
-      "titleBoard": "dsad",
-      "post": "나는 김정호2이야."
-    },
-    {
-      "id": "3",
-      "name": "김정호3",
-      "titleBoard": "dsad",
-      "post": "나는 김정호3이야."
-    },
-    {
-      "id": "4",
-      "name": "김정호4",
-      "titleBoard": "dsad",
-      "post": "나는 김정호4이야."
-    },
-    {
-      "id": "2313",
-      "name": "김정호5",
-      "titleBoard": "dsad",
-      "post": "나는 김정호5이야."
-    },
-    {
-      "id": "f8e3",
-      "name": "김정호",
-      "titleBoard": "sdsad",
-      "post": "sadsadad"
-    },
-    {
-      "id": "aae0",
-      "name": "김정호",
-      "titleBoard": "dsadsad",
-      "post": "asdasdasd"
+      "id": "086b",
+      "name": "홍길동",
+      "titleBoard": "오늘은 4월 4일 44 ㄷㄷ",
+      "post": "4444444444444444444444444444444",
+      "like": []
     }
   ],
   "recipes": [
@@ -75,8 +58,8 @@
       "ingredient": "wewqe",
       "titleBoard": "ewqe",
       "post": "1.ㄷㅈㅂㄷㅈㄷ\n2. ㅈㄷㅈㅂㄷ\n3. ㅈㄷㅂㅈㄷ\n4. ㅈㅂㄷㅈㅂㄷㅈ\n5. ㅂㄷㅂㄷㅂㄷ\n6. ㅈㅂㄷㅈㅂㄷ",
-      "time":"",
-      "tag":""
+      "time": "",
+      "tag": ""
     },
     {
       "id": "866e",

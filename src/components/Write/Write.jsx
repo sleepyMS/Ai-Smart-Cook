@@ -62,13 +62,14 @@ const Write = () => {
           name: ID.name,
           titleBoard: titleRef.current.value,
           post: postRef.current.value,
+          like:[]
         }),
       });
 
       if (res.ok) {
         alert("생성이 완료되었습니다.");
         // 게시물 데이터 설정
-        navigate('/board');
+        navigate('/questionboard');
       }
     } catch (error) {
       console.log(error);
