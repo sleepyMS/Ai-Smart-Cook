@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Mypage.css'; // CSS 파일 추가
 import LoadingModal from './Load_changepwd'; // LoadingModal 추가
+import Load_changednick from './Load_changednick'; // LoadingModal 추가
 
 const Mypage = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(false); // 로딩 상태를 나타내는 상태
+    const [isNickLoading, setIsNickLoading] = useState(false); // 로딩 상태를 나타내는 상태
 
     // 이메일 가리기
     const hideEmail = (email) => {
@@ -33,7 +35,7 @@ const Mypage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:817/boards?name=${user.name}`);
+                const response = await fetch(`http://localhost:817/boards?nick=${user.nick}`);
                 const data = await response.json();
                 setPosts(data);
 
@@ -54,10 +56,35 @@ const Mypage = () => {
     };
 
     // LoadingModal 닫기 함수
-    const handleCloseModal = () => {
+    const handleCloseModal1 = () => {
         setIsLoading(false); // 로딩 상태를 false로 변경하여 모달을 닫음
     };
 
+    const handleNickChange = () => {
+        setIsNickLoading(true); 
+    };
+
+    const handleCloseModal2 = () => {
+        setIsNickLoading(false); // 로딩 상태를 false로 변경하여 모달을 닫음
+    };
+
+
+    const del = (postId) => {
+        if (window.confirm("삭제하시겠습니까?")) {
+            fetch(`http://localhost:817/boards/${postId}`, {
+                method: "DELETE",
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('게시물을 삭제하는데 실패했습니다');
+                }
+                // 성공적으로 삭제되었을 때 UI에서 해당 게시물을 제거합니다.
+                setPosts(posts.filter(post => post.id !== postId));
+            })
+            .catch(error => console.error('게시물 삭제 중 오류 발생:', error));
+        }
+    }
+    
     return (
         <div className='mypage-container'>
             <h1 className='header_logo'>
@@ -67,6 +94,9 @@ const Mypage = () => {
                 <div className='info-label'>이름: {user.name}</div>
                 <div className='info-label'>이메일: {hideEmail(user.ID)}</div>
                 <div className='info-label'>닉네임: {user.nick}</div>
+                <Link className='change-password-link' onClick={handleNickChange}>
+                    <div className='change-password'>닉네임 변경</div>
+                </Link>
                 <div className='info-label'>비밀번호: {hidePassword(user.pwd)}</div>
                 <Link className='change-password-link' onClick={handlePasswordChange}>
                     <div className='change-password'>비밀번호 변경</div>
@@ -81,10 +111,12 @@ const Mypage = () => {
                         <Link to={`/inboard/${board.id}`} className='post-link'>
                             <h3 className='post-title'>제목: {board.titleBoard}</h3>
                         </Link>
+                        <button onClick={() => del(board.id)}>삭제</button>
                     </div>
                 )}
             </div>
-            {isLoading && <LoadingModal onClose={handleCloseModal} />} {/* isLoading이 true일 때 LoadingModal을 렌더링 */}
+            {isLoading && <LoadingModal onClose={handleCloseModal1} />} {/* isLoading이 true일 때 LoadingModal을 렌더링 */}
+            {isNickLoading && <Load_changednick onClose={handleCloseModal2} />} {/* isLoading이 true일 때 LoadingModal을 렌더링 */}
         </div>
     );
 }

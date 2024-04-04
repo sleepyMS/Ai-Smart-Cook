@@ -5,6 +5,7 @@ import "./Questionboard.css"
 const Question = () => {
   const [boards, setBoards] = useState([]);
   const [loading, setLoading] = useState(true);
+
   //게시판 데이터 가져오기
   useEffect(() => {
     const fetchData = async () => {
@@ -41,70 +42,64 @@ const Question = () => {
       // 로컬 저장소에 조회수 저장
       localStorage.setItem('viewCounts', JSON.stringify(newViewCounts));
     }
+    else 
+      alert("로그인을 해주세요.")
   };
 
-  // 좋아요를 증가시키는 함수
-  const increaseLike = (id) => {
-    const newLikes = { ...likes };
-    newLikes[id] = newLikes[id] || [];
-    const user = localStorage.getItem('user');
-    if (user && !newLikes[id].includes(user)) {
-      if (Array.isArray(newLikes[id])) { // 배열인지 확인
-        newLikes[id].push(user);
-      } else { // 배열이 아니라면 새로운 배열로 초기화
-        newLikes[id] = [user];
+    // 좋아요를 증가시키는 함수
+    const increaseLike = (id) => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        const newLikes = { ...likes };
+        newLikes[id] = newLikes[id] || [];
+        if (!newLikes[id].includes(user.name)) {
+          newLikes[id].push(user.name);
+          setLikes(newLikes);
+          // 로컬 저장소에 좋아요 정보 저장
+          localStorage.setItem('likes', JSON.stringify(newLikes));
+    
+          // 해당 게시물의 좋아요 정보를 서버에 업데이트
+          fetch(`http://localhost:817/boards/${id}/like`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name: user.name }), // 사용자의 이름만 전송
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('좋아요 정보를 업데이트하는데 실패했습니다');
+            }
+          })
+          .catch(error => console.error('좋아요 정보 업데이트 중 오류 발생:', error));
+        }
       }
-      setLikes(newLikes);
-      // 로컬 저장소에 좋아요 정보 저장
-      localStorage.setItem('likes', JSON.stringify(newLikes));
+    };
+    
+    // 좋아요를 감소시키는 함수
+    const decreaseLike = (id) => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user && likes[id]) {
+        const newLikes = { ...likes };
+        newLikes[id] = newLikes[id].filter(name => name !== user.name);
+        setLikes(newLikes);
+        // 로컬 저장소에 좋아요 정보 저장
+        localStorage.setItem('likes', JSON.stringify(newLikes));
+    
+        // 해당 게시물의 좋아요 정보를 서버에 업데이트
+        fetch(`http://localhost:817/boards/${id}/like/${user.name}`, {
+          method: 'DELETE',
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('좋아요 정보를 업데이트하는데 실패했습니다');
+          }
+        })
+        .catch(error => console.error('좋아요 정보 업데이트 중 오류 발생:', error));
+      }
+    };
 
-      // 해당 게시물의 좋아요 정보를 서버에 업데이트
-      fetch(`http://localhost:817/boards/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          like: { name: user } 
-        }),
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('좋아요 정보를 업데이트하는데 실패했습니다');
-        }
-      })
-      .catch(error => console.error('좋아요 정보 업데이트 중 오류 발생:', error));
-    }
-  };
 
-  // 좋아요를 감소시키는 함수
-  const decreaseLike = (id) => {
-    const newLikes = { ...likes };
-    const user = localStorage.getItem('user');
-    if (user && newLikes[id]) {
-      newLikes[id] = newLikes[id].filter(name => name !== user);
-      setLikes(newLikes);
-      // 로컬 저장소에 좋아요 정보 저장
-      localStorage.setItem('likes', JSON.stringify(newLikes));
-
-      // 해당 게시물의 좋아요 정보를 서버에 업데이트
-      fetch(`http://localhost:817/boards/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          like: { name: user } 
-        }),
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('좋아요 정보를 업데이트하는데 실패했습니다');
-        }
-      })
-      .catch(error => console.error('좋아요 정보 업데이트 중 오류 발생:', error));
-    }
-  };
 
   // 컴포넌트가 처음 렌더링될 때 로컬 저장소에서 조회수와 좋아요 정보를 불러옴
   useEffect(() => {

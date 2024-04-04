@@ -18,6 +18,7 @@ const Emptypage = lazy(() => import('./components/Emptypage/Emptypage'));
 const Mypage = lazy(() => import('./components/Mypage/Mypage'));
 const Changepwd = lazy(() => import('./components/Changepwd/Changepwd'));
 const Recipeboard = lazy(() => import('./components/Recipeboard/Recipeboard'));
+const Recipeinboard = lazy(() => import('./components/Recipeinboard/Recipeinboard'));
 
 
 
@@ -41,6 +42,7 @@ const App = () => {
                     <Route path='/mypage' element={<Mypage />} />
                     <Route path='/changepwd' element={<Changepwd />} />
                     <Route path='/recipeboard' element={<Recipeboard />} />
+                    <Route path='/recipeinboard/:id' element={<Recipeinboard />} />
                     <Route element={<Emptypage />} />
                 </Routes>
             </Suspense>

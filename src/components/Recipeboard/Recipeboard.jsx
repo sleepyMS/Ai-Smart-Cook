@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom'; // Link 추가
 import "./Recipeboard.css"
 
 const Recipeboard = () => {
-  const [boards, setBoards] = useState([]);
+  const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:817/boards/');
+        const response = await fetch('http://localhost:817/recipes/');
         const data = await response.json();
-        setBoards(data); 
+        setRecipes(data); 
 
         if (!response.ok) {
           throw new Error('데이터를 불러오는데 실패했습니다');
@@ -37,13 +37,13 @@ const Recipeboard = () => {
           <p>Loading...</p> // 로딩 중일 때 표시될 내용
         ) : (
           <ul className="board-list">
-            {boards.length > 0 && boards.map((board, index) => (
+            {recipes.length > 0 && recipes.map((recipe, index) => (
               <li key={index} className="board-item">
                 {/* Link를 이용해 클릭 시 URL 변경 */}
-                <Link to={`/inboard/${board.id}`}>
-                  <h3>제목: {board.titleBoard}</h3>
+                <Link to={`/recipeinboard/${recipe.id}`}>
+                  <h3>제목: {recipe.titleBoard}</h3>
                 </Link>
-                <p>{board.name}</p>
+                <p>{recipe.name}</p>
               </li>
             ))}
           </ul>

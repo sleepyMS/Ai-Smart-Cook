@@ -7,15 +7,14 @@
       "pwd": "qwe123!!",
       "phone": "010-1234-5678"
     },
-    {
+    { 
+      "id": "dea0",
       "ID": "kjhgfd44@naver.com",
       "name": "김정호",
       "pwd": "tngkr0812!!",
       "birth": "2000-08-16",
-      "phone": "010-3924-1032",
-      "nick": "tiger",
-      "id": "dea0",
-      "picture": "pppp"
+      "phone": "010-2626-2626",
+      "nick": "tiger"
     },
     {
       "id": "f96c",
@@ -38,16 +37,40 @@
   ],
   "boards": [
     {
-      "like": {
-        "name": "{\"id\":\"w21e\",\"ID\":\"aprk@naver.com\",\"name\":\"뽀글\",\"pwd\":\"zjvl12!@\",\"birth\":\"2000-01-01\",\"phone\":\"010-2626-2626\",\"nick\":\"ice tea\"}"
-      },
-      "id": "a238"
+      "id": "a238",
+      "name": "김정호",
+      "titleBoard": "dsadasdasdsads",
+      "post": "asdsadsadsadsa",
+      "like": []
     },
     {
       "id": "086b",
       "name": "홍길동",
       "titleBoard": "오늘은 4월 4일 44 ㄷㄷ",
       "post": "4444444444444444444444444444444",
+      "like": []
+    },
+    {
+      "id": "we32",
+      "name": "홍길동",
+      "titleBoard": "오늘은 4월 4555 44 ㄷㄷ",
+      "post": "444444444444444555555555544444444444",
+      "like": []
+    },
+    {
+      "id": "0a89",
+      "name": "김정호",
+      "nick": "tiger",
+      "titleBoard": "글을 쓴다요요!31!11",
+      "post": "ㅇㄴㅁㅇㄴㅁㅇ32ㅁ11",
+      "like": []
+    },
+    {
+      "id": "64s1",
+      "name": "김정호",
+      "nick": "tiger",
+      "titleBoard": "글을 쓴다요요!!11",
+      "post": "ㅇㄴㅁㅇㄴㅁㅇ22ㅁ",
       "like": []
     }
   ],
@@ -67,6 +90,23 @@
       "ingredient": "ㅇㅁㄴㅇㅁ",
       "titleBoard": "ㄴㅁㅇㄴㅁ",
       "post": "ㄴㅇㅁㅇㅁㅇ"
+    },
+    {
+      "id": "6b9a",
+      "name": "김정호",
+      "ingredient": "dsadsa",
+      "titleBoard": "dsads",
+      "post": "sdasdsadasdsad",
+      "tag": "중식"
+    },
+    {
+      "id": "36f8",
+      "name": "김정호",
+      "ingredient": "sadsadad",
+      "titleBoard": "adsa",
+      "post": "dsadsaddasd\n2. as\n3. da\n4. d\n5. ad\n6. a\n7. \n8. dasda",
+      "tag": "일식",
+      "time": "2024-04-04T16:40:28.984Z"
     }
   ],
   "meats": [

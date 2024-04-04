@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const Inboard = () => {
+const Recipeinboard = () => {
   const {id} = useParams();
   //const postList = dummy.boards.filter(board => board.id === id)
   const [posts,setPosts] = useState([]);
@@ -10,7 +10,7 @@ const Inboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:817/boards?id=${id}`);
+        const response = await fetch(`http://localhost:817/recipes?id=${id}`);
         const data = await response.json();
         setPosts(data); 
 
@@ -35,17 +35,17 @@ const Inboard = () => {
         </a>
       </h1>
       <div>
-        {posts.map(board =>
-          <div key={board.id}>
-            {board.post}
+        {posts.map(recipe =>
+          <div key={recipe.id}>
+            {recipe.post}
           </div>
           )}
       </div>
-      <Link to={`/questionboard`}>
+      <Link to={`/recipeboard`}>
           <h2>게시판 이동</h2>
       </Link>
     </div>
   );
 };
 
-export default Inboard;
+export default Recipeinboard;

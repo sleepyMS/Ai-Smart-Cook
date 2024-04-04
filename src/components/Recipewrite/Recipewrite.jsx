@@ -8,6 +8,7 @@ const Recipewrite = () => {
   const titleRef = useRef(null);
   const postRef = useRef(null);
   const indRef = useRef(null);
+  const tagRef = useRef(null); // useRef를 사용하여 선택된 태그 값을 저장
   const [peopleName, setPeopleName] = useState("로그인");
 
   useEffect(() => {
@@ -58,6 +59,7 @@ const Recipewrite = () => {
       return;
     }
     try {
+      const currentTime = new Date(); // 현재 시간을 가져옴
       const res = await fetch(`http://localhost:817/recipes/`, {
         method: 'POST',
         headers: {
@@ -68,6 +70,8 @@ const Recipewrite = () => {
           ingredient: indRef.current.value,
           titleBoard: titleRef.current.value,
           post: postRef.current.value,
+          tag: tagRef.current.value,
+          time: currentTime.toISOString() // 현재 시간을 ISO 형식으로 변환하여 저장
         }),
       });
       if (res.ok) {
@@ -98,6 +102,15 @@ const Recipewrite = () => {
             <div className='title'>
               <label>재료</label>
               <input type="text" placeholder="재료" ref ={indRef}/>
+            </div>
+            <div>
+              <label>카테고리</label>
+              <select ref={tagRef}> {/* 선택된 값을 useRef를 통해 가져오도록 설정 */}
+                <option>한식</option>
+                <option>중식</option>
+                <option>일식</option>
+                <option>양식</option>
+              </select>
             </div>
             <div className='info'>
               글쓴이

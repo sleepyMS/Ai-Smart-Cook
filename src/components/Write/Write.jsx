@@ -60,6 +60,7 @@ const Write = () => {
         },
         body: JSON.stringify({
           name: ID.name,
+          nick: ID.nick,
           titleBoard: titleRef.current.value,
           post: postRef.current.value,
           like:[]

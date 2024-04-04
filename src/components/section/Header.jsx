@@ -11,28 +11,38 @@ const Header = () => {
   const [isLoading, setIsLoading] = useState(false); // 로딩 중인지 여부를 나타내는 상태
   const [searchInput, setSearchInput] = useState(""); // 검색 입력값을 관리하는 상태
   const [isInputEmpty, setIsInputEmpty] = useState(false); // 입력값이 비었는지 여부를 나타내는 상태
- 
-  //로그인 됐을 때 이름 변경
+
+  // 로그인 상태 확인
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
+    checkLoginStatus();
+    // 창을 닫거나 페이지를 떠날 때 로그아웃을 실행
+    window.addEventListener('beforeunload', handleLogoutOnWindowClose);
+    return () => {
+      window.removeEventListener('beforeunload', handleLogoutOnWindowClose);
+    };
+  }, []);
+
+  const checkLoginStatus = () => {
+    const user = JSON.parse(sessionStorage.getItem('user'));
     if (user) {
       setPeopleName(user.nick);
+    } else {
+      setPeopleName("로그인");
     }
-  }, []);
-  
+  };
+
   // 로그인 되면 마이페이지 아니면 로그인 창
   const onSubmitLogin = () => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if(user)
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    if(user) {
       navigate('/Mypage');
-    else
-      {
-        alert("로그인이 되어있지않습니다.")
-        const confirmLogin = window.confirm("로그인 하시겠습니까?");
-        if(confirmLogin){
-          navigate('/loginpage')
-        }
+    } else {
+      alert("로그인이 되어있지않습니다.");
+      const confirmLogin = window.confirm("로그인 하시겠습니까?");
+      if(confirmLogin){
+        navigate('/loginpage');
       }
+    }
   }
 
   const onSubmitRegister = () => {
@@ -57,21 +67,18 @@ const Header = () => {
 
   //로그아웃 관련
   const handleLogout = () => {
-    if(!localStorage.getItem('user')){
-      alert("로그인이 되어있지않습니다.")
-      const confirmLogin = window.confirm("로그인 하시겠습니까?");
-      if(confirmLogin){
-        navigate('/loginpage')
-      }
-    }
-    else {
-      const confirmLogout = window.confirm("로그아웃 하시겠습니까?");
-      if(confirmLogout){
-        setPeopleName("로그인"); // 이름 초기화
-        localStorage.removeItem('user'); // 로컬 스토리지에서 사용자 정보 삭제
-      }
+    const confirmLogout = window.confirm("로그아웃 하시겠습니까?");
+    if (confirmLogout) {
+      setPeopleName("로그인"); // 이름 초기화
+      sessionStorage.removeItem('user'); // 세션 스토리지에서 사용자 정보 삭제
     }
   }
+
+  const handleLogoutOnWindowClose = () => {
+    if(sessionStorage.getItem('user')){
+      handleLogout();
+    }
+  };
 
   // 챗지피티 api 호출 
   const onSubmit = async (e) => {
