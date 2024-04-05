@@ -1,6 +1,6 @@
 package com.KProject.SmartAiCook;
 
-import com.KProject.SmartAiCook.dto.SignUpDTO;
+import com.KProject.SmartAiCook.dto.LoginDTO;
 import com.KProject.SmartAiCook.dto.UserDTO;
 import com.KProject.SmartAiCook.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
@@ -19,32 +19,32 @@ public class MapperTests {
     @Test
     public void testInsert() {
 
-        SignUpDTO s1 = new SignUpDTO();
-        s1.setName("심형규");
-        s1.setId("sim");
-        s1.setPhone("010-1234-1234");
-        s1.setBirth("1990-01-01");
-        s1.setEmail("12314");
-        s1.setConfirmPassword("1");
-        s1.setPassword("1");
-        s1.setNick("a");
+        UserDTO u1 = new UserDTO();
+        u1.setName("chlalstjr");
+        u1.setId("Che");
+        u1.setPhone("010-1234-1234");
+        u1.setBirth("1990-01-01");
+        u1.setEmail("222");
+//        s1.setConfirmPassword("1");
+        u1.setPassword("52");
+        u1.setNick("a");
 
-        System.out.println(s1);
-        userMapper.insertUser(s1);
+        System.out.println(u1);
+        userMapper.insertUser(u1);
         System.out.println("------------ 테이블 insert ------------");
     }
 
     @Test
     public void testSelect() {
-        String userId = "Kin";
-        UserDTO user = userMapper.getUserById(userId);
+        String userId = "Sim";
+        UserDTO user = userMapper.getUserByEmail(userId);
         System.out.println("User found: " + user);
     }
 
     @Test
     public void testUpdate() {
         String userId = "new2";
-        UserDTO u1 = userMapper.getUserById(userId);
+        UserDTO u1 = userMapper.getUserByEmail(userId);
 
         u1.setName("update name");
         u1.setPhone("010-1234-1234");
@@ -55,9 +55,24 @@ public class MapperTests {
 
     @Test
     public void testDelete() {
-        String userId = "new3";
+        String userId = "Sim";
         userMapper.deleteUser(userId);
         System.out.println("User deleted with ID: " + userId);
+    }
+
+    @Test
+    public void testCheckById() {
+        String userId = "min";
+        boolean result = userMapper.getIdCheckById(userId);
+
+        System.out.println(result);
+    }
+
+    @Test
+    public void testExistedByEmail() {
+        LoginDTO loginDTO = new LoginDTO("111", "52");
+        boolean result = userMapper.getExistedByEmail(loginDTO);
+        System.out.println(result);
     }
 
 }

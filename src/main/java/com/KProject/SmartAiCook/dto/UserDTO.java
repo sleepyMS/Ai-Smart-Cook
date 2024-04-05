@@ -1,22 +1,25 @@
 package com.KProject.SmartAiCook.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@Getter
-@Setter
+import java.time.LocalDateTime;
+
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class UserDTO {
-    private String name;
     private String id;
+    private String password;
+    private String nick;
+    private String email;
+    private String name;
     private String phone;
+    private String birth;
+    private String token;
+    private LocalDateTime createdAt;
+    private LocalDateTime editedAt;
+    private LocalDateTime lastLoginAt;
 }
 
 //public class UserDTO {

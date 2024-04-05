@@ -1,5 +1,6 @@
 package com.KProject.SmartAiCook.controller;
 
+import com.KProject.SmartAiCook.dto.LoginDTO;
 import com.KProject.SmartAiCook.dto.ResponseDTO;
 import com.KProject.SmartAiCook.dto.SignUpDTO;
 import com.KProject.SmartAiCook.service.AuthService;
@@ -14,6 +15,13 @@ public class AuthController {
     @PostMapping("/signUp")
     public ResponseDTO<?> signUp(@RequestBody SignUpDTO requestBody) {
         ResponseDTO<?> result = authService.signUp(requestBody);
+
+        return result;
+    }
+
+    @PostMapping("/login")
+    public ResponseDTO<?> login(@RequestBody LoginDTO requestBody) {
+        ResponseDTO<?> result = authService.login(requestBody);
 
         return result;
     }

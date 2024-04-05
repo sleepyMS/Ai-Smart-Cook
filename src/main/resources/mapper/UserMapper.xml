@@ -5,15 +5,16 @@
 <mapper namespace="com.KProject.SmartAiCook.mapper.UserMapper">
 
     <!-- 새로운 사용자 추가 -->
-    <insert id="insertUser" parameterType="SignUpDTO">
-        INSERT INTO users (name, id, password, confirmPassword, phone, nick, birth, email, token, createdAt, editedAt, lastLoginAt)
-        VALUES (#{name}, #{id}, #{password}, #{confirmPassword}, #{phone}, #{nick}, #{birth}, #{email}, #{token}, NOW(), NOW(), NOW())
+    <insert id="insertUser" parameterType="UserDTO">
+        INSERT INTO users (name, id, password, phone, nick, birth, email, token, createdAt, editedAt, lastLoginAt)
+        VALUES (#{name}, #{id}, #{password}, #{phone}, #{nick}, #{birth}, #{email}, #{token}, NOW(), NOW(), NOW())
     </insert>
-<!--    레시피 테이블 제작할 것-->
 
     <!-- ID로 사용자 조회 -->
-    <select id="getUserById" parameterType="string" resultType="UserDTO">
-        SELECT * FROM users WHERE id = #{id};
+    <select id="getUserByEmail" parameterType="string" resultType="UserDTO">
+        SELECT *
+        FROM users
+        WHERE email = #{email};
     </select>
 
     <!-- ID로 사용자 정보 업데이트 -->
@@ -25,11 +26,23 @@
 
     <!-- ID로 사용자 삭제 -->
     <delete id="deleteUser" parameterType="string">
-        DELETE FROM users WHERE id = #{id};
+        DELETE
+        FROM users
+        WHERE id = #{id};
     </delete>
 
-    <select id="getUserSelectById" resultType="boolean">
-        SELECT * FROM users WHERE id = #{userId}
+    <!-- 이미 존재하는 id(email)인지 체크 -->
+    <select id="getIdCheckById" parameterType="string" resultType="boolean">
+        SELECT COUNT(*)
+        FROM users
+        WHERE id = #{userId}
+    </select>
+
+    <!-- 회원 정보 체크 ( id, password ) -->
+    <select id="getExistedByEmail" parameterType="LoginDTO" resultType="boolean">
+        SELECT COUNT(*)
+        FROM users
+        WHERE email = #{email} AND password = #{password}
     </select>
 
 </mapper>
