@@ -1,29 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gpt from "../../api/gpt"
-import LoadingModal from "../Loadingmodal/Loadingmodal"; // LoadingModal 추가
+import LoadingModal from "../Loadingmodal/Loadingmodal";
 import "../../내가만든css/Header.css";
 import Aialert1 from '../Aialert/Aialert1';
 
 const Header = () => {
   const navigate = useNavigate();
   const [peopleName, setPeopleName] = useState("로그인");
-  const [isLoading, setIsLoading] = useState(false); // 로딩 중인지 여부를 나타내는 상태
-  const [searchInput, setSearchInput] = useState(""); // 검색 입력값을 관리하는 상태
-  const [isInputEmpty, setIsInputEmpty] = useState(false); // 입력값이 비었는지 여부를 나타내는 상태
-
-  // 로그인 상태 확인
-  useEffect(() => {
-    checkLoginStatus();
-    // 창을 닫거나 페이지를 떠날 때 로그아웃을 실행
-    window.addEventListener('beforeunload', handleLogoutOnWindowClose);
-    return () => {
-      window.removeEventListener('beforeunload', handleLogoutOnWindowClose);
-    };
-  }, []);
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const [isInputEmpty, setIsInputEmpty] = useState(false);
 
   const checkLoginStatus = () => {
-    const user = JSON.parse(sessionStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       setPeopleName(user.nick);
     } else {
@@ -31,9 +21,20 @@ const Header = () => {
     }
   };
 
-  // 로그인 되면 마이페이지 아니면 로그인 창
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("로그아웃 하시겠습니까?");
+    if (confirmLogout) {
+      setPeopleName("로그인");
+      localStorage.removeItem('user');
+    }
+  }
+
+  const handleLogoutOnWindowClose = () => {
+    handleLogout();
+  };
+
   const onSubmitLogin = () => {
-    const user = JSON.parse(sessionStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
     if(user) {
       navigate('/Mypage');
     } else {
@@ -65,31 +66,14 @@ const Header = () => {
     navigate('/write');
   }
 
-  //로그아웃 관련
-  const handleLogout = () => {
-    const confirmLogout = window.confirm("로그아웃 하시겠습니까?");
-    if (confirmLogout) {
-      setPeopleName("로그인"); // 이름 초기화
-      sessionStorage.removeItem('user'); // 세션 스토리지에서 사용자 정보 삭제
-    }
-  }
-
-  const handleLogoutOnWindowClose = () => {
-    if(sessionStorage.getItem('user')){
-      handleLogout();
-    }
-  };
-
-  // 챗지피티 api 호출 
   const onSubmit = async (e) => {
-    e.preventDefault(); // 기본 제출 행동 방지
+    e.preventDefault();
     if (!searchInput.trim()) {
-      // 검색 입력값이 비어 있는 경우 경고 메시지 표시
       setIsInputEmpty(true);
       return;
     }
     try {
-      setIsLoading(true); // API 호출 시작 시 로딩 상태 설정
+      setIsLoading(true);
       const message = await gpt({
         prompt : `${searchInput}`
       });
@@ -97,18 +81,26 @@ const Header = () => {
     } catch(error) {
       // 오류 처리
     } finally {
-      setIsLoading(false); // API 호출 종료 시 로딩 상태 해제
+      setIsLoading(false);
     }
   }
 
   const handleChange = (e) => {
-    setSearchInput(e.target.value); // 입력값 변경 시 상태 업데이트
-    setIsInputEmpty(false); // 입력값이 변경되면 비어 있음 상태를 false로 설정
+    setSearchInput(e.target.value);
+    setIsInputEmpty(false);
   }
 
   const handleCancel = () => {
-    setIsInputEmpty(false); // 경고 메시지 상태를 false로 설정하여 숨김
+    setIsInputEmpty(false);
   }
+  
+  useEffect(() => {
+    checkLoginStatus();
+    window.addEventListener('beforeunload', handleLogoutOnWindowClose);
+    return () => {
+      window.removeEventListener('beforeunload', handleLogoutOnWindowClose);
+    };
+  }, []); // 의존성 배열 비워둠
 
   return (
     <header id='header' role='banner'>
@@ -131,8 +123,8 @@ const Header = () => {
           <button type="submit">검색</button>
         </form>
       </div>
-      {isInputEmpty && <Aialert1 onCancel={handleCancel} />} {/* 검색 입력값이 비었을 때 경고 메시지 표시 */}
-      {isLoading && <LoadingModal />} {/* isLoading이 true일 때 LoadingModal을 렌더링 */}
+      {isInputEmpty && <Aialert1 onCancel={handleCancel} />}
+      {isLoading && <LoadingModal />}
     </header>
   );
 }
