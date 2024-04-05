@@ -21,7 +21,7 @@ public class MapperTests {
 
         SignUpDTO s1 = new SignUpDTO();
         s1.setName("심형규");
-        s1.setId("sim");
+        s1.setId("Sim");
         s1.setPhone("010-1234-1234");
         s1.setBirth("1990-01-01");
         s1.setEmail("12314");
