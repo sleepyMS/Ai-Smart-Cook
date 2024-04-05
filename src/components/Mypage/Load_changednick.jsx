@@ -27,6 +27,13 @@ const Load_changednick = ({ onClose }) => {
     e.preventDefault();
 
     try {
+      const nickResponse = await fetch(`http://localhost:817/peoples/?nick=${newNick}`);
+      const nickData = await nickResponse.json();
+      if(nickData.length > 0){
+        alert("이미 같은 닉네임 정보가 존재합니다. 다시 입력해주세요.");
+        return;
+      }
+      else{
       const response = await fetch(`http://localhost:817/peoples/${user.id}`, {
         method: 'PUT',
         headers: {
@@ -41,19 +48,21 @@ const Load_changednick = ({ onClose }) => {
             nick: newNick
         })
       });
+      
         
       if (!response.ok) {
-        throw new Error('비밀번호 변경에 실패했습니다.');
+        throw new Error('닉네임 변경에 실패했습니다.');
       }
 
-      alert('비밀번호가 성공적으로 변경되었습니다.');
+      alert('닉네임이 성공적으로 변경되었습니다.');
       localStorage.removeItem('user');
       navigator('/');
       onClose(); // 패스워드 변경 후 모달 닫기
-    } catch (error) {
-      console.error('비밀번호 변경 중 오류 발생:', error);
-      setError('비밀번호 변경에 실패했습니다.');
+    } }catch (error) {
+      console.error('닉네임 변경 중 오류 발생:', error);
+      setError('닉네임 변경에 실패했습니다.');
     }
+    
   };
 
   const handleClose = () => {
@@ -68,11 +77,11 @@ const Load_changednick = ({ onClose }) => {
           <div>
             <input type='text' placeholder='Enter your nick' value={currentNick} onChange={handleChangeCurrent} />
           </div>
-          <label>새로운 비밀번호</label>
+          <label>새로운 닉네임</label>
           <div>
             <input type='text' placeholder='Enter your new nick' value={newNick} onChange={handleChangeNew} />
           </div>
-          <label>새로운 비밀번호 확인</label>
+          <label>새로운 닉네임 확인</label>
           <div>
             <input type='text' placeholder='Confirm your new nick' value={confirmNick} onChange={handleChangeConfirm} />
           </div>

@@ -7,14 +7,14 @@
       "pwd": "qwe123!!",
       "phone": "010-1234-5678"
     },
-    { 
-      "id": "dea0",
+    {
       "ID": "kjhgfd44@naver.com",
       "name": "김정호",
       "pwd": "tngkr0812!!",
       "birth": "2000-08-16",
       "phone": "010-2626-2626",
-      "nick": "tiger"
+      "nick": "fire",
+      "id": "dea0"
     },
     {
       "id": "f96c",
@@ -37,40 +37,35 @@
   ],
   "boards": [
     {
-      "id": "a238",
+      "id": "d797",
       "name": "김정호",
-      "titleBoard": "dsadasdasdsads",
-      "post": "asdsadsadsadsa",
+      "phone": "010-2626-2626",
+      "titleBoard": "테스트1",
+      "post": "테스트1 입니다.",
       "like": []
     },
     {
-      "id": "086b",
+      "id": "c78e",
+      "name": "김정호",
+      "phone": "010-2626-2626",
+      "titleBoard": "테스트 2",
+      "post": "테스트 2입니다\n\n",
+      "like": []
+    },
+    {
+      "id": "f93b",
       "name": "홍길동",
-      "titleBoard": "오늘은 4월 4일 44 ㄷㄷ",
-      "post": "4444444444444444444444444444444",
+      "phone": "010-2626-2626",
+      "titleBoard": "드래곤1 ",
+      "post": "드래곤 입니다1  테스트",
       "like": []
     },
     {
-      "id": "we32",
+      "id": "0afe",
       "name": "홍길동",
-      "titleBoard": "오늘은 4월 4555 44 ㄷㄷ",
-      "post": "444444444444444555555555544444444444",
-      "like": []
-    },
-    {
-      "id": "0a89",
-      "name": "김정호",
-      "nick": "tiger",
-      "titleBoard": "글을 쓴다요요!31!11",
-      "post": "ㅇㄴㅁㅇㄴㅁㅇ32ㅁ11",
-      "like": []
-    },
-    {
-      "id": "64s1",
-      "name": "김정호",
-      "nick": "tiger",
-      "titleBoard": "글을 쓴다요요!!11",
-      "post": "ㅇㄴㅁㅇㄴㅁㅇ22ㅁ",
+      "phone": "010-2626-2626",
+      "titleBoard": "드래곤 2",
+      "post": "드래곤 2입니다\n\n\n",
       "like": []
     }
   ],

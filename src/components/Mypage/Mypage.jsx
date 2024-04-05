@@ -35,7 +35,7 @@ const Mypage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:817/boards?nick=${user.nick}`);
+                const response = await fetch(`http://localhost:817/boards?phone=${user.phone}`);
                 const data = await response.json();
                 setPosts(data);
 

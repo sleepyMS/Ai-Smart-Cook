@@ -11,7 +11,8 @@ const Header = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [isInputEmpty, setIsInputEmpty] = useState(false);
-
+  
+  //로그인 여부
   const checkLoginStatus = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
@@ -20,7 +21,8 @@ const Header = () => {
       setPeopleName("로그인");
     }
   };
-
+  
+ //직접 로그아웃 기능
   const handleLogout = () => {
     const confirmLogout = window.confirm("로그아웃 하시겠습니까?");
     if (confirmLogout) {
@@ -29,10 +31,12 @@ const Header = () => {
     }
   }
 
+  // 창 나가면 로그아웃
   const handleLogoutOnWindowClose = () => {
-    handleLogout();
+    localStorage.removeItem('user');
   };
 
+  // 마이페이지 이동 코드
   const onSubmitLogin = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     if(user) {
@@ -66,6 +70,7 @@ const Header = () => {
     navigate('/write');
   }
 
+  // 챗지피티 검색 
   const onSubmit = async (e) => {
     e.preventDefault();
     if (!searchInput.trim()) {
@@ -94,6 +99,7 @@ const Header = () => {
     setIsInputEmpty(false);
   }
   
+  // 창 나가는 useEffect
   useEffect(() => {
     checkLoginStatus();
     window.addEventListener('beforeunload', handleLogoutOnWindowClose);
