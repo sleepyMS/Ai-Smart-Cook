@@ -83,13 +83,13 @@ public class AuthService {
         userDTO.setPassword("");
 
         TokenProvider tokenProvider = new TokenProvider();
-//        String token = "";
+        String token = "";
         int exprTime = 3600;    // 1h
-        String token = tokenProvider.createJwt(email, exprTime);
+//        String token = tokenProvider.createJwt(email, exprTime);
 
-        if(token == null) {
-            return ResponseDTO.setFailed("토큰 생성에 실패하였습니다.");
-        }
+//        if(token == null) {
+//            return ResponseDTO.setFailed("토큰 생성에 실패하였습니다.");
+//        }
 
         LoginResponseDTO loginResponseDTO = new LoginResponseDTO(token, exprTime, userDTO);
 
