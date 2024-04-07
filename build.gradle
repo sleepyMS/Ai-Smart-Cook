@@ -30,12 +30,12 @@ dependencies {
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 	implementation 'jakarta.platform:jakarta.jakartaee-api:9.0.0'
 	implementation 'com.nimbusds:nimbus-jose-jwt:9.31'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 
 
 
 //	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {

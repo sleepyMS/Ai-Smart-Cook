@@ -39,10 +39,10 @@
     </select>
 
     <!-- 회원 정보 체크 ( id, password ) -->
-    <select id="getExistedByEmail" parameterType="LoginDTO" resultType="boolean">
-        SELECT COUNT(*)
+    <select id="getExistedByEmail" parameterType="string">
+        SELECT *
         FROM users
-        WHERE email = #{email} AND password = #{password}
+        WHERE email = #{email}
     </select>
 
 </mapper>

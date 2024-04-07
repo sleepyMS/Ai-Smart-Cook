@@ -14,7 +14,7 @@ import java.util.Date;
 
 @Service
 public class TokenProvider {
-    private static final String SECURITY_KEY = "inputYourSecurityKey";
+    private static final String SECURITY_KEY = "inputMySecurityKey";
 
     // JWT 생성 메서드
     public String createJwt(String email, int duration) {

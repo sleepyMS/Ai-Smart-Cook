@@ -71,7 +71,7 @@ public class MapperTests {
     @Test
     public void testExistedByEmail() {
         LoginDTO loginDTO = new LoginDTO("111", "52");
-        boolean result = userMapper.getExistedByEmail(loginDTO);
+        UserDTO result = userMapper.getExistedByEmail("111");
         System.out.println(result);
     }
 

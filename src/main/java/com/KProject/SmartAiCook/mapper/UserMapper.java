@@ -22,5 +22,5 @@ public interface UserMapper {
     public boolean getIdCheckById(String email);
 
     // id, password 조회 ( 로그인 성공 여부 )
-    public boolean getExistedByEmail(LoginDTO loginDTO);
+    public UserDTO getExistedByEmail(String email);
 }

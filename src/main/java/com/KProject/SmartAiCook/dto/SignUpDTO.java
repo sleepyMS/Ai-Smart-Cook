@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @ToString
 public class SignUpDTO {
-
     private String id;
     private String nick;
     private String password;
@@ -29,5 +28,4 @@ public class SignUpDTO {
     private LocalDateTime createdAt;
     private LocalDateTime editedAt;
     private LocalDateTime lastLoginAt;
-
 }
