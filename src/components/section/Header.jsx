@@ -111,10 +111,7 @@ const Header = () => {
   return (
     <header id='header' role='banner'>
       <h1 className='header_logo'>
-        <a href="/">
-          <em aria-hidden='true'></em>
           <span>MOTIV</span>
-        </a>
       </h1>
       <div className="buttonMagin">
         <button onClick={onSubmitLogin}>{peopleName}</button>

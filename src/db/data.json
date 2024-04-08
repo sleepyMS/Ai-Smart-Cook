@@ -42,7 +42,8 @@
       "phone": "010-2626-2626",
       "titleBoard": "테스트1",
       "post": "테스트1 입니다.",
-      "like": []
+      "like": [],
+      "likeCount": null
     },
     {
       "id": "c78e",
@@ -71,9 +72,7 @@
   ],
   "likes": [
     {
-      "id": "4e5c",
-      "titleBoard": "드래곤1 ",
-      "name": "김정호"
+      
     }
   ],
   "recipes": [
