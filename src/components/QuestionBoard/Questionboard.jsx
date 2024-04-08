@@ -56,15 +56,21 @@ const Question = () => {
           newLikes[id].push(user.name);
           setLikes(newLikes);
           // 로컬 저장소에 좋아요 정보 저장
-          localStorage.setItem('likes', JSON.stringify(newLikes));
+          localStorage.setItem('like', JSON.stringify(newLikes));
+    
+          console.log(localStorage)
     
           // 해당 게시물의 좋아요 정보를 서버에 업데이트
-          fetch(`http://localhost:817/boards/${id}/like`, {
+          const foundBoard = boards.find(board => board.id === id);
+          fetch(`http://localhost:817/likes`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ name: user.name }), // 사용자의 이름만 전송
+            body: JSON.stringify({ 
+              titleBoard: foundBoard.titleBoard,
+              name: user.name 
+            }), // 사용자의 이름만 전송
           })
           .then(response => {
             if (!response.ok) {
@@ -76,28 +82,31 @@ const Question = () => {
       }
     };
     
+    
     // 좋아요를 감소시키는 함수
     const decreaseLike = (id) => {
       const user = JSON.parse(localStorage.getItem('user'));
-      if (user && likes[id]) {
+      if (user && likes[id] && likes[id].includes(user.name)) {
         const newLikes = { ...likes };
         newLikes[id] = newLikes[id].filter(name => name !== user.name);
         setLikes(newLikes);
         // 로컬 저장소에 좋아요 정보 저장
-        localStorage.setItem('likes', JSON.stringify(newLikes));
+        localStorage.setItem('like', JSON.stringify(newLikes));
     
-        // 해당 게시물의 좋아요 정보를 서버에 업데이트
-        fetch(`http://localhost:817/boards/${id}/like/${user.name}`, {
+        // 해당 게시물의 좋아요 정보를 서버에서 삭제
+        fetch(`http://localhost:817/likes/${id}`, {
           method: 'DELETE',
         })
         .then(response => {
           if (!response.ok) {
-            throw new Error('좋아요 정보를 업데이트하는데 실패했습니다');
+            throw new Error('좋아요 정보를 삭제하는데 실패했습니다');
           }
         })
-        .catch(error => console.error('좋아요 정보 업데이트 중 오류 발생:', error));
+        .catch(error => console.error('좋아요 정보 삭제 중 오류 발생:', error));
       }
     };
+    
+    
 
 
 

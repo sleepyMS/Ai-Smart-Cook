@@ -69,6 +69,13 @@
       "like": []
     }
   ],
+  "likes": [
+    {
+      "id": "4e5c",
+      "titleBoard": "드래곤1 ",
+      "name": "김정호"
+    }
+  ],
   "recipes": [
     {
       "id": "2495",
