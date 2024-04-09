@@ -9,6 +9,7 @@ const Mypage = () => {
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(false); // 로딩 상태를 나타내는 상태
     const [isNickLoading, setIsNickLoading] = useState(false); // 로딩 상태를 나타내는 상태
+    const [profileImage, setProfileImage] = useState(null); // 프로필 이미지를 나타내는 상태
 
     // 이메일 가리기
     const hideEmail = (email) => {
@@ -30,6 +31,43 @@ const Mypage = () => {
         const firstPart = phoneNumber.substring(0, 5);
         const secondPart = phoneNumber.substring(8, 10);
         return `${firstPart}***-${secondPart}***`;
+    };
+
+    
+    const handleImageChange = async (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            setProfileImage(reader.result);
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+        try{
+            const res = await fetch(`http://localhost:817/peoples/`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        ID: user.ID,
+                        name: user.name,
+                        pwd: user.pwd,
+                        birth: user.birth,
+                        phone: user.phone,
+                        nick: user.nick,
+                        img: profileImage
+                    }),
+                });
+                if (res.ok) {
+                    alert("생성이 완료되었습니다.");
+                }
+        }
+        catch{
+
+        }
     };
 
     useEffect(() => {
@@ -91,6 +129,13 @@ const Mypage = () => {
                 <Link to='/'>MOTIV</Link>
             </h1>
             <div className='user-info'>
+                <div className='info-label'>프로필{user.name}</div>
+                {/* 프로필 이미지 출력 */}
+                {profileImage && (
+                    <img src={profileImage} alt="프로필 이미지" className="profile-image" />
+                )}
+                {/* 파일 선택(input type="file") 추가 */}
+                <input type="file" accept="image/*" onChange={handleImageChange} />
                 <div className='info-label'>이름: {user.name}</div>
                 <div className='info-label'>이메일: {hideEmail(user.ID)}</div>
                 <div className='info-label'>닉네임: {user.nick}</div>

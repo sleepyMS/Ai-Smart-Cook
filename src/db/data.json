@@ -14,7 +14,8 @@
       "birth": "2000-08-16",
       "phone": "010-2626-2626",
       "nick": "fire",
-      "id": "dea0"
+      "id": "dea0",
+      "img":""
     },
     {
       "id": "f96c",
@@ -23,7 +24,8 @@
       "pwd": "qwer1234!!",
       "birth": "2000-01-01",
       "phone": "010-2626-2626",
-      "nick": "dragon"
+      "nick": "dragon",
+      "img":""
     },
     {
       "id": "w21e",
@@ -70,11 +72,7 @@
       "like": []
     }
   ],
-  "likes": [
-    {
-      
-    }
-  ],
+  "likes": [],
   "recipes": [
     {
       "id": "2495",

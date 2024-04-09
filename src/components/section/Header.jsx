@@ -31,10 +31,6 @@ const Header = () => {
     }
   }
 
-  // 창 나가면 로그아웃
-  const handleLogoutOnWindowClose = () => {
-    localStorage.removeItem('user');
-  };
 
   // 마이페이지 이동 코드
   const onSubmitLogin = () => {
@@ -100,13 +96,22 @@ const Header = () => {
   }
   
   // 창 나가는 useEffect
-  useEffect(() => {
-    checkLoginStatus();
-    window.addEventListener('beforeunload', handleLogoutOnWindowClose);
-    return () => {
-      window.removeEventListener('beforeunload', handleLogoutOnWindowClose);
+   // 창 닫을 때 로그아웃 여부 확인
+   useEffect(() => {
+    const handleWindowClose = (event) => {
+      // 이벤트 취소를 위한 필요한 작업을 수행합니다.
+      event.preventDefault();
+      // 표준 메시지 대신 사용자 정의 메시지를 표시합니다.
+      event.returnValue = '';
+      localStorage.removeItem('user');
     };
-  }, []); // 의존성 배열 비워둠
+    checkLoginStatus();
+    window.addEventListener('beforeunload', handleWindowClose);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleWindowClose);
+    };
+  }, []);
 
   return (
     <header id='header' role='banner'>
