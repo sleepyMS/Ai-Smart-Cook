@@ -35,7 +35,7 @@
     <select id="getIdCheckById" parameterType="string" resultType="boolean">
         SELECT COUNT(*)
         FROM users
-        WHERE id = #{userId}
+        WHERE email = #{email}
     </select>
 
     <!-- 회원 정보 체크 ( id, password ) -->

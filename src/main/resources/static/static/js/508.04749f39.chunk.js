@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkk_project240313=self.webpackChunkk_project240313||[]).push([[508],{508:(e,s,t)=>{t.r(s),t.d(s,{default:()=>n});t(43);var r=t(373),c=t(216),l=t(579);const n=()=>{var e;const s=(null===(e=(0,c.zy)().state)||void 0===e?void 0:e.message)||"";return(0,l.jsx)(r.A,{children:(0,l.jsx)("div",{style:{color:"white"},children:s})})}}}]);
+//# sourceMappingURL=508.04749f39.chunk.js.map

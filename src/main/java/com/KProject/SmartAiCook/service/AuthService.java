@@ -23,7 +23,7 @@ public class AuthService {
         String confirmPassword = dto.getConfirmPassword();
 
         try {
-            if (!userMapper.getIdCheckById(email)) {
+            if (userMapper.getIdCheckById(email)) {
                 return ResponseDTO.setFailed("중복된 Email 입니다.");
             }
         } catch (Exception e) {
