@@ -1,14 +1,17 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './loginpage.module.css';
+import axios from 'axios';
 
-const Loginpage = () => {
+
+const Registerpage1 = () => {
     const navigate = useNavigate();
     const [birthDate, setBirthDate] = useState("2000-01-01");
     const [phoneNumber, setPhoneNumber] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
     const IDRef = useRef(null);
     const pwdRef = useRef(null);
+    const pwdCheckRef = useRef(null);
     const nameRef = useRef(null);
     const nickRef = useRef(null);
 
@@ -58,56 +61,25 @@ const Loginpage = () => {
 
         // 유효성 검사 통과시에만 회원가입 요청
         try {
-            const emailResponse = await fetch(`http://localhost:817/peoples/?ID=${IDRef.current.value}`);
-            const numResponse = await fetch(`http://localhost:817/peoples/?num=${phoneNumber}`);
-            const pwdResponse = await fetch(`http://localhost:817/peoples/?pwd=${pwdRef.current.value}`);
-            const nickResponse = await fetch(`http://localhost:817/peoples/?nick=${nickRef.current.value}`);
-    
-            const emailData = await emailResponse.json();
-            const numData = await numResponse.json();
-            const pwdData = await pwdResponse.json();
-            const nickData = await nickResponse.json();
-    
-            if (emailData.length > 0 ){
-                alert("이미 같은 이메일 정보가 존재합니다. 다시 입력해주세요.");
-                return;
-            } 
-            else if(numData.length > 0){
-                alert("이미 같은 휴대폰번호 정보가 존재합니다. 다시 입력해주세요.");
-                return;
-            }
-            else if(pwdData.length > 0){
-                alert("이미 같은 비밀번호 정보가 존재합니다. 다시 입력해주세요.");
-                return;
-            }
-            else if(nickData.length > 0){
-                alert("이미 같은 닉네임 정보가 존재합니다. 다시 입력해주세요.");
-                return;
-            }
-            else {
-                const res = await fetch(`http://localhost:817/peoples/`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        ID: IDRef.current.value,
+                await axios.post("http://localhost:8080/user/auth/signUp", {
+                        email: IDRef.current.value,
                         name: nameRef.current.value,
-                        pwd: pwdRef.current.value,
+                        password: pwdRef.current.value,
+                        confirmPassword: pwdCheckRef.current.value,
                         birth: birthDate,
                         phone: phoneNumber,
-                        nick: nickRef.current.value,
-                        img: ""
-                    }),
-                });
-                if (res.ok) {
-                    alert("생성이 완료되었습니다.");
-                    navigate('/');
+                        nick: nickRef.current.value
+                    })
+                    .then((response) => {
+                        console.log(response.data)
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
                 }
+            catch (error) {
+                console.error('Error:', error);
             }
-        } catch (error) {
-            console.error('Error:', error);
-        }
     }
 
     return (
@@ -125,16 +97,25 @@ const Loginpage = () => {
                     <label>이름</label>
                     <input type="text" placeholder="김정호" ref ={nameRef} required/>
                     <label>별명</label>
-                    <input type="text" placeholder="필수 사항 아님" ref ={nickRef}/>
-                    <label>Email</label>
+                    <input type="text" placeholder="별명" ref ={nickRef} required/>
+                    <label>아이디</label>
                     <input type="email" placeholder="com@example.co.kr" ref ={IDRef} required/>
-                    <label>Password</label>
+                    <label>비밀번호</label>
                     <input 
                         type={passwordVisible ? "text" : "password"} 
                         placeholder="*********" 
                         ref ={pwdRef}
                         onClick={(e) => e.stopPropagation()}
                         onBlur={() => pwdRef.current.type = "password"}
+                        required
+                    />
+                    <label>비밀번호 확인</label>
+                    <input 
+                        type={passwordVisible ? "text" : "password"} 
+                        placeholder="*********" 
+                        ref ={pwdCheckRef}
+                        onClick={(e) => e.stopPropagation()}
+                        onBlur={() => pwdCheckRef.current.type = "password"}
                         required
                     />
                     <label>생년월일</label>
@@ -149,4 +130,4 @@ const Loginpage = () => {
     )
 }
 
-export default Loginpage;
+export default Registerpage1;
