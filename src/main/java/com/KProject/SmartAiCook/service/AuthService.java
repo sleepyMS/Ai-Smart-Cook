@@ -23,7 +23,7 @@ public class AuthService {
         String confirmPassword = dto.getConfirmPassword();
 
         try {
-            if (userMapper.getIdCheckById(email)) {
+            if (!userMapper.getIdCheckById(email)) {
                 return ResponseDTO.setFailed("중복된 Email 입니다.");
             }
         } catch (Exception e) {
@@ -59,6 +59,8 @@ public class AuthService {
 
             userMapper.insertUser(userDTO);
 //            userMapper.insertUser(dto);
+
+
         } catch (Exception e) {
             return ResponseDTO.setFailed("데이터베이스 연결 실패: userDTO 삽입 err");
         }

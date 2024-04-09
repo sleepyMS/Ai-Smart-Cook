@@ -13,6 +13,7 @@ public interface UserMapper {
     // ID로 사용자 조회
     public UserDTO getUserByEmail(String email);
 
+    // 사용자 정보 수정
     public void updateUser(UserDTO userDTO);
 
     // ID로 사용자 삭제
