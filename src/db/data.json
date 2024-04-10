@@ -15,7 +15,7 @@
       "phone": "010-2626-2626",
       "nick": "fire",
       "id": "dea0",
-      "img":""
+      "img": ""
     },
     {
       "id": "f96c",
@@ -25,7 +25,7 @@
       "birth": "2000-01-01",
       "phone": "010-2626-2626",
       "nick": "dragon",
-      "img":""
+      "img": ""
     },
     {
       "id": "w21e",
@@ -72,7 +72,14 @@
       "like": []
     }
   ],
-  "likes": [],
+  "likes": [
+    {
+      "id": "d6ed",
+      "boardId": "d797",
+      "titleBoard": "테스트1",
+      "nick": "fire"
+    }
+  ],
   "recipes": [
     {
       "id": "2495",

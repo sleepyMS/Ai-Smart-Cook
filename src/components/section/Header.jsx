@@ -95,7 +95,6 @@ const Header = () => {
     setIsInputEmpty(false);
   }
   
-  // 창 나가는 useEffect
    // 창 닫을 때 로그아웃 여부 확인
    useEffect(() => {
     const handleWindowClose = (event) => {

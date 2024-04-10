@@ -83,25 +83,34 @@ const increaseLike = async (id) => {
 // 좋아요 감소 함수
 const decreaseLike = async (id) => {
   const user = JSON.parse(localStorage.getItem('user'));
+  alert("1")
   if (user) {
     const existingLikeIndex = likes.findIndex(like => like.boardId === id && like.nick === user.nick);
+    alert("2")
+
     if (existingLikeIndex !== -1) {
       const foundLike = likes[existingLikeIndex];
+      alert("3")
+
         try {
           const response = await fetch(`http://localhost:817/likes/${foundLike.id}`, {
             method: 'DELETE',
           });
+          alert("4")
           if (response.ok) {
             // 좋아요 삭제 후 상태 업데이트
             const updatedLikes = [...likes];
             updatedLikes.splice(existingLikeIndex, 1);
             setLikes(updatedLikes);
             localStorage.setItem('like', JSON.stringify(updatedLikes));
+            alert("5")
           } else {
             throw new Error('좋아요 삭제에 실패했습니다');
+            alert("6")
           }
         } catch (error) {
           console.error('좋아요 삭제 중 오류 발생:', error);
+          alert("7")
         }
     }
   }
