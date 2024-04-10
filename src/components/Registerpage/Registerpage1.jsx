@@ -76,6 +76,7 @@ const Registerpage1 = () => {
                     .catch((error) => {
                         console.log(error);
                     });
+                    navigate('/')
                 }
             catch (error) {
                 console.error('Error:', error);

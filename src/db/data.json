@@ -72,14 +72,7 @@
       "like": []
     }
   ],
-  "likes": [
-    {
-      "id": "d6ed",
-      "boardId": "d797",
-      "titleBoard": "테스트1",
-      "nick": "fire"
-    }
-  ],
+  "likes": [],
   "recipes": [
     {
       "id": "2495",

@@ -4,6 +4,7 @@ import gpt from "../../api/gpt"
 import LoadingModal from "../Loadingmodal/Loadingmodal";
 import "../../내가만든css/Header.css";
 import Aialert1 from '../Aialert/Aialert1';
+import axios from 'axios';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const Header = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [isInputEmpty, setIsInputEmpty] = useState(false);
+  const [userData, setUserData] = useState(null);
   
   //로그인 여부
   const checkLoginStatus = () => {
@@ -30,7 +32,6 @@ const Header = () => {
       localStorage.removeItem('user');
     }
   }
-
 
   // 마이페이지 이동 코드
   const onSubmitLogin = () => {
@@ -111,6 +112,19 @@ const Header = () => {
       window.removeEventListener('beforeunload', handleWindowClose);
     };
   }, []);
+
+  // 로그인 정보 가져오기
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:8080/user/auth/signIn');
+  //       setUserData(response.data.data);
+  //     } catch (error) {
+  //       // 오류 처리
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
     <header id='header' role='banner'>

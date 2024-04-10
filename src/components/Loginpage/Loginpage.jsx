@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import peoplesData from '../../db/data.json'; 
 import './loginpage.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "boxicons";
+import axios from 'axios';
 
 const Loginpage = () => {
     const navigate = useNavigate();
@@ -42,6 +43,28 @@ const Loginpage = () => {
         } else {
             alert("이메일 주소 또는 비밀번호가 올바르지 않습니다.");
         }
+
+        // try {
+        //     await axios.post("http://localhost:8080/user/auth/signIn", {
+        //             email: IDRef.current.value,
+        //             password: pwdRef.current.value,
+        //         })
+        //         .then((response) => {
+        //             console.log(response.data);
+        //             if (response.data.result === false) {
+        //                 alert(response.data.message); // 서버로부터 받은 메시지 표시
+        //             } else {
+        //                 alert("로그인 성공!");
+        //                 navigate('/');
+        //             }
+        //         })
+        //         .catch((error) => {
+        //             console.log(error);
+        //             alert("로그인에 실패했습니다. 다시 시도해주세요."); // 기타 오류 발생 시의 메시지
+        //         });
+        // } catch (error) {
+        //     console.error('Error:', error);
+        // }
     }
 
     return (
