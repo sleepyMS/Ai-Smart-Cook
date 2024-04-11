@@ -12,7 +12,7 @@ const Loginpage = () => {
     const IDRef = useRef(null);
     const pwdRef = useRef(null);
 
-    const onSubmit = (e) => {
+    const onSubmit = async(e) => {
         e.preventDefault();
 
         if (!IDRef.current.value || !pwdRef.current.value) {

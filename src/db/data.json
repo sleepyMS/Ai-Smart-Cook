@@ -43,17 +43,14 @@
       "name": "김정호",
       "phone": "010-2626-2626",
       "titleBoard": "테스트1",
-      "post": "테스트1 입니다.",
-      "like": [],
-      "likeCount": null
+      "post": "테스트1 입니다."
     },
     {
       "id": "c78e",
       "name": "김정호",
       "phone": "010-2626-2626",
       "titleBoard": "테스트 2",
-      "post": "테스트 2입니다\n\n",
-      "like": []
+      "post": "테스트 2입니다\n\n"
     },
     {
       "id": "f93b",
@@ -72,7 +69,20 @@
       "like": []
     }
   ],
-  "likes": [],
+  "likes": [
+    {
+      "id": "3f88",
+      "boardId": "d797",
+      "titleBoard": "테스트1",
+      "nick": "fire"
+    },
+    {
+      "id": "363b",
+      "boardId": "c78e",
+      "titleBoard": "테스트 2",
+      "nick": "fire"
+    }
+  ],
   "recipes": [
     {
       "id": "2495",

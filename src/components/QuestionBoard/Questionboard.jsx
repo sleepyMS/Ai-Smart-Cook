@@ -46,7 +46,6 @@ const Question = () => {
   };
 
  // 좋아요 증가 함수
- // 좋아요 증가 함수
 const increaseLike = async (id) => {
   const user = JSON.parse(localStorage.getItem('user'));
   if (user) {
@@ -82,9 +81,6 @@ const increaseLike = async (id) => {
   }
 };
 
-
-
-// 좋아요 감소 함수
 // 좋아요 감소 함수
 const decreaseLike = async (id) => {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -118,13 +114,6 @@ const decreaseLike = async (id) => {
     }
   }
 };
-
-
-
-
-
-
-
 
   useEffect(() => {
     const storedViewCounts = localStorage.getItem('viewCounts');
