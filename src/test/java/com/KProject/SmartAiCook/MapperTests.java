@@ -43,11 +43,10 @@ public class MapperTests {
 
     @Test
     public void testUpdate() {
-        String userId = "new2";
+        String userId = "222";
         UserDTO u1 = userMapper.getUserByEmail(userId);
 
-        u1.setName("update name");
-        u1.setPhone("010-1234-1234");
+        u1.setPassword("update pass");
         userMapper.updateUser(u1);
 
         System.out.println("User updated: " + u1);
@@ -71,7 +70,7 @@ public class MapperTests {
     @Test
     public void testExistedByEmail() {
         LoginDTO loginDTO = new LoginDTO("111", "52");
-        UserDTO result = userMapper.getExistedByEmail("111");
+        UserDTO result = userMapper.getUserByEmail("111");
         System.out.println(result);
     }
 

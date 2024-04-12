@@ -16,12 +16,10 @@ public interface UserMapper {
     // 사용자 정보 수정
     public void updateUser(UserDTO userDTO);
 
-    // ID로 사용자 삭제
-    public void deleteUser(String id);
+    // Email로 사용자 삭제
+    public void deleteUser(String email);
 
     // 이미 존재하는 아이디인지 체크
     public boolean getIdCheckById(String email);
 
-    // id, password 조회 ( 로그인 성공 여부 )
-    public UserDTO getExistedByEmail(String email);
 }

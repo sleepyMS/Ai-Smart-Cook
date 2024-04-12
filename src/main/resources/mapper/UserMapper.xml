@@ -20,29 +20,22 @@
     <!-- ID로 사용자 정보 업데이트 -->
     <update id="updateUser" parameterType="UserDTO">
         UPDATE users
-        SET name = #{name}, phone = #{phone}
-        WHERE id = #{id}
+        SET password = #{password}, editedAt = NOW()
+        WHERE email = #{email};
     </update>
 
-    <!-- ID로 사용자 삭제 -->
+    <!-- Email로 사용자 삭제 -->
     <delete id="deleteUser" parameterType="string">
         DELETE
         FROM users
-        WHERE id = #{id};
+        WHERE id = #{email};
     </delete>
 
     <!-- 이미 존재하는 id(email)인지 체크 -->
     <select id="getIdCheckById" parameterType="string" resultType="boolean">
         SELECT COUNT(*)
         FROM users
-        WHERE email = #{email}
-    </select>
-
-    <!-- 회원 정보 체크 ( id, password ) -->
-    <select id="getExistedByEmail" parameterType="string">
-        SELECT *
-        FROM users
-        WHERE email = #{email}
+        WHERE email = #{email};
     </select>
 
 </mapper>
