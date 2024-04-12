@@ -42,8 +42,6 @@ public class AuthService {
         boolean isPasswordMatch = passwordEncoder.matches(password, hashedPassword);
         if(!isPasswordMatch) { return ResponseDTO.setFailed("암호화에 실패하였습니다."); }
 
-//        userDTO.setPassword(hashedPassword);
-
         try {
             userDTO.setId(dto.getId());
             userDTO.setPassword(hashedPassword);
@@ -149,14 +147,14 @@ public class AuthService {
 
         // 비밀번호 암호화
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashedPassword = passwordEncoder.encode(password);
-        boolean isPasswordMatch = passwordEncoder.matches(password, hashedPassword);
+        String hashedPassword = passwordEncoder.encode(newPassword);
+        boolean isPasswordMatch = passwordEncoder.matches(newPassword, hashedPassword);
         if(!isPasswordMatch) { return ResponseDTO.setFailed("암호화에 실패하였습니다."); }
 
 //        userDTO.setPassword(hashedPassword);
 
         try {
-            userDTO.setPassword(newPassword);
+            userDTO.setPassword(hashedPassword);
             userMapper.updateUser(userDTO);
         } catch (Exception e) {
             return ResponseDTO.setFailed("데이터베이스 연결 실패: userDTO Password 업데이트 err");
