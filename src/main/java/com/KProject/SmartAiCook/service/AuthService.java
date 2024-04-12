@@ -175,6 +175,5 @@ public class AuthService {
         LoginResponseDTO loginResponseDTO = new LoginResponseDTO(token, exprTime, userDTO);
 
         return ResponseDTO.setSuccessData("비밀번호 변경에 성공하였습니다.", loginResponseDTO);
-
     }
 }
