@@ -42,7 +42,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 //####################################################################
-def frontendDir = "$projectDir/src/main/Ai-Smart-Cook"
+def frontendDir = "$projectDir/src/main/Smart-Ai-Cook"
 
 sourceSets {
 	main {
