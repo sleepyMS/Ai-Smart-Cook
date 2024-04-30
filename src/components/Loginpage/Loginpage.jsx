@@ -56,7 +56,8 @@ const Loginpage = () => {
                     const userData = response.data.data;
                     console.log("Logged in user data:", userData);
                     // 여기서 userData를 이용하여 원하는 작업을 수행할 수 있음
-                    navigate('/', { state: { userData } }); // userData를 상태로 전달
+                    localStorage.setItem('userData', JSON.stringify(userData));
+                    navigate('/')
                 } else {
                     alert(response.data.message); // 서버로부터 받은 메시지 표시
                 }

@@ -10,39 +10,75 @@ import axios from 'axios';
 
 const Header = () => {
     const navigate = useNavigate();
-    const location = useLocation();
     const [peopleName, setPeopleName] = useState("로그인");
     const [isLoading, setIsLoading] = useState(false);
     const [searchInput, setSearchInput] = useState("");
     const [isInputEmpty, setIsInputEmpty] = useState(false);
-    const [userDatas, setUserData] = useState({ user: null }); // 초기값을 { user: null }로 설정
+    const [userData, setUserData] = useState(null); // 로컬 스토리지에서 사용자 데이터 상태
 
     useEffect(() => {
-        if (location.state) {
-            setUserData(location.state.userData);
-        } else {
-            setUserData({ user: null }); // 로그인 상태가 아니면 초기값으로 설정
+        // 페이지 로드 시 로컬 스토리지에서 사용자 데이터 가져오기
+        const storedUserData = localStorage.getItem('userData');
+        if (storedUserData) {
+            const userData = JSON.parse(storedUserData);
+            setUserData(userData);
+            if (userData.user.nick) {
+                setPeopleName(userData.user.nick); // 사용자의 이름이 있을 경우 설정
+            } else {
+                setPeopleName("로그인"); // 사용자의 이름이 없을 경우 기본값으로 설정
+            }
         }
-    }, [location.state]);
 
+        // 사용자가 마지막으로 활동한 시간을 저장
+        const lastActivityTime = new Date().getTime();
+        localStorage.setItem('lastActivityTime', lastActivityTime);
+
+        // 활동 감지 이벤트 리스너 설정
+        const activityListener = () => {
+            const lastActivityTime = new Date().getTime();
+            localStorage.setItem('lastActivityTime', lastActivityTime);
+        };
+        window.addEventListener('mousemove', activityListener);
+        window.addEventListener('keypress', activityListener);
+
+        // 페이지가 언마운트 될 때 리스너 제거
+        return () => {
+            window.removeEventListener('mousemove', activityListener);
+            window.removeEventListener('keypress', activityListener);
+        }
+    }, []);
+
+    // 자동 로그아웃 타이머 설정
     useEffect(() => {
-        if (userDatas.user) {
-            setPeopleName(userDatas.user.nick);
-        } else {
-            setPeopleName("로그인");
-        }
-    }, [userDatas]);
+        const timer = setInterval(() => {
+            const lastActivityTime = localStorage.getItem('lastActivityTime');
+            if (lastActivityTime) {
+                const currentTime = new Date().getTime();
+                const timeDifference = currentTime - lastActivityTime;
+                const logoutTime = 30 * 60 * 1000; // 30분 후에 자동 로그아웃
+                if (timeDifference >= logoutTime) {
+                    setPeopleName("로그인");
+                    setUserData(null);
+                    localStorage.removeItem('userData');
+                }
+            }
+        }, 1000);
 
+        // 컴포넌트가 언마운트 될 때 타이머 정리
+        return () => clearInterval(timer);
+    }, []);
+    
     const handleLogout = () => {
         const confirmLogout = window.confirm("로그아웃 하시겠습니까?");
         if (confirmLogout) {
             setPeopleName("로그인");
-            setUserData({ user: null }); // 로그아웃 시 상태를 초기값으로 설정
+            setUserData(null);
+            localStorage.removeItem('userData');
         }
     }
 
     const onSubmitLogin = () => {
-        if (userDatas.user) {
+        if (userData) {
             navigate('/Mypage');
         } else {
             alert("로그인이 되어있지않습니다.");
