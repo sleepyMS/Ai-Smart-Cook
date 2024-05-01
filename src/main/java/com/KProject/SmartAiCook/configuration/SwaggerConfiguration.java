@@ -1,4 +1,4 @@
-package com.KProject.SmartAiCook.configuration;// Java
+package com.KProject.SmartAiCook.configuration;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;

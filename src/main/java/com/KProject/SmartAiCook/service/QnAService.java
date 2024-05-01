@@ -16,6 +16,25 @@ public class QnAService {
         this.qnaMapper= qnaMapper;
     }
 
+    public ResponseDTO<?> insertQnA(QnADTO dto) {
+        QnADTO qnADTO = new QnADTO();
+
+        /// 유저 정보 가져오기 필요
+        try {
+            qnADTO.setTitle(dto.getTitle());
+            qnADTO.setQue(dto.getQue());
+            qnADTO.setEmail(dto.getEmail()); // 임시로 입력받게 해놓음
+            qnADTO.setPass(dto.getPass());
+
+            qnaMapper.insertQnA(qnADTO);
+
+        } catch (Exception e) {
+            return ResponseDTO.setFailed("데이터베이스 연결 실패: qnADTO 삽입 err");
+        }
+
+        return ResponseDTO.setSuccessData("insertQnA 성공", qnADTO);
+    }
+
     public ResponseDTO<?> getQnAByEmail(QnADTO dto) {
         String email = dto.getEmail();
         QnADTO qnADTO = null;
