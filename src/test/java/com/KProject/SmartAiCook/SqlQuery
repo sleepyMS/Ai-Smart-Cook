@@ -12,3 +12,31 @@ CREATE TABLE users (
     editedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
     lastLoginAt DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=innoDB CHARSET=utf8mb4;
+
+CREATE TABLE `likes` (
+  `recipeNum` int NOT NULL,
+  `usersNum` int NOT NULL,
+  `email` varchar(255) NOT NULL,
+  PRIMARY KEY (`recipeNum`,`usersNum`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `qna` (
+  `num` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `que` varchar(255) NOT NULL,
+  `pass` varchar(255) DEFAULT NULL,
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`num`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `recipe` (
+  `num` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `ingredient` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `recipe` varchar(255) NOT NULL,
+  `tag` varchar(255) DEFAULT NULL,
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`num`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

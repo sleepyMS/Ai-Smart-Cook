@@ -2,9 +2,7 @@ package com.KProject.SmartAiCook.service;
 
 import com.KProject.SmartAiCook.dto.*;
 import com.KProject.SmartAiCook.mapper.QnAMapper;
-import com.KProject.SmartAiCook.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
