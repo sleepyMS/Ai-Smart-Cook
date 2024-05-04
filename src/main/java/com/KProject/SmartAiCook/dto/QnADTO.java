@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QnADTO {
+    private int num;
     private String title;
     private String email;
     private String que;

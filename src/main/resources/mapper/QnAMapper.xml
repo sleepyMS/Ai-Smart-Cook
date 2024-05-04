@@ -7,10 +7,35 @@
     <insert id="insertQnA" parameterType="QnADTO">
         INSERT INTO `qna` (`email`, `title`, `que`, `pass`) VALUES (#{email}, #{title}, #{que}, #{pass});
     </insert>
-<!--    유저의 qna 가져옴 -->
+    <!--  유저의 qna 조회 -->
     <select id="getQnAByEmail" parameterType="string" resultType="QnADTO">
         SELECT *
-        FROM QnA
+        FROM `qna`
         WHERE email = #{email};
     </select>
+    <!-- num으로 qna 조회 -->
+    <select id="getQnAByNum" parameterType="int" resultType="QnADTO">
+        SELECT *
+        FROM `qna`
+        WHERE num = #{num};
+    </select>
+
+    <!-- qna 조회 from~to -->
+    <select id="getQnA" parameterType="GetQnARequest" resultType="QnADTO">
+        SELECT * FROM `qna` limit #{from}, #{to};
+    </select>
+
+    <!-- num로 qna 정보 업데이트 -->
+    <update id="updateQnA" parameterType="QnADTO">
+        UPDATE `qna`
+        SET title = #{title}, pass = #{pass}, que = #{que}, time = NOW()
+        WHERE num = #{num};
+    </update>
+
+    <!-- num로 qna 삭제 -->
+    <delete id="deleteQnA" parameterType="int">
+        DELETE
+        FROM `qna`
+        WHERE num = #{num};
+    </delete>
 </mapper>
