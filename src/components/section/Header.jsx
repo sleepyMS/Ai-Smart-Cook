@@ -88,6 +88,14 @@ const Header = () => {
         }
         try {
             setIsLoading(true);
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            if (!userData) {
+                const confirmLogin = window.confirm("로그인이 필요합니다. 로그인 하시겠습니까?");
+                if (confirmLogin) {
+                    navigate('/loginpage');
+                }
+                return;
+            }
             const message = await gpt({
                 prompt: `${searchInput}`
             });

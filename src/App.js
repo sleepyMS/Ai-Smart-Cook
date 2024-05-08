@@ -8,7 +8,17 @@ const Loginpage = lazy(() => import('./components/Loginpage/Loginpage'));
 const Registerpage1 = lazy(() => import('./components/Registerpage/Registerpage1'));
 const Recipewrite = lazy(() => import('./components/Recipewrite/Recipewrite'));
 const Questionboard = lazy(() => import('./components/QuestionBoard/Questionboard'));
+
 const Koreafood = lazy(() => import('./components/Koreafood/Koreafood'));
+const Fastfood = lazy(() => import('./components/Fastfood/Fastfood'));
+const Chinafood = lazy(() => import('./components/Chinafood/Chinafood'));
+const Japanfood = lazy(() => import('./components/Japanfood/Japanfood'));
+const Europefood = lazy(() => import('./components/Europefood/Europefood'));
+const Dessert = lazy(() => import('./components/Dessert/Dessert'));
+const Bread = lazy(() => import('./components/Bread/Bread'));
+const Snackfood = lazy(() => import('./components/Snackfood/Snackfood'));
+const Asiafood = lazy(() => import('./components/Asiafood/Asiafood'));
+
 const Recipe = lazy(() => import('./components/Recipe/Recipe'));
 const Inboard = lazy(() => import('./components/Inboard/Inboard'));
 const Write = lazy(() => import('./components/Write/Write'));
@@ -34,6 +44,14 @@ const App = () => {
                     <Route path='/recipewrite' element={<Recipewrite />} />
                     <Route path='/questionboard' element={<Questionboard />} />
                     <Route path='/koreafood' element={<Koreafood />} />
+                    <Route path='/fastfood' element={<Fastfood />} />
+                    <Route path='/chinafood' element={<Chinafood />} />
+                    <Route path='/japanfood' element={<Japanfood />} />
+                    <Route path='/europefood' element={<Europefood />} />
+                    <Route path='/dessert' element={<Dessert />} />
+                    <Route path='/bread' element={<Bread />} />
+                    <Route path='/snackfood' element={<Snackfood />} />
+                    <Route path='/asiafood' element={<Asiafood />} />
                     <Route path='/recipe' element={<Recipe />} />
                     <Route path='/inboard/:id' element={<Inboard />} />
                     <Route path='/write' element={<Write />} />

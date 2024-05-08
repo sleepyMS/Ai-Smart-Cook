@@ -62,7 +62,6 @@ const Nav = () => {
   };
 
   
-
   const onSubmit = async (e) => {
     e.preventDefault(); // 기본 제출 행동 방지
 
