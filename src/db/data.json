@@ -81,6 +81,12 @@
       "boardId": "c78e",
       "titleBoard": "테스트 2",
       "nick": "fire"
+    },
+    {
+      "id": "92ab",
+      "boardId": "d797",
+      "titleBoard": "테스트1",
+      "nick": "JJungHo"
     }
   ],
   "recipes": [
@@ -116,6 +122,14 @@
       "post": "dsadsaddasd\n2. as\n3. da\n4. d\n5. ad\n6. a\n7. \n8. dasda",
       "tag": "일식",
       "time": "2024-04-04T16:40:28.984Z"
+    },
+    {
+      "id": "12ee",
+      "ingredient": "ㄹㅇㄴㄹㄴㅇ",
+      "titleBoard": "ㄴㅇㄹㅇㄴ",
+      "post": "ㄹㅇㄴㄹㅇ",
+      "tag": "한식",
+      "time": "2024-05-01T10:20:15.921Z"
     }
   ],
   "meats": [

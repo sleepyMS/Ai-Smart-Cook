@@ -14,15 +14,15 @@ const Write = () => {
 
   // 아이디 이름으로 바꾸기
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('userData'));
     if (user) {
-      setPeopleName(user.name);
+      setPeopleName(user.user.nick);
     }
   }, []);
 
   //로그인/로그아웃 기능
   const handleLogout = () => {
-    if(!localStorage.getItem('user')){
+    if(!localStorage.getItem('userData')){
       alert("로그인이 되어있지않습니다.")
       const confirmLogin = window.confirm("로그인 하시겠습니까?");
       if(confirmLogin){
@@ -33,16 +33,16 @@ const Write = () => {
       const confirmLogout = window.confirm("로그아웃 하시겠습니까?");
       if(confirmLogout){
         setPeopleName("로그인"); // 이름 초기화
-        localStorage.removeItem('user'); // 로컬 스토리지에서 사용자 정보 삭제
+        localStorage.removeItem('userData'); // 로컬 스토리지에서 사용자 정보 삭제
       }
     }
   }
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const ID = JSON.parse(localStorage.getItem('user'));
+    const ID = JSON.parse(localStorage.getItem('userData'));
 
-    if (!localStorage.getItem('user')) {
+    if (!localStorage.getItem('userData')) {
       alert("로그인 후 이용해주세요.");
       return;
     }

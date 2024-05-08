@@ -35,7 +35,7 @@ const Question = () => {
 
   // 조회수 증가 함수
   const increaseViewCount = (id) => {
-    if (localStorage.getItem('user')) {
+    if (localStorage.getItem('userData')) {
       const newViewCounts = { ...viewCounts };
       newViewCounts[id] = (newViewCounts[id] || 0) + 1;
       setViewCounts(newViewCounts);
@@ -45,75 +45,75 @@ const Question = () => {
     }
   };
 
- // 좋아요 증가 함수
-const increaseLike = async (id) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  if (user) {
-    const newLikes = [...likes];
-    const existingLikeIndex = newLikes.findIndex(like => like.boardId === id && like.nick === user.nick);
-    if (existingLikeIndex === -1) {
-      const foundBoard = boards.find(board => board.id === id);
-      try {
-        const response = await fetch(`http://localhost:817/likes`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ 
-            boardId: foundBoard.id,
-            titleBoard: foundBoard.titleBoard,
-            nick: user.nick 
-          }),
-        });
-        if (response.ok) {
-          const responseData = await response.json();
-          // 좋아요 추가 후 상태 업데이트
-          const updatedLikes = [...likes, responseData];
-          setLikes(updatedLikes);
-          localStorage.setItem('like', JSON.stringify(updatedLikes));
-        } else {
-          throw new Error('좋아요 추가에 실패했습니다');
-        }
-      } catch (error) {
-        console.error('좋아요 추가 중 오류 발생:', error);
-      }
-    }
-  }
-};
-
-// 좋아요 감소 함수
-const decreaseLike = async (id) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  if (user) {
-    const existingLikeIndex = likes.findIndex(like => like.boardId === id && like.nick === user.nick);
-
-    if (existingLikeIndex !== -1) {
-      const foundLike = likes[existingLikeIndex];
-
-      try {
-        if (foundLike && foundLike.id) {
-          const response = await fetch(`http://localhost:817/likes/${foundLike.id}`, {
-            method: 'DELETE',
+  // 좋아요 증가 함수
+  const increaseLike = async (id) => {
+    const user = JSON.parse(localStorage.getItem('userData'));
+    if (user) {
+      const newLikes = [...likes];
+      const existingLikeIndex = newLikes.findIndex(like => like.boardId === id && like.nick === user.nick);
+      if (existingLikeIndex === -1) {
+        const foundBoard = boards.find(board => board.id === id);
+        try {
+          const response = await fetch(`http://localhost:817/likes`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+              boardId: foundBoard.id,
+              titleBoard: foundBoard.titleBoard,
+              nick: user.user.nick 
+            }),
           });
-
           if (response.ok) {
-            // 좋아요 삭제 후 상태 업데이트
-            const updatedLikes = [...likes];
-            updatedLikes.splice(existingLikeIndex, 1);
+            const responseData = await response.json();
+            // 좋아요 추가 후 상태 업데이트
+            const updatedLikes = [...likes, responseData];
             setLikes(updatedLikes);
             localStorage.setItem('like', JSON.stringify(updatedLikes));
           } else {
-            throw new Error('좋아요 삭제에 실패했습니다');
+            throw new Error('좋아요 추가에 실패했습니다');
           }
-        } else {
-          throw new Error('좋아요 ID를 찾을 수 없습니다');
+        } catch (error) {
+          console.error('좋아요 추가 중 오류 발생:', error);
         }
-      } catch (error) {
-        console.error('좋아요 삭제 중 오류 발생:', error);
       }
     }
-  }
-};
+  };
+
+  // 좋아요 감소 함수
+  const decreaseLike = async (id) => {
+    const user = JSON.parse(localStorage.getItem('userData'));
+    if (user) {
+      const existingLikeIndex = likes.findIndex(like => like.boardId === id && like.nick === user.user.nick);
+
+      if (existingLikeIndex !== -1) {
+        const foundLike = likes[existingLikeIndex];
+
+        try {
+          if (foundLike && foundLike.id) {
+            const response = await fetch(`http://localhost:817/likes/${foundLike.id}`, {
+              method: 'DELETE',
+            });
+
+            if (response.ok) {
+              // 좋아요 삭제 후 상태 업데이트
+              const updatedLikes = [...likes];
+              updatedLikes.splice(existingLikeIndex, 1);
+              setLikes(updatedLikes);
+              localStorage.setItem('like', JSON.stringify(updatedLikes));
+            } else {
+              throw new Error('좋아요 삭제에 실패했습니다');
+            }
+          } else {
+            throw new Error('좋아요 ID를 찾을 수 없습니다');
+          }
+        } catch (error) {
+          console.error('좋아요 삭제 중 오류 발생:', error);
+        }
+      }
+    }
+  };
 
   useEffect(() => {
     const storedViewCounts = localStorage.getItem('viewCounts');
@@ -126,6 +126,24 @@ const decreaseLike = async (id) => {
       setLikes(JSON.parse(storedLikes));
     }
   }, []);
+
+  // 좋아요 상태 확인 함수
+  const checkLikeStatus = (id) => {
+    const user = JSON.parse(localStorage.getItem('userData'));
+    if (user) {
+      return likes.some(like => like.boardId === id && like.nick === user.user.nick);
+    }
+    return false;
+  };
+
+  // 좋아요 버튼 클릭 시 처리 함수
+  const handleLikeClick = (id) => {
+    if (checkLikeStatus(id)) {
+      decreaseLike(id);
+    } else {
+      increaseLike(id);
+    }
+  };
 
   return (
     <div>
@@ -140,15 +158,15 @@ const decreaseLike = async (id) => {
           <ul className="board-list">
             {boards.map((board, index) => (
               <li key={index} className="board-item">
-                <Link to={localStorage.getItem('user') ? `/inboard/${board.id}` : '#'} onClick={() => increaseViewCount(board.id)}>
+                <Link to={localStorage.getItem('userData') ? `/inboard/${board.id}` : '#'} onClick={() => increaseViewCount(board.id)}>
                   <h3>제목: {board.titleBoard}</h3>
                 </Link>
                 <p>{board.name}</p>
                 <p>조회수: {viewCounts[board.id] || 0}</p>
-                {localStorage.getItem('user') && (
+                {localStorage.getItem('userData') && (
                   <div>
-                    <button onClick={() => increaseLike(board.id)}>좋아요</button>
-                    <button onClick={() => decreaseLike(board.id)}>좋아요 취소</button>
+                    <button onClick={() => handleLikeClick(board.id)} disabled={checkLikeStatus(board.id)}>좋아요</button>
+                    <button onClick={() => decreaseLike(board.id)} disabled={!checkLikeStatus(board.id)}>좋아요 취소</button>
                   </div>
                 )}
                 <p>좋아요 수: {likes.filter(like => like.boardId === board.id).length}</p>

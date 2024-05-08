@@ -18,6 +18,21 @@ const Mypage = () => {
             const userData = JSON.parse(storedUserData);
             setUserData(userData); 
         }
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://localhost:817/boards?phone=${userData.user.phone}`);
+                const data = await response.json();
+                setPosts(data);
+
+                if (!response.ok) {
+                    throw new Error('데이터를 불러오는데 실패했습니다');
+                }
+            } catch (error) {
+                console.error('데이터를 불러오는 중 오류 발생:', error);
+            }
+        };
+
+        fetchData(); // fetchData 함수 호출
     }, []); 
 
     if (!userData) {
@@ -47,7 +62,7 @@ const Mypage = () => {
         return `${firstPart}***-${secondPart}***`;
     };
 
-    
+    // 이미지 변경
     const handleImageChange = async (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
@@ -87,7 +102,7 @@ const Mypage = () => {
     // useEffect(() => {
     //     const fetchData = async () => {
     //         try {
-    //             const response = await fetch(`http://localhost:817/boards?phone=${user.phone}`);
+    //             const response = await fetch(`http://localhost:817/boards?phone=${userData.user.phone}`);
     //             const data = await response.json();
     //             setPosts(data);
 
@@ -100,7 +115,7 @@ const Mypage = () => {
     //     };
 
     //     fetchData(); // fetchData 함수 호출
-    // }, [user.name]);
+    // }, []);
 
     // 비밀번호 변경 클릭 시
     const handlePasswordChange = () => {

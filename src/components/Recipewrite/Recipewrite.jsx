@@ -12,14 +12,14 @@ const Recipewrite = () => {
   const [peopleName, setPeopleName] = useState("로그인");
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('userData'));
     if (user) {
-      setPeopleName(user.name);
+      setPeopleName(user.user.nick);
     }
   }, []);
 
   const handleLogout = () => {
-    if (!localStorage.getItem('user')) {
+    if (!localStorage.getItem('userData')) {
       alert("로그인이 되어있지않습니다.")
       const confirmLogin = window.confirm("로그인 하시겠습니까?");
       if (confirmLogin) {
@@ -29,7 +29,7 @@ const Recipewrite = () => {
       const confirmLogout = window.confirm("로그아웃 하시겠습니까?");
       if (confirmLogout) {
         setPeopleName("로그인");
-        localStorage.removeItem('user');
+        localStorage.removeItem('userData');
       }
     }
   }
@@ -49,8 +49,8 @@ const Recipewrite = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const ID = JSON.parse(localStorage.getItem('user'));
-    if (!localStorage.getItem('user')) {
+    const ID = JSON.parse(localStorage.getItem('userData'));
+    if (!localStorage.getItem('userData')) {
       alert("로그인 후 이용해주세요.");
       return;
     }
