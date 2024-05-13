@@ -16,7 +16,7 @@ CREATE TABLE users (
 CREATE TABLE `likes` (
   `recipeNum` int NOT NULL,
   `email` varchar(255) NOT NULL,
-  PRIMARY KEY (`recipeNum`)
+  PRIMARY KEY (`recipeNum`,`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 CREATE TABLE `qna` (

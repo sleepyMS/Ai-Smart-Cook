@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.KProject.SmartAiCook.mapper.RecipeMapper">
+    <!--    qua 추가 -->
+    <insert id="insertRecipe" parameterType="RecipeDTO">
+        INSERT INTO `recipe` (`email`, `ingredient`, `title`, `recipe`, `tag`) VALUES (#{email}, #{ingredient}, #{title}, #{recipe}, #{tag});
+    </insert>
+    <!--  유저의 recipe 조회 -->
+    <select id="getRecipeByEmail" parameterType="string" resultType="RecipeDTO">
+        SELECT *
+        FROM `recipe`
+        WHERE email = #{email};
+    </select>
+    <!-- num으로 recipe 조회 -->
+    <select id="getRecipeByNum" parameterType="int" resultType="RecipeDTO">
+        SELECT *
+        FROM `recipe`
+        WHERE num = #{num};
+    </select>
+
+    <!-- recipe 조회 from~to -->
+    <select id="getRecipe" parameterType="GetRecipeRequest" resultType="RecipeDTO">
+        SELECT * FROM `recipe` limit #{from}, #{to};
+    </select>
+
+    <!-- num로 recipe 정보 업데이트 -->
+    <update id="updateRecipe" parameterType="RecipeDTO">
+        UPDATE `recipe`
+        SET ingredient = #{ingredient}, title = #{title}, recipe = #{recipe}, tag = #{tag}
+        WHERE num = #{num};
+    </update>
+
+    <!-- num로 recipe 삭제 -->
+    <delete id="deleteRecipe" parameterType="int">
+        DELETE
+        FROM `recipe`
+        WHERE num = #{num};
+    </delete>
+</mapper>
