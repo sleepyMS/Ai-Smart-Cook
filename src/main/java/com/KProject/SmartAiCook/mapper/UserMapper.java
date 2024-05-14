@@ -5,6 +5,8 @@ import com.KProject.SmartAiCook.dto.LoginDTO;
 import com.KProject.SmartAiCook.dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface UserMapper {
 
@@ -24,4 +26,6 @@ public interface UserMapper {
     public boolean getIdCheckById(String email);
     public void insertLike(LikeDTO likeDTO);
     public void deleteLike(LikeDTO likeDTO);
+    public List<LikeDTO> getLikeByEmail(String email);
+    public List<LikeDTO> getLikeByRecipeNum(int recipeNum);
 }

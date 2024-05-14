@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AuthService {
 //    @Autowired UserMapper userMapper;
@@ -203,5 +205,23 @@ public class AuthService {
         }
 
         return ResponseDTO.setSuccessData("deleteLike 성공", null);
+    }
+    public ResponseDTO<?> getLikeByEmail(String req) {
+        List<LikeDTO> likeDTOList = null;
+        try {
+            likeDTOList = userMapper.getLikeByEmail(req);
+        } catch (Exception e) {
+            return ResponseDTO.setFailed("데이터베이스 연결 실패: 사용자 호출 err");
+        }
+        return ResponseDTO.setSuccessData("getLikeByEmail 성공하였습니다.", likeDTOList);
+    }
+    public ResponseDTO<?> getLikeByRecipeNum(int req) {
+        List<LikeDTO> likeDTOList = null;
+        try {
+            likeDTOList = userMapper.getLikeByRecipeNum(req);
+        } catch (Exception e) {
+            return ResponseDTO.setFailed("데이터베이스 연결 실패: 사용자 호출 err");
+        }
+        return ResponseDTO.setSuccessData("getLikeByRecipeNum 성공하였습니다.", likeDTOList);
     }
 }

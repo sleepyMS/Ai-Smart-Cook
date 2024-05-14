@@ -46,4 +46,16 @@
     <delete id="deleteLike" parameterType="LikeDTO">
         DELETE FROM `likes` WHERE `recipeNum` = #{recipeNum} AND `email` = #{email};
     </delete>
+    <!-- email로 like 조회 -->
+    <select id="getLikeByEmail" parameterType="string" resultType="LikeDTO">
+        SELECT *
+        FROM `likes`
+        WHERE `email` = #{email};
+    </select>
+    <!-- recipeNum로 like 조회 -->
+    <select id="getLikeByRecipeNum" parameterType="int" resultType="LikeDTO">
+        SELECT *
+        FROM `likes`
+        WHERE `recipeNum` = #{recipeNum};
+    </select>
 </mapper>

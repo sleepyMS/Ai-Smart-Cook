@@ -51,4 +51,18 @@ public class AuthController {
         return result;
     }
 
+    @Operation(summary = "email로 like 요청", description = "파라미터로 받은 Email로 like(List)를 반환합니다.")
+    @PostMapping("/like/getByEmail")
+    public ResponseDTO<?> getLikeByEmail(@RequestBody String requestBody) {
+        ResponseDTO<?> result = authService.getLikeByEmail(requestBody);
+
+        return result;
+    }
+    @Operation(summary = "recipeNum로 like 요청", description = "파라미터로 받은 recipeNum로 like(List) 반환합니다.")
+    @PostMapping("/like/getByNum")
+    public ResponseDTO<?> getLikeByRecipeNum(@RequestBody int requestBody) {
+        ResponseDTO<?> result = authService.getLikeByRecipeNum(requestBody);
+
+        return result;
+    }
 }
