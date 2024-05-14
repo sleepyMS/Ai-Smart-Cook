@@ -1,5 +1,6 @@
 package com.KProject.SmartAiCook.mapper;
 
+import com.KProject.SmartAiCook.dto.LikeDTO;
 import com.KProject.SmartAiCook.dto.LoginDTO;
 import com.KProject.SmartAiCook.dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
@@ -21,5 +22,6 @@ public interface UserMapper {
 
     // 이미 존재하는 아이디인지 체크
     public boolean getIdCheckById(String email);
-
+    public void insertLike(LikeDTO likeDTO);
+    public void deleteLike(LikeDTO likeDTO);
 }

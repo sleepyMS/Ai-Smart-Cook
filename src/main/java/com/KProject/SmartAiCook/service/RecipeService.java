@@ -72,5 +72,16 @@ public class RecipeService {
         }
         return ResponseDTO.setSuccessData("Recipe 수정에 성공하였습니다.", dto);
     }
+    public ResponseDTO<?> deleteRecipe(int num) {
+        RecipeDTO recipeDTO = null;
 
+        try {
+            recipeMapper.deleteRecipe(num);
+
+        } catch (Exception e) {
+            return ResponseDTO.setFailed("데이터베이스 연결 실패: recipeDTO 삭제 err");
+        }
+
+        return ResponseDTO.setSuccessData("deleteRecipe 성공", null);
+    }
 }

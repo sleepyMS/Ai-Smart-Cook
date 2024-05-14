@@ -37,5 +37,13 @@
         FROM users
         WHERE email = #{email};
     </select>
+    <!-- 새로운 like 추가 -->
+    <insert id="insertLike" parameterType="LikeDTO">
+        INSERT INTO `likes` (`recipeNum`, `email`) VALUES (#{recipeNum}, #{email});
 
+    </insert>
+    <!-- like 삭제 -->
+    <delete id="deleteLike" parameterType="LikeDTO">
+        DELETE FROM `likes` WHERE `recipeNum` = #{recipeNum} AND `email` = #{email};
+    </delete>
 </mapper>

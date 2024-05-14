@@ -176,4 +176,32 @@ public class AuthService {
 
         return ResponseDTO.setSuccessData("비밀번호 변경에 성공하였습니다.", loginResponseDTO);
     }
+
+    public ResponseDTO<?> insertLike(LikeDTO req) {
+        LikeDTO likeDto = new LikeDTO();
+
+        try {
+            likeDto.setEmail(req.getEmail());
+            likeDto.setRecipeNum(req.getRecipeNum());
+
+            userMapper.insertLike(likeDto);
+
+        } catch (Exception e) {
+            return ResponseDTO.setFailed("데이터베이스 연결 실패: insertLike 삽입 err");
+        }
+
+        return ResponseDTO.setSuccessData("insertLike 성공", likeDto);
+    }
+    public ResponseDTO<?> deleteLike(LikeDTO req) {
+        LikeDTO likeDto = null;
+
+        try {
+            userMapper.deleteLike(req);
+
+        } catch (Exception e) {
+            return ResponseDTO.setFailed("데이터베이스 연결 실패: LikeDTO 삭제 err");
+        }
+
+        return ResponseDTO.setSuccessData("deleteLike 성공", null);
+    }
 }

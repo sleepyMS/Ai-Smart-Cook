@@ -52,4 +52,12 @@ public class RecipeController {
 
         return result;
     }
+
+    @Operation(summary = "recipe 삭제", description = "파라미터로 받은 num으로 recipe를 삭제합니다.")
+    @PostMapping("/delete")
+    public ResponseDTO<?> deleteRecipe(@RequestBody int requestBody) {
+        ResponseDTO<?> result = recipeService.deleteRecipe(requestBody);
+
+        return result;
+    }
 }

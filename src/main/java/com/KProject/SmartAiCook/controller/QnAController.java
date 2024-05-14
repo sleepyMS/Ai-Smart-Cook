@@ -46,7 +46,7 @@ public class QnAController {
     }
     @Operation(summary = "QnA 수정", description = "파라미터로 변경할 QnA정보를 받아 변경된 QnA를 반환합니다.")
     @PostMapping("/alterIn")
-    public ResponseDTO<?> alterIn(@RequestBody QnADTO requestBody) {
+    public ResponseDTO<?> insertLike(@RequestBody QnADTO requestBody) {
         ResponseDTO<?> result = qnAService.alterIn(requestBody);
 
         return result;
