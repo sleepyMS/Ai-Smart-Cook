@@ -10,53 +10,40 @@ import { useState } from 'react';
 const Home = () => {
     const navigate = useNavigate(); 
     const [isLoading, setIsLoading] = useState(false);
-
-    const onSubmitKoreafood = () => {
-        navigate('/koreafood'); 
+    
+    const onSubmitCategory = async (category) => {
+        try {
+            setIsLoading(true);
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            if (!userData) {
+                const confirmLogin = window.confirm("로그인이 필요합니다. 로그인 하시겠습니까?");
+                if (confirmLogin) {
+                    navigate('/loginpage');
+                }
+                return;
+            }
+            const message = await gpt({
+                prompt: category
+            });
+            navigate(`/${category.toLowerCase()}`, { state: { message } });
+        } catch (error) {
+            console.error("An error occurred:", error);
+        } finally {
+            setIsLoading(false);
+        }
     }
-    const onSubmitFastfood = async (e) => {
-      e.preventDefault();
-      try {
-          setIsLoading(true);
-          const userData = JSON.parse(localStorage.getItem('userData'));
-          if (!userData) {
-              const confirmLogin = window.confirm("로그인이 필요합니다. 로그인 하시겠습니까?");
-              if (confirmLogin) {
-                  navigate('/loginpage');
-              }
-              return;
-          }
-          const message = await gpt({
-              prompt: `패스트푸드`
-          });
-          navigate('/fastfood', { state: { message } });
-      } catch (error) {
-          console.error("An error occurred:", error);
-      } finally {
-          setIsLoading(false);
-      }
-  }
-    function onSubmitChinafood() {
-        navigate('/chinafood'); 
-    }
-    function onSubmitJapanfood() {
-        navigate('/japanfood'); 
-    }
-    function onSubmitEuropefood() {
-        navigate('/europefood'); 
-    }
-    function onSubmitDessert() {
-        navigate('/dessert'); 
-    }
-    function onSubmitBread() {
-        navigate('/bread'); 
-    }
-    function onSubmitSnackfood() {
-        navigate('/snackfood'); 
-    }
-    function onSubmitAsiafood() {
-        navigate('/asiafood'); 
-    }
+    
+    // 각 카테고리에 대한 함수 호출
+    const onSubmitKoreafood = () => onSubmitCategory("koreafood");
+    const onSubmitFastfood = () => onSubmitCategory("fastfood");
+    const onSubmitChinafood = () => onSubmitCategory("chinafood");
+    const onSubmitJapanfood = () => onSubmitCategory("japanfood");
+    const onSubmitEuropefood = () => onSubmitCategory("europefood");
+    const onSubmitDessert = () => onSubmitCategory("dessert");
+    const onSubmitBread = () => onSubmitCategory("bread");
+    const onSubmitSnackfood = () => onSubmitCategory("snackfood");
+    const onSubmitAsiafood = () => onSubmitCategory("asiafood");
+    
     
   return (
     <Main>

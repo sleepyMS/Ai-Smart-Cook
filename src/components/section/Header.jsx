@@ -1,5 +1,3 @@
-// Header.jsx
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gpt from "../../api/gpt";
@@ -21,51 +19,36 @@ const Header = () => {
             setPeopleName(userData?.user?.nick || "로그인");
         }
 
-        const activityListener = () => {
-            localStorage.setItem('lastActivityTime', Date.now());
-        };
-
-        const unloadListener = () => {
-            logout();
-        };
-
-        window.addEventListener('mousemove', activityListener);
-        window.addEventListener('keypress', activityListener);
-        window.addEventListener('unload', unloadListener);
+        window.addEventListener('storage', handleStorageChange);
 
         return () => {
-            window.removeEventListener('mousemove', activityListener);
-            window.removeEventListener('keypress', activityListener);
-            window.removeEventListener('unload', unloadListener);
+            window.removeEventListener('storage', handleStorageChange);
         }
     }, []);
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-            const lastActivityTime = localStorage.getItem('lastActivityTime');
-            if (lastActivityTime) {
-                const timeDifference = Date.now() - lastActivityTime;
-                const logoutTime = 30 * 60 * 1000; // 30분 후에 자동 로그아웃
-                if (timeDifference >= logoutTime) {
-                    logout();
-                }
-            }
-        }, 1000);
-
-        return () => clearInterval(timer);
-    }, []);
+    const handleStorageChange = () => {
+        const storedUserData = localStorage.getItem('userData');
+        if (storedUserData) {
+            const userData = JSON.parse(storedUserData);
+            setPeopleName(userData?.user?.nick || "로그인");
+        } else {
+            setPeopleName("로그인");
+        }
+    }
 
     const logout = () => {
-        setPeopleName("로그인");
         localStorage.removeItem('userData');
     }
 
     const handleLogout = () => {
         const confirmLogout = window.confirm("로그아웃 하시겠습니까?");
         if (confirmLogout) {
-            logout();
+            logout(); // Remove user data from local storage
+            setPeopleName("로그인"); // Update state to reflect logout
+            navigate('/');
         }
     }
+    
 
     const onSubmitLogin = () => {
         const userData = JSON.parse(localStorage.getItem('userData'));
