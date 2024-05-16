@@ -1,0 +1,38 @@
+.RecipeHeader {
+  display: flex;
+  justify-content: space-between; /* 요소들을 좌우로 정렬하고 간격을 최대화 */
+  align-items: center; /* 세로 중앙 정렬 */
+}
+
+.header_logo {
+  margin-right: 20px; /* 로고와 버튼 사이의 간격 조절 */
+}
+
+.board-container {
+  margin: 20px;
+}
+
+.board-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.board-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.board-item h3 {
+  margin-top: 0;
+}
+
+.board-item p {
+  margin-bottom: 5px;
+}
+
+.buttonMagin {
+  display: flex;
+  justify-content: flex-end; /* 버튼을 오른쪽 끝으로 정렬 */
+}

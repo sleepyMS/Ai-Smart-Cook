@@ -1,24 +1,394 @@
 {
   "peoples": [
     {
-      "id": "5491",
-      "ID": "com1@example.co.kr",
-      "name": "김정호",
-      "pwd": "12345"
-    },
-    {
       "id": "2dad",
-      "ID": "qweasd@com.plr",
-      "name": "김정호",
-      "pwd": "ewqewqe213213@@@",
-      "num": "010-2569-8715"
+      "ID": "qwer@naver.com",
+      "name": "홍길동",
+      "pwd": "qwe123!!",
+      "phone": "010-1234-5678"
     },
     {
-      "id": "be06",
       "ID": "kjhgfd44@naver.com",
       "name": "김정호",
-      "pwd": "rhkgkr0812!!",
-      "num": "010-3924-1032"
+      "pwd": "tngkr0812!!",
+      "birth": "2000-08-16",
+      "phone": "010-3924-1032",
+      "nick": "tiger",
+      "id": "dea0",
+      "picture": "pppp"
+    }
+  ],
+  "boards": [
+    {
+      "id": "1",
+      "name": "김정호",
+      "titleBoard": "연습버전111",
+      "post": "연습하는고야~~~~~~11."
+    },
+    {
+      "id": "3123",
+      "name": "김정호",
+      "titleBoard": "연습버전222",
+      "post": "연습하는고야~~~~~~22."
+    },
+    {
+      "id": "2",
+      "name": "김정호2",
+      "titleBoard": "dsad",
+      "post": "나는 김정호2이야."
+    },
+    {
+      "id": "3",
+      "name": "김정호3",
+      "titleBoard": "dsad",
+      "post": "나는 김정호3이야."
+    },
+    {
+      "id": "4",
+      "name": "김정호4",
+      "titleBoard": "dsad",
+      "post": "나는 김정호4이야."
+    },
+    {
+      "id": "2313",
+      "name": "김정호5",
+      "titleBoard": "dsad",
+      "post": "나는 김정호5이야."
+    },
+    {
+      "id": "f8e3",
+      "name": "김정호",
+      "titleBoard": "sdsad",
+      "post": "sadsadad"
+    },
+    {
+      "id": "aae0",
+      "name": "김정호",
+      "titleBoard": "dsadsad",
+      "post": "asdasdasd"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "2495",
+      "name": "김정호",
+      "ingredient": "wewqe",
+      "titleBoard": "ewqe",
+      "post": "1.ㄷㅈㅂㄷㅈㄷ\n2. ㅈㄷㅈㅂㄷ\n3. ㅈㄷㅂㅈㄷ\n4. ㅈㅂㄷㅈㅂㄷㅈ\n5. ㅂㄷㅂㄷㅂㄷ\n6. ㅈㅂㄷㅈㅂㄷ",
+      "time":"",
+      "tag":""
+    },
+    {
+      "id": "866e",
+      "name": "김정호",
+      "ingredient": "ㅇㅁㄴㅇㅁ",
+      "titleBoard": "ㄴㅁㅇㄴㅁ",
+      "post": "ㄴㅇㅁㅇㅁㅇ"
+    }
+  ],
+  "meats": [
+    {
+      "name": "소고기",
+      "state": false,
+      "id": "2fc8"
+    },
+    {
+      "name": "닭고기",
+      "state": false,
+      "id": "66cf"
+    },
+    {
+      "name": "돼지고기",
+      "state": false,
+      "id": "04ef"
+    },
+    {
+      "name": "양고기",
+      "state": false,
+      "id": "0eb8"
+    },
+    {
+      "name": "오리고기",
+      "state": false,
+      "id": "f64d"
+    },
+    {
+      "name": "소시지",
+      "state": false,
+      "id": "d982"
+    },
+    {
+      "name": "햄",
+      "state": false,
+      "id": "fe3f"
+    }
+  ],
+  "vegetables": [
+    {
+      "name": "양파",
+      "state": false,
+      "id": "5889"
+    },
+    {
+      "name": "마늘",
+      "state": false,
+      "id": "3833"
+    },
+    {
+      "name": "파",
+      "state": false,
+      "id": "8e18"
+    },
+    {
+      "name": "고추",
+      "state": false,
+      "id": "9fb7"
+    },
+    {
+      "name": "콩나물",
+      "state": false,
+      "id": "d40d"
+    },
+    {
+      "name": "숙주",
+      "state": false,
+      "id": "aa95"
+    },
+    {
+      "name": "시금치",
+      "state": false,
+      "id": "8279"
+    },
+    {
+      "name": "상추",
+      "state": false,
+      "id": "1e3a"
+    },
+    {
+      "name": "당근",
+      "state": false,
+      "id": "1bf9"
+    },
+    {
+      "name": "오이",
+      "state": false,
+      "id": "c397"
+    },
+    {
+      "name": "호박",
+      "state": false,
+      "id": "413a"
+    },
+    {
+      "name": "무",
+      "state": false,
+      "id": "1af8"
+    },
+    {
+      "name": "깻잎",
+      "state": false,
+      "id": "689f"
+    },
+    {
+      "name": "부추",
+      "state": false,
+      "id": "26f0"
+    },
+    {
+      "name": "가지",
+      "state": false,
+      "id": "2acc"
+    }
+  ],
+  "fishes": [
+    {
+      "name": "연어",
+      "state": false,
+      "id": "384e"
+    },
+    {
+      "name": "고등어",
+      "state": false,
+      "id": "716b"
+    },
+    {
+      "name": "광어",
+      "state": false,
+      "id": "3031"
+    },
+    {
+      "name": "명태",
+      "state": false,
+      "id": "6236"
+    },
+    {
+      "name": "전어",
+      "state": false,
+      "id": "8ded"
+    },
+    {
+      "name": "우럭",
+      "state": false,
+      "id": "4204"
+    },
+    {
+      "name": "농어",
+      "state": false,
+      "id": "a2e8"
+    },
+    {
+      "name": "도미",
+      "state": false,
+      "id": "6f01"
+    },
+    {
+      "name": "갈치",
+      "state": false,
+      "id": "5c04"
+    },
+    {
+      "name": "조기",
+      "state": false,
+      "id": "3994"
+    },
+    {
+      "name": "꽁치",
+      "state": false,
+      "id": "81ad"
+    },
+    {
+      "name": "삼치",
+      "state": false,
+      "id": "1c28"
+    }
+  ],
+  "sources": [
+    {
+      "name": "소금",
+      "state": false,
+      "id": "ebc3"
+    },
+    {
+      "name": "설탕",
+      "state": false,
+      "id": "cb3e"
+    },
+    {
+      "name": "간장",
+      "state": false,
+      "id": "3811"
+    },
+    {
+      "name": "식초",
+      "state": false,
+      "id": "02f5"
+    },
+    {
+      "name": "마늘",
+      "state": false,
+      "id": "a8b9"
+    },
+    {
+      "name": "생강",
+      "state": false,
+      "id": "855d"
+    },
+    {
+      "name": "고추장",
+      "state": false,
+      "id": "9fe1"
+    },
+    {
+      "name": "고추가루",
+      "state": false,
+      "id": "9366"
+    },
+    {
+      "name": "후추",
+      "state": false,
+      "id": "2aef"
+    },
+    {
+      "name": "깨",
+      "state": false,
+      "id": "4477"
+    },
+    {
+      "name": "참기름",
+      "state": false,
+      "id": "cbc5"
+    },
+    {
+      "name": "올리고당",
+      "state": false,
+      "id": "1fad"
+    },
+    {
+      "name": "마요네즈",
+      "state": false,
+      "id": "12b5"
+    },
+    {
+      "name": "머스터드",
+      "state": false,
+      "id": "90f4"
+    },
+    {
+      "name": "레몬주스",
+      "state": false,
+      "id": "d24a"
+    }
+  ],
+  "grains": [
+    {
+      "name": "쌀",
+      "state": false,
+      "id": "734f"
+    },
+    {
+      "name": "밀",
+      "state": false,
+      "id": "9636"
+    },
+    {
+      "name": "보리",
+      "state": false,
+      "id": "2281"
+    },
+    {
+      "name": "수수",
+      "state": false,
+      "id": "d8c4"
+    },
+    {
+      "name": "오트밀",
+      "state": false,
+      "id": "0bc7"
+    },
+    {
+      "name": "기장",
+      "state": false,
+      "id": "5818"
+    },
+    {
+      "name": "보리",
+      "state": false,
+      "id": "b53f"
+    },
+    {
+      "name": "조",
+      "state": false,
+      "id": "5766"
+    },
+    {
+      "name": "깨소금",
+      "state": false,
+      "id": "301a"
+    },
+    {
+      "name": "퀴노아",
+      "state": false,
+      "id": "169c"
     }
   ]
 }

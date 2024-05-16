@@ -1,0 +1,123 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: aquamarine;
+  padding: 20px;
+}
+
+.header_logo {
+  color: burlywood;
+  font-family: 'Arial', sans-serif;
+}
+
+.header_logo h2 {
+  margin: 0;
+  font-size: 40px;
+}
+
+.header_list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header_list button {
+  background-color: rgb(25, 25, 43);
+  color: burlywood;
+  padding: 12px 20px;
+  font-size: 10px;
+  margin-inline: 10px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.header_list button:first-child {
+  margin-left: auto; /* 첫 번째 버튼을 오른쪽으로 정렬합니다. */
+}
+
+.header_list button:hover {
+  background-color: rgba(25, 25, 43, 0.8);
+}
+
+.buttonMargin {
+  display: flex;
+  justify-content: center; /* 버튼을 수평으로 중앙 정렬합니다. */
+  align-items: center; /* 버튼을 수직으로 중앙 정렬합니다. */
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.buttonMargin button {
+  background-color: rgb(25, 25, 43);
+  color: burlywood;
+  padding: 12px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+}
+
+.buttonMargin button:not(:last-child) {
+  margin-right: 10px;
+}
+
+.buttonMargin button:hover {
+  background-color: rgba(25, 25, 43, 0.8);
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+.input-container input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 9px;
+  margin-left: -10px; /* 검색 버튼과 검색창 사이 간격 없애기 */
+}
+
+.input-container button {
+  background-color: rgb(25, 25, 43);
+  color: burlywood;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 5px;
+  font-size: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+}
+
+.input-container button:hover {
+  background-color: rgba(25, 25, 43, 0.8);
+}
+
+.recipeboard-button,
+.questionboard-button,
+.writeregister-button {
+  background-color: rgb(25, 25, 43);
+  color: burlywood;
+  padding: 12px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+}
+
+.recipeboard-button:hover,
+.questionboard-button:hover,
+.writeregister-button:hover {
+  background-color: rgba(25, 25, 43, 0.8);
+}
