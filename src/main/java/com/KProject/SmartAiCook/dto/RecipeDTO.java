@@ -19,6 +19,8 @@ public class RecipeDTO {
     private String recipe;
     private String tag;
     private LocalDateTime time;
+    private String nick;
+    private String name;
 }
 /*
 * Q&A
