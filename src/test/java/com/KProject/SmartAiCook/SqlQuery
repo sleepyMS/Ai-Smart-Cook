@@ -4,7 +4,7 @@ CREATE TABLE users (
     nick VARCHAR(255) DEFAULT 'guest',
     password VARCHAR(255) NOT NULL,
     birth DATE,
-    email VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
     name VARCHAR(255),
     phone VARCHAR(20),
     token VARCHAR(255),
@@ -13,11 +13,19 @@ CREATE TABLE users (
     lastLoginAt DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=innoDB CHARSET=utf8mb4;
 
+-- Tokens table (새로운 테이블)
+CREATE TABLE tokens (
+    token_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(num) -- 외래 키 추가
+) ENGINE=InnoDB CHARSET=utf8mb4;
+
 CREATE TABLE `likes` (
   `recipeNum` int NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`recipeNum`,`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `qna` (
   `num` int NOT NULL AUTO_INCREMENT,
@@ -27,7 +35,8 @@ CREATE TABLE `qna` (
   `pass` varchar(255) DEFAULT NULL,
   `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`num`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+  FOREIGN KEY (email) REFERENCES users(email) -- 외래 키 추가
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `recipe` (
   `num` int NOT NULL AUTO_INCREMENT,
@@ -38,4 +47,13 @@ CREATE TABLE `recipe` (
   `tag` varchar(255) DEFAULT NULL,
   `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`num`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+  FOREIGN KEY (email) REFERENCES users(email) -- 외래 키 추가
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Ingredients table (새로운 테이블)
+CREATE TABLE ingredients (
+    ingredient_id INT AUTO_INCREMENT PRIMARY KEY,
+    recipe_id INT NOT NULL,
+    ingredient_name VARCHAR(255) NOT NULL,
+    FOREIGN KEY (recipe_id) REFERENCES recipe(num) -- 외래 키 추가
+) ENGINE=InnoDB CHARSET=utf8mb4;
