@@ -1,43 +1,102 @@
-
-const gpt = async ({prompt}) => {
-  const messages = [ { role: "system", content: `## INFO ##
-                      you can add images to the reply by URL, Write the image in JSON field 
-                      Use the Unsplash API (https://source.unsplash.com/1600x900/?). 
-                      the query is just some tags that describes the image ## DO NOT RESPOND 
-                      TO INFO BLOCK ##` },
-                    { role: "system", content: `You're the best at teaching food recipes in a way that anyone can easily follow. 
-                    You're easy to follow, but you're very detailed in your instructions. And if a searcher asks for a quantity of food, say 1 or 2 servings.
-                    you need to give them the right amount, and you need to go through the following steps.` },
-                    { role: "user", content: 
-                    `1.[title] : food name.
-                    2.[ingredient]: Tell us the ingredients for the food in detail. For example, chicken breast (moderate) and soy sauce (a little), not chicken breast (200g) and soy sauce (2 tablespoons).
-                    3.[procedure]: This is where you explain in detail how to make the food. 
-                    For example, if a searcher enters a recipe for pork kimchi stew, first, 
-                    put the meat in a frying pan and fry it. Don't say something like this
-                    First, chop one onion with a knife. 
-                    Second, cut the kimchi into bite-sized pieces.
-                    Third, fry the pork (300g) in a frying pan without oil over medium heat for about 5 minutes.
-                    Fourth, 
-                    Introduce the cooking process in a very detailed and sequential way. 
-                    4.[TIP] : I would like you to tell me some precautions that are good to know when cooking, such as, 
-                    * When stir-frying meat, be careful not to stir-fry it over high heat or it will burn!!!
-                    I would like you to give me about 3 tips like this.
-
-                    Translate into Korean and Use the output in the following JSON format:
-                    { 
-                        title : here is [title],
-                        ingredient: here is [ingredient],
-                        procedure: here is [procedure],
-                        TIP: here is [3 TIP],
-                    }
-
-
-                    [events]: ` },
-                    {"role": "user", "content": `${prompt}`}
-            ]
+const gpt = async ({ prompt }) => {
+  const messages = [
+    {
+      role: "system",
+      content: `## INFO ##
+                        you can add images to the reply by URL, Write the image in JSON field 
+                        Use the Unsplash API (https://source.unsplash.com/1600x900/?). 
+                        the query is just some tags that describes the image ## DO NOT RESPOND 
+                        TO INFO BLOCK ##`,
+    },
+    {
+      role: "system",
+      content: `You are a culinary encyclopedia.
+                       You know all the world's cuisines. You act as both the world's greatest chef and a homemaker. 
+                       Moreover, you are very delicate and meticulous, so you teach cooking processes and ingredient 
+                       quantities very thoroughly. You just need to teach recipes. 
+                       Teach recipes that are easy for anyone to follow and are the most delicious and popular. 
+                       Also, be careful not to repeat the same food you've taught before, 
+                       but instead introduce new and special dishes or recipes. And tell me 5 to 10 dishes each.`,
+    },
+    {
+      role: "user",
+      content: `[order] : first
+                      [title]: Food Name
+                      [ingredient]: Provide detailed information about the ingredients suitable for the dish. For example, chicken breast (moderate), soy sauce (a little). For instance, chicken breast (200g), soy sauce (2 tablespoons). Please provide information in this format.
+                      [procedure]: Now, let's delve into how to make the dish very thoroughly. For example, if a user searches for a recipe for pork kimchi stew, don't just say something like, "First, put the meat in a frying pan and fry it." Instead, provide detailed instructions in the following manner:
+                      First, finely chop one onion with a knife.
+                      Second, cut the kimchi into bite-sized pieces.
+                      Third, fry the pork (300g) in a frying pan over medium heat without oil for about 5 minutes.
+                      Fourth, continue with the cooking process in a very detailed and sequential manner.
+                      [tip]: It would be great if you could provide some helpful precautions to keep in mind while cooking. For example,
+                      Be careful not to stir-fry the meat over high heat, as it may burn!!!
+                      It would be great to provide about three precautions like this.
+                      [extra]: Additionally, it would be great if you could teach about ingredients that would be good to add.
+                      
+                      [order] : second
+                      [title]: Food Name
+                      [ingredient]: Provide detailed information about the ingredients suitable for the dish. For example, chicken breast (moderate), soy sauce (a little). For instance, chicken breast (200g), soy sauce (2 tablespoons). Please provide information in this format.
+                      [procedure]: Now, let's delve into how to make the dish very thoroughly. For example, if a user searches for a recipe for pork kimchi stew, don't just say something like, "First, put the meat in a frying pan and fry it." Instead, provide detailed instructions in the following manner:
+                      First, finely chop one onion with a knife.
+                      Second, cut the kimchi into bite-sized pieces.
+                      Third, fry the pork (300g) in a frying pan over medium heat without oil for about 5 minutes.
+                      Fourth, continue with the cooking process in a very detailed and sequential manner.
+                      [tip]: It would be great if you could provide some helpful precautions to keep in mind while cooking. For example,
+                      Be careful not to stir-fry the meat over high heat, as it may burn!!!
+                      It would be great to provide about three precautions like this.
+                      [extra]: Additionally, it would be great if you could teach about ingredients that would be good to add.
   
+                      [order] : third
+                      [title]: Food Name
+                      [ingredient]: Provide detailed information about the ingredients suitable for the dish. For example, chicken breast (moderate), soy sauce (a little). For instance, chicken breast (200g), soy sauce (2 tablespoons). Please provide information in this format.
+                      [procedure]: Now, let's delve into how to make the dish very thoroughly. For example, if a user searches for a recipe for pork kimchi stew, don't just say something like, "First, put the meat in a frying pan and fry it." Instead, provide detailed instructions in the following manner:
+                      First, finely chop one onion with a knife.
+                      Second, cut the kimchi into bite-sized pieces.
+                      Third, fry the pork (300g) in a frying pan over medium heat without oil for about 5 minutes.
+                      Fourth, continue with the cooking process in a very detailed and sequential manner.
+                      [tip]: It would be great if you could provide some helpful precautions to keep in mind while cooking. For example,
+                      Be careful not to stir-fry the meat over high heat, as it may burn!!!
+                      It would be great to provide about three precautions like this.
+                      [extra]: Additionally, it would be great if you could teach about ingredients that would be good to add.
+                      
+                      [order] : fourth
+                      [title]: Food Name
+                      [ingredient]: Provide detailed information about the ingredients suitable for the dish. For example, chicken breast (moderate), soy sauce (a little). For instance, chicken breast (200g), soy sauce (2 tablespoons). Please provide information in this format.
+                      [procedure]: Now, let's delve into how to make the dish very thoroughly. For example, if a user searches for a recipe for pork kimchi stew, don't just say something like, "First, put the meat in a frying pan and fry it." Instead, provide detailed instructions in the following manner:
+                      First, finely chop one onion with a knife.
+                      Second, cut the kimchi into bite-sized pieces.
+                      Third, fry the pork (300g) in a frying pan over medium heat without oil for about 5 minutes.
+                      Fourth, continue with the cooking process in a very detailed and sequential manner.
+                      [tip]: It would be great if you could provide some helpful precautions to keep in mind while cooking. For example,
+                      Be careful not to stir-fry the meat over high heat, as it may burn!!!
+                      It would be great to provide about three precautions like this.
+                      [extra]: Additionally, it would be great if you could teach about ingredients that would be good to add.
+                     
+                      [order] : fifth
+                      [title]: Food Name
+                      [ingredient]: Provide detailed information about the ingredients suitable for the dish. For example, chicken breast (moderate), soy sauce (a little). For instance, chicken breast (200g), soy sauce (2 tablespoons). Please provide information in this format.
+                      [procedure]: Now, let's delve into how to make the dish very thoroughly. For example, if a user searches for a recipe for pork kimchi stew, don't just say something like, "First, put the meat in a frying pan and fry it." Instead, provide detailed instructions in the following manner:
+                      First, finely chop one onion with a knife.
+                      Second, cut the kimchi into bite-sized pieces.
+                      Third, fry the pork (300g) in a frying pan over medium heat without oil for about 5 minutes.
+                      Fourth, continue with the cooking process in a very detailed and sequential manner.
+                      [tip]: It would be great if you could provide some helpful precautions to keep in mind while cooking. For example,
+                      Be careful not to stir-fry the meat over high heat, as it may burn!!!
+                      It would be great to provide about three precautions like this.
+                      [extra]: Additionally, it would be great if you could teach about ingredients that would be good to add.
+                     
+                      Translate into Korean and Use the output in the following JSON format:
+                      
+                      The contents of title, inredient, procedure, tip, and extra are respectively
+                      Save the data in the following format: title = [title1,title2,title3...].
+                      Save ingredients, procedures, tips, and extras in the same format as above.
+                     `,
+    },
+    { role: "user", content: `${prompt}를 활용한 요리를 알려줘.` },
+  ];
+
   console.log(">>CallGPT");
-  const apiKey = process.env.REACT_APP_OPENAI_API_KEY; 
+  const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
 
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -49,14 +108,14 @@ const gpt = async ({prompt}) => {
       model: "gpt-3.5-turbo",
       messages,
       temperature: 0.7,
-      max_tokens: 1000, // removed underscore from max_tokens
+      max_tokens: 2_000,
     }),
   });
+  const responseData = await response.json();
+  // console.log(">>responseData", responseData);
 
-  const responseData = await response.json(); // Parsing JSON directly from response
   const message = responseData.choices[0].message.content;
-  console.log(">> responseData", responseData);
-
+  // console.log(message);
   return message;
 };
 
@@ -74,7 +133,7 @@ export default gpt;
 // 이와 같은 팁을 약 3가지 알려주세요.
 
 // 한국어로 번역하고 다음과 같은 JSON 형식을 사용하세요:
-// { 
+// {
 //     title : here is [title],
 //     ingredient: here is [ingredient],
 //     procedure: here is [procedure],
@@ -114,4 +173,3 @@ export default gpt;
 // };
 
 // export default gpt;
-
