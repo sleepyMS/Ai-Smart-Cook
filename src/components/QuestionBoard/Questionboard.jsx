@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Questionboard.css";
+import axios from "axios";
 
 const Question = () => {
   const [boards, setBoards] = useState([]);
@@ -8,23 +9,27 @@ const Question = () => {
   const [viewCounts, setViewCounts] = useState({});
   const [likes, setLikes] = useState([]);
 
-  // 게시판 데이터와 좋아요 정보 가져오기
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const boardsResponse = await fetch('http://localhost:817/boards/');
-        const boardsData = await boardsResponse.json();
-        setBoards(boardsData);
+        const boardResponse = await axios.post(
+          "http://localhost:8080/qna/get",
+          {
+            from: 0,
+            to: 10e5,
+          }
+        );
+        setBoards(boardResponse.data.data);
 
-        const likesResponse = await fetch('http://localhost:817/likes/');
+        const likesResponse = await fetch("http://localhost:817/likes/");
         const likesData = await likesResponse.json();
         setLikes(likesData);
 
-        if (!boardsResponse.ok || !likesResponse.ok) {
-          throw new Error('데이터를 불러오는데 실패했습니다');
+        if (!likesResponse.ok) {
+          throw new Error("데이터를 불러오는데 실패했습니다");
         }
       } catch (error) {
-        console.error('데이터를 불러오는 중 오류 발생:', error);
+        console.error("데이터를 불러오는 중 오류 발생:", error);
       } finally {
         setLoading(false);
       }
@@ -33,122 +38,108 @@ const Question = () => {
     fetchData();
   }, []);
 
-  // 조회수 증가 함수
-  const increaseViewCount = (id) => {
-    if (localStorage.getItem('userData')) {
-      const newViewCounts = { ...viewCounts };
-      newViewCounts[id] = (newViewCounts[id] || 0) + 1;
-      setViewCounts(newViewCounts);
-      localStorage.setItem('viewCounts', JSON.stringify(newViewCounts));
-    } else {
-      alert("로그인을 해주세요.");
-    }
-  };
-
-  // 좋아요 증가 함수
-  const increaseLike = async (id) => {
-    const user = JSON.parse(localStorage.getItem('userData'));
-    if (user) {
-      const newLikes = [...likes];
-      const existingLikeIndex = newLikes.findIndex(like => like.boardId === id && like.nick === user.nick);
-      if (existingLikeIndex === -1) {
-        const foundBoard = boards.find(board => board.id === id);
-        try {
-          const response = await fetch(`http://localhost:817/likes`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ 
-              boardId: foundBoard.id,
-              titleBoard: foundBoard.titleBoard,
-              nick: user.user.nick 
-            }),
-          });
-          if (response.ok) {
-            const responseData = await response.json();
-            // 좋아요 추가 후 상태 업데이트
-            const updatedLikes = [...likes, responseData];
-            setLikes(updatedLikes);
-            localStorage.setItem('like', JSON.stringify(updatedLikes));
-          } else {
-            throw new Error('좋아요 추가에 실패했습니다');
-          }
-        } catch (error) {
-          console.error('좋아요 추가 중 오류 발생:', error);
-        }
-      }
-    }
-  };
-
-  // 좋아요 감소 함수
-  const decreaseLike = async (id) => {
-    const user = JSON.parse(localStorage.getItem('userData'));
-    if (user) {
-      const existingLikeIndex = likes.findIndex(like => like.boardId === id && like.nick === user.user.nick);
-
-      if (existingLikeIndex !== -1) {
-        const foundLike = likes[existingLikeIndex];
-
-        try {
-          if (foundLike && foundLike.id) {
-            const response = await fetch(`http://localhost:817/likes/${foundLike.id}`, {
-              method: 'DELETE',
-            });
-
-            if (response.ok) {
-              // 좋아요 삭제 후 상태 업데이트
-              const updatedLikes = [...likes];
-              updatedLikes.splice(existingLikeIndex, 1);
-              setLikes(updatedLikes);
-              localStorage.setItem('like', JSON.stringify(updatedLikes));
-            } else {
-              throw new Error('좋아요 삭제에 실패했습니다');
-            }
-          } else {
-            throw new Error('좋아요 ID를 찾을 수 없습니다');
-          }
-        } catch (error) {
-          console.error('좋아요 삭제 중 오류 발생:', error);
-        }
-      }
-    }
-  };
-
   useEffect(() => {
-    const storedViewCounts = localStorage.getItem('viewCounts');
+    const storedViewCounts = localStorage.getItem("viewCounts");
     if (storedViewCounts) {
       setViewCounts(JSON.parse(storedViewCounts));
     }
 
-    const storedLikes = localStorage.getItem('like');
+    const storedLikes = localStorage.getItem("like");
     if (storedLikes) {
       setLikes(JSON.parse(storedLikes));
     }
   }, []);
 
-  // 좋아요 상태 확인 함수
-  const checkLikeStatus = (id) => {
-    const user = JSON.parse(localStorage.getItem('userData'));
+  const increaseViewCount = (id) => {
+    if (localStorage.getItem("userData")) {
+      const newViewCounts = { ...viewCounts };
+      newViewCounts[id] = (newViewCounts[id] || 0) + 1;
+      setViewCounts(newViewCounts);
+      localStorage.setItem("viewCounts", JSON.stringify(newViewCounts));
+    } else {
+      alert("로그인을 해주세요.");
+    }
+  };
+
+  const handleLikeClick = async (id) => {
+    const user = JSON.parse(localStorage.getItem("userData"));
     if (user) {
-      return likes.some(like => like.boardId === id && like.nick === user.user.nick);
+      const existingLikeIndex = likes.findIndex(
+        (like) => like.boardId === id && like.nick === user.user.nick
+      );
+
+      if (existingLikeIndex === -1) {
+        const foundBoard = boards.find((board) => board.num === id);
+        try {
+          const response = await fetch("http://localhost:817/likes", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              boardId: foundBoard.num,
+              titleBoard: foundBoard.title,
+              nick: user.user.nick,
+            }),
+          });
+
+          if (response.ok) {
+            const responseData = await response.json();
+            setLikes((prevLikes) => [...prevLikes, responseData]);
+            localStorage.setItem(
+              "like",
+              JSON.stringify([...likes, responseData])
+            );
+          } else {
+            throw new Error("좋아요 추가에 실패했습니다");
+          }
+        } catch (error) {
+          console.error("좋아요 추가 중 오류 발생:", error);
+        }
+      } else {
+        const foundLike = likes[existingLikeIndex];
+        try {
+          if (foundLike && foundLike.id) {
+            const response = await fetch(
+              `http://localhost:817/likes/${foundLike.id}`,
+              {
+                method: "DELETE",
+              }
+            );
+
+            if (response.ok) {
+              const updatedLikes = likes.filter(
+                (like) => like.id !== foundLike.id
+              );
+              setLikes(updatedLikes);
+              localStorage.setItem("like", JSON.stringify(updatedLikes));
+            } else {
+              throw new Error("좋아요 삭제에 실패했습니다");
+            }
+          } else {
+            throw new Error("좋아요 ID를 찾을 수 없습니다");
+          }
+        } catch (error) {
+          console.error("좋아요 삭제 중 오류 발생:", error);
+        }
+      }
+    }
+  };
+
+  const checkLikeStatus = (id) => {
+    const user = JSON.parse(localStorage.getItem("userData"));
+    if (user) {
+      return likes.some(
+        (like) => like.boardId === id && like.nick === user.user.nick
+      );
     }
     return false;
   };
 
-  // 좋아요 버튼 클릭 시 처리 함수
-  const handleLikeClick = (id) => {
-    if (checkLikeStatus(id)) {
-      decreaseLike(id);
-    } else {
-      increaseLike(id);
-    }
-  };
-
   return (
     <div>
-      <h1 className='header_logo'>
-        <Link to= '/'>MOTIV</Link>
+      <h1 className="header_logo">
+        <Link to="/">MOTIV</Link>
       </h1>
       <div className="board-container">
         <h2>게시물 목록</h2>
@@ -158,18 +149,29 @@ const Question = () => {
           <ul className="board-list">
             {boards.map((board, index) => (
               <li key={index} className="board-item">
-                <Link to={localStorage.getItem('userData') ? `/inboard/${board.id}` : '#'} onClick={() => increaseViewCount(board.id)}>
-                  <h3>제목: {board.titleBoard}</h3>
+                <Link
+                  to={
+                    localStorage.getItem("userData")
+                      ? `/inboard/${board.num}`
+                      : "#"
+                  }
+                  onClick={() => increaseViewCount(board.num)}
+                >
+                  <h3>제목: {board.title}</h3>
                 </Link>
-                <p>{board.name}</p>
-                <p>조회수: {viewCounts[board.id] || 0}</p>
-                {localStorage.getItem('userData') && (
+                <p>{board.email}</p>
+                <p>조회수: {viewCounts[board.num] || 0}</p>
+                {localStorage.getItem("userData") && (
                   <div>
-                    <button onClick={() => handleLikeClick(board.id)} disabled={checkLikeStatus(board.id)}>좋아요</button>
-                    <button onClick={() => decreaseLike(board.id)} disabled={!checkLikeStatus(board.id)}>좋아요 취소</button>
+                    <button onClick={() => handleLikeClick(board.num)}>
+                      {checkLikeStatus(board.num) ? "좋아요 취소" : "좋아요"}
+                    </button>
                   </div>
                 )}
-                <p>좋아요 수: {likes.filter(like => like.boardId === board.id).length}</p>
+                <p>
+                  좋아요 수:{" "}
+                  {likes.filter((like) => like.boardId === board.num).length}
+                </p>
               </li>
             ))}
           </ul>
