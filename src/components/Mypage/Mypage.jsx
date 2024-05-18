@@ -4,13 +4,16 @@ import "./Mypage.css"; // CSS 파일 추가
 import LoadingModal from "./Load_changepwd"; // LoadingModal 추가
 import Load_changednick from "./Load_changednick"; // LoadingModal 추가
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Mypage = () => {
   const [userData, setUserData] = useState(null); // 초기값을 null로 설정
   const [posts, setPosts] = useState([]);
+  const [qnas, setQnas] = useState([]);
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태를 나타내는 상태
   const [isNickLoading, setIsNickLoading] = useState(false); // 로딩 상태를 나타내는 상태
   const [profileImage, setProfileImage] = useState(null); // 프로필 이미지를 나타내는 상태
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 페이지 로드 시 로컬 스토리지에서 사용자 데이터 가져오기
@@ -31,6 +34,14 @@ const Mypage = () => {
           (post) => post.email === userData.user.email
         );
         setPosts(filteredPosts);
+        const responseQna = await axios.post("http://localhost:8080/qna/get", {
+          from: 0,
+          to: 10e5,
+        });
+        const filteredQnas = responseQna.data.data.filter(
+          (qna) => qna.email === userData.user.email
+        );
+        setQnas(filteredQnas);
       } catch (error) {
         console.error("데이터를 불러오는 중 오류 발생:", error);
       }
@@ -136,6 +147,14 @@ const Mypage = () => {
     }
   };
 
+  const alertInRecipe = async () => {
+    try {
+      navigate("/recipewrite", { state: { posts } });
+    } catch (error) {
+      console.error("데이터를 불러오는 중 오류 발생:", error);
+    }
+  };
+
   return (
     <div className="mypage-container">
       <h1 className="header_logo">
@@ -176,12 +195,26 @@ const Mypage = () => {
         <div className="hidden-info">{userData.user.phone}</div>
       </div>
       <div className="user-posts">
+        <h2>나의 레시피</h2>
         {posts.map((board) => (
           <div key={board.num} className="post">
             <Link to={`/inboard/${board.num}`} className="post-link">
               <h3 className="post-title">제목: {board.title}</h3>
             </Link>
             <button onClick={() => del(board.num)}>삭제</button>
+            <button onClick={() => alertInRecipe()}>변경</button>
+          </div>
+        ))}
+      </div>
+      <div className="user-posts">
+        <h2>나의 Q&A</h2>
+        {qnas.map((board) => (
+          <div key={board.num} className="post">
+            <Link to={`/inboard/${board.num}`} className="post-link">
+              <h3 className="post-title">제목: {board.title}</h3>
+            </Link>
+            <button onClick={() => del(board.num)}>삭제</button>
+            <button onClick={() => alertInRecipe()}>변경</button>
           </div>
         ))}
       </div>

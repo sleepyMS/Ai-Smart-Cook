@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../../내가만든css/media.css";
 import "../../내가만든css/style.css";
 import axios from "axios";
@@ -11,13 +11,19 @@ const Recipewrite = () => {
   const indRef = useRef(null);
   const tagRef = useRef(null); // useRef를 사용하여 선택된 태그 값을 저장
   const [peopleName, setPeopleName] = useState("로그인");
+  const location = useLocation();
+  const thisRecipe = location.state && location.state.posts;
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userData"));
     if (user) {
       setPeopleName(user.user.nick);
     }
-  }, []);
+    if (thisRecipe) {
+      console.log(thisRecipe);
+      indRef.current.value = thisRecipe.ingredient;
+    }
+  }, [thisRecipe]);
 
   const handleLogout = () => {
     if (!localStorage.getItem("userData")) {
@@ -67,6 +73,8 @@ const Recipewrite = () => {
           title: titleRef.current.value,
           recipe: postRef.current.value,
           tag: tagRef.current.value,
+          name: ID.user.name,
+          nick: ID.user.nick,
         })
         .then((response) => {
           console.log(response.data);
