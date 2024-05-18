@@ -44,7 +44,7 @@ CREATE TABLE `recipe` (
   FOREIGN KEY (email) REFERENCES users(email) -- 외래 키 추가
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Ingredients table (새로운 테이블)
+-- Ingredients table (새로운 테이블1)
 CREATE TABLE ingredients (
     ingredient_id INT AUTO_INCREMENT PRIMARY KEY,
     recipe_id INT NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE ingredients (
     FOREIGN KEY (recipe_id) REFERENCES recipe(num) -- 외래 키 추가
 ) ENGINE=InnoDB CHARSET=utf8mb4;
 
--- Tokens table (새로운 테이블)
+-- Tokens table (새로운 테이블2)
 CREATE TABLE tokens (
     token_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
