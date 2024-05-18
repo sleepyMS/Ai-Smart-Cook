@@ -5,10 +5,7 @@ import com.KProject.SmartAiCook.service.QnAService;
 import com.KProject.SmartAiCook.service.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/recipe")
@@ -32,9 +29,9 @@ public class RecipeController {
         return result;
     }
     @Operation(summary = "num의 recipe 요청", description = "파라미터로 받은 num으로 recipe를 반환합니다.")
-    @PostMapping("/getByNum")
-    public ResponseDTO<?> getQnAByNum(@RequestBody int requestBody) {
-        ResponseDTO<?> result = recipeService.getRecipeByNum(requestBody);
+    @PostMapping("/getByNum/{num}")
+    public ResponseDTO<?> getQnAByNum(@PathVariable("num") int num) {
+        ResponseDTO<?> result = recipeService.getRecipeByNum(num);
 
         return result;
     }

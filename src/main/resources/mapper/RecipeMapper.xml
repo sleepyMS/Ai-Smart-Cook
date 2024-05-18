@@ -9,15 +9,16 @@
     </insert>
     <!--  유저의 recipe 조회 -->
     <select id="getRecipeByEmail" parameterType="string" resultType="RecipeDTO">
-        SELECT recipe.*, users.nick, users.name
+        SELECT recipe.*, users.nick
         FROM `recipe`
             INNER JOIN users
             ON users.email = recipe.email
         WHERE recipe.email = #{email};
     </select>
+
     <!-- num으로 recipe 조회 -->
     <select id="getRecipeByNum" parameterType="int" resultType="RecipeDTO">
-        SELECT recipe.*, users.nick, users.name
+        SELECT recipe.*, users.nick
         FROM `recipe`
             INNER JOIN users
             ON users.email = recipe.email
@@ -26,7 +27,7 @@
 
     <!-- recipe 조회 from~to -->
     <select id="getRecipe" parameterType="GetRecipeRequest" resultType="RecipeDTO">
-        SELECT recipe.*, users.nick, users.name
+        SELECT recipe.*, users.nick
         FROM `recipe`
             INNER JOIN users
             ON users.email = recipe.email
