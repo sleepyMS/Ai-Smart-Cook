@@ -6,14 +6,16 @@ import axios from "axios";
 const Recipeinboard = () => {
   //const postList = dummy.boards.filter(board => board.id === id)
   const [posts, setPosts] = useState([]);
+  const { num } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         axios
-          .post("http://localhost:8080/recipe/getByNum", {})
+          .post(`http://localhost:8080/recipe/getByNum/${num}`, {})
           .then((response) => {
             console.log(response.data.data);
+            setPosts(response.data.data);
           });
       } catch (error) {
         console.error("데이터를 불러오는 중 오류 발생:", error);
@@ -31,11 +33,7 @@ const Recipeinboard = () => {
           <span>MOTIV</span>
         </a>
       </h1>
-      <div>
-        {posts.map((recipe) => (
-          <div key={recipe.id}>{recipe.post}</div>
-        ))}
-      </div>
+      <div>{posts.recipe}</div>
       <Link to={`/recipeboard`}>
         <h2>게시판 이동</h2>
       </Link>
