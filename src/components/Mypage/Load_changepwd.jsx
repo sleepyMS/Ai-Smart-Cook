@@ -43,7 +43,7 @@ const Loadingmodal = ({ onClose }) => {
       await axios
         .post(`http://localhost:8080/user/auth/alterIn`, {
           email: ID.user.email,
-          password: ID.user.password,
+          password: currentPassword,
           newPassword: newPassword,
           confirmNewPassword: confirmPassword,
         })

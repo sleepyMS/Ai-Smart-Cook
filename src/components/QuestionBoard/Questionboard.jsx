@@ -20,7 +20,7 @@ const Question = () => {
           }
         );
         setBoards(boardResponse.data.data);
-
+        console.log(boards);
         const likesResponse = await fetch("http://localhost:817/likes/");
         const likesData = await likesResponse.json();
         setLikes(likesData);
@@ -61,6 +61,7 @@ const Question = () => {
     }
   };
 
+  //좋아요 클릭
   const handleLikeClick = async (id) => {
     const user = JSON.parse(localStorage.getItem("userData"));
     if (user) {
@@ -147,8 +148,8 @@ const Question = () => {
           <p>Loading...</p>
         ) : (
           <ul className="board-list">
-            {boards.map((board, index) => (
-              <li key={index} className="board-item">
+            {boards.map((board) => (
+              <li key={board.num} className="board-item">
                 <Link
                   to={
                     localStorage.getItem("userData")

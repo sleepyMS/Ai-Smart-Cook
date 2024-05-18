@@ -43,8 +43,8 @@ const Recipeboard = () => {
         ) : (
           <ul className="board-list">
             {recipes.length > 0 &&
-              recipes.map((recipe, index) => (
-                <li key={index} className="board-item">
+              recipes.map((recipe) => (
+                <li key={recipe.num} className="board-item">
                   {/* Link를 이용해 클릭 시 URL 변경 */}
                   <Link to={`/recipeinboard/${recipe.num}`}>
                     <h3>제목: {recipe.title}</h3>
