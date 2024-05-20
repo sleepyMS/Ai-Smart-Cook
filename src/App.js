@@ -48,6 +48,7 @@ const App = () => {
           <Route path="/search/:searchId" element={<Search />} />
           <Route path="/registerpage1" element={<Registerpage1 />} />
           <Route path="/recipewrite" element={<Recipewrite />} />
+          <Route path="/recipewrite/:num" element={<Recipewrite />} />
           <Route path="/questionboard" element={<Questionboard />} />
           <Route path="/koreafood" element={<Koreafood />} />
           <Route path="/fastfood" element={<Fastfood />} />
@@ -59,7 +60,7 @@ const App = () => {
           <Route path="/snackfood" element={<Snackfood />} />
           <Route path="/asiafood" element={<Asiafood />} />
           <Route path="/recipe" element={<Recipe />} />
-          <Route path="/inboard/:id" element={<Inboard />} />
+          <Route path="/inboard/:num" element={<Inboard />} />
           <Route path="/write" element={<Write />} />
           <Route path="/check" element={<Checkbox />} />
           <Route path="/buttonrecipe" element={<Buttonrecipe />} />

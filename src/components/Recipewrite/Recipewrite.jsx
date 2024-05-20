@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import "../../내가만든css/media.css";
 import "../../내가만든css/style.css";
 import axios from "axios";
@@ -13,6 +13,7 @@ const Recipewrite = () => {
   const [peopleName, setPeopleName] = useState("로그인");
   const location = useLocation();
   const thisRecipe = location.state && location.state.posts;
+  const { num } = useParams;
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userData"));
@@ -20,10 +21,13 @@ const Recipewrite = () => {
       setPeopleName(user.user.nick);
     }
     if (thisRecipe) {
-      console.log(thisRecipe);
-      indRef.current.value = thisRecipe.ingredient;
+      axios
+        .post(`http://localhost:8080/recipe/getByNum/${num}`, {})
+        .then((response) => {
+          console.log(response.data.data);
+        });
     }
-  }, [thisRecipe]);
+  }, []);
 
   const handleLogout = () => {
     if (!localStorage.getItem("userData")) {

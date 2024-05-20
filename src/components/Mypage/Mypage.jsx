@@ -198,11 +198,13 @@ const Mypage = () => {
         <h2>나의 레시피</h2>
         {posts.map((board) => (
           <div key={board.num} className="post">
-            <Link to={`/inboard/${board.num}`} className="post-link">
+            <Link to={`/recipeinboard/${board.num}`} className="post-link">
               <h3 className="post-title">제목: {board.title}</h3>
             </Link>
             <button onClick={() => del(board.num)}>삭제</button>
-            <button onClick={() => alertInRecipe()}>변경</button>
+            <Link to={`/recipewrite/${board.num}`}>
+              <button>변경</button>
+            </Link>
           </div>
         ))}
       </div>
