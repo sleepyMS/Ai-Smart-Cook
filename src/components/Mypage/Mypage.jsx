@@ -217,6 +217,19 @@ const Mypage = () => {
           </div>
         ))}
       </div>
+      <div className="user-posts">
+        <h2>내가 좋아요 한 레시피</h2>
+        {qnas.map((board) => (
+          <div key={board.num} className="post">
+            <Link to={`/inboard/${board.num}`} className="post-link">
+              <h3 className="post-title">제목: {board.title}</h3>
+            </Link>
+            <Link to={`/write/${board.num}`}>
+              <button>변경</button>
+            </Link>
+          </div>
+        ))}
+      </div>
       {isLoading && <LoadingModal onClose={handleCloseModal1} />}{" "}
       {/* isLoading이 true일 때 LoadingModal을 렌더링 */}
       {isNickLoading && <Load_changednick onClose={handleCloseModal2} />}{" "}

@@ -72,7 +72,7 @@ const Question = () => {
                 >
                   <h3>제목: {board.title}</h3>
                 </Link>
-                <p>{board.email}</p>
+                <p>{board.nick}</p>
                 <p>조회수: {viewCounts[board.num] || 0}</p>
               </li>
             ))}
