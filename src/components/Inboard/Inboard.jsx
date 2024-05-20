@@ -11,20 +11,24 @@ const Inboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        axios
-          .post(`http://localhost:8080/recipe/getByNum/${num}`, {})
-          .then((response) => {
-            console.log(response.data.data);
-            setPosts(response.data.data);
-          });
+        const response = await axios.post(
+          `http://localhost:8080/qna/getByNum`,
+          num,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log(response.data.data);
+        setPosts(response.data.data);
       } catch (error) {
         console.error("데이터를 불러오는 중 오류 발생:", error);
-      } finally {
       }
     };
 
     fetchData(); // fetchData 함수 호출
-  }, []);
+  }, [num]);
 
   return (
     <div>

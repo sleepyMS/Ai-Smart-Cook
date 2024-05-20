@@ -62,6 +62,7 @@ const App = () => {
           <Route path="/recipe" element={<Recipe />} />
           <Route path="/inboard/:num" element={<Inboard />} />
           <Route path="/write" element={<Write />} />
+          <Route path="/write/:num" element={<Write />} />
           <Route path="/check" element={<Checkbox />} />
           <Route path="/buttonrecipe" element={<Buttonrecipe />} />
           <Route path="/mypage" element={<Mypage />} />

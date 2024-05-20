@@ -2,7 +2,7 @@ import React from "react";
 import "../../내가만든css/media.css";
 import "../../내가만든css/style.css";
 import style from "./loginpage.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
 import axios from "axios";
 
@@ -12,6 +12,8 @@ const Write = () => {
   const postRef = useRef(null);
   const passRef = useRef(null);
   const [peopleName, setPeopleName] = useState("로그인");
+  const { num } = useParams();
+  const [newQna, setNewQna] = useState([]);
 
   // 아이디 이름으로 바꾸기
   useEffect(() => {
@@ -20,6 +22,30 @@ const Write = () => {
       setPeopleName(user.user.nick);
     }
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          `http://localhost:8080/qna/getByNum`,
+          num,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        setNewQna(response.data.data);
+        titleRef.current.value = response.data.data.title;
+        passRef.current.value = response.data.data.pass;
+        postRef.current.value = response.data.data.que;
+      } catch (error) {
+        console.error("데이터를 불러오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchData(); // fetchData 함수 호출
+  }, [num]);
 
   //로그인/로그아웃 기능
   const handleLogout = () => {
@@ -53,28 +79,42 @@ const Write = () => {
     }
 
     try {
-      await axios
-        .post(`http://localhost:8080/qna/insert`, {
-          email: ID.user.email,
-          title: titleRef.current.value,
-          pass: passRef.current.value,
-          que: postRef.current.value,
-        })
-        .then((response) => {
-          console.log(response.data);
-          if (response.data.result === true) {
-            const recipeUser = response.data.data;
-            console.log("Logged in user data:", recipeUser);
-            alert("생성이 완료되었습니다.");
-            navigate("/questionboard");
-          } else {
-            alert(response.data.message); // 서버로부터 받은 메시지 표시
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          alert("로그인에 실패했습니다. 다시 시도해주세요."); // 기타 오류 발생 시의 메시지
-        });
+      if (num) {
+        axios
+          .post(`http://localhost:8080/qna/alterIn`, {
+            num: num,
+            title: titleRef.current.value,
+            email: ID.user.email,
+            que: postRef.current.value,
+            pass: passRef.current.value,
+            time: newQna.time,
+          })
+          .then((response) => {
+            alert("변경이 완료되었습니다.");
+          });
+      } else {
+        await axios
+          .post(`http://localhost:8080/qna/insert`, {
+            email: ID.user.email,
+            title: titleRef.current.value,
+            pass: passRef.current.value,
+            que: postRef.current.value,
+          })
+          .then((response) => {
+            if (response.data.result === true) {
+              const recipeUser = response.data.data;
+              console.log("Logged in user data:", recipeUser);
+              alert("생성이 완료되었습니다.");
+              navigate("/questionboard");
+            } else {
+              alert(response.data.message); // 서버로부터 받은 메시지 표시
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("로그인에 실패했습니다. 다시 시도해주세요."); // 기타 오류 발생 시의 메시지
+          });
+      }
     } catch (error) {
       console.log(error);
     }

@@ -13,7 +13,6 @@ const Mypage = () => {
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태를 나타내는 상태
   const [isNickLoading, setIsNickLoading] = useState(false); // 로딩 상태를 나타내는 상태
   const [profileImage, setProfileImage] = useState(null); // 프로필 이미지를 나타내는 상태
-  const navigate = useNavigate();
 
   useEffect(() => {
     // 페이지 로드 시 로컬 스토리지에서 사용자 데이터 가져오기
@@ -131,27 +130,24 @@ const Mypage = () => {
     setIsNickLoading(false); // 로딩 상태를 false로 변경하여 모달을 닫음
   };
 
-  const del = (postId) => {
+  const delRecipe = async (num) => {
     if (window.confirm("삭제하시겠습니까?")) {
-      fetch(`http://localhost:817/boards/${postId}`, {
-        method: "DELETE",
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("게시물을 삭제하는데 실패했습니다");
+      try {
+        const response = await axios.post(
+          `http://localhost:8080/recipe/delete`,
+          num,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
           }
-          // 성공적으로 삭제되었을 때 UI에서 해당 게시물을 제거합니다.
-          setPosts(posts.filter((post) => post.id !== postId));
-        })
-        .catch((error) => console.error("게시물 삭제 중 오류 발생:", error));
-    }
-  };
-
-  const alertInRecipe = async () => {
-    try {
-      navigate("/recipewrite", { state: { posts } });
-    } catch (error) {
-      console.error("데이터를 불러오는 중 오류 발생:", error);
+        );
+        console.log(response);
+        setPosts((prevPosts) => prevPosts.filter((post) => post.num !== num));
+        setQnas((prevQnas) => prevQnas.filter((qna) => qna.num !== num));
+      } catch (error) {
+        console.error("데이터를 불러오는 중 오류 발생:", error);
+      }
     }
   };
 
@@ -201,7 +197,7 @@ const Mypage = () => {
             <Link to={`/recipeinboard/${board.num}`} className="post-link">
               <h3 className="post-title">제목: {board.title}</h3>
             </Link>
-            <button onClick={() => del(board.num)}>삭제</button>
+            <button onClick={() => delRecipe(board.num)}>삭제</button>
             <Link to={`/recipewrite/${board.num}`}>
               <button>변경</button>
             </Link>
@@ -215,8 +211,9 @@ const Mypage = () => {
             <Link to={`/inboard/${board.num}`} className="post-link">
               <h3 className="post-title">제목: {board.title}</h3>
             </Link>
-            <button onClick={() => del(board.num)}>삭제</button>
-            <button onClick={() => alertInRecipe()}>변경</button>
+            <Link to={`/write/${board.num}`}>
+              <button>변경</button>
+            </Link>
           </div>
         ))}
       </div>
