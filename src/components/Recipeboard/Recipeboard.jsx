@@ -8,7 +8,6 @@ const Recipeboard = () => {
   const [loading, setLoading] = useState(true);
   const [viewCount, setViewCount] = useState({});
   const [likeCount, setLikeCount] = useState({});
-  const [likeToggle, setLikeToggle] = useState(false);
   const userData = JSON.parse(localStorage.getItem("userData"));
 
   useEffect(() => {
@@ -34,27 +33,27 @@ const Recipeboard = () => {
   }, []);
 
   useEffect(() => {
-    const dataLength = recipes.length;
-    const initialLikeCount = {};
-    for (let i = 0; i < dataLength; i++) {
-      initialLikeCount[i] = 0;
+    const storedViewCount = localStorage.getItem("viewCount");
+    if (storedViewCount) {
+      setViewCount(JSON.parse(storedViewCount));
+    } else {
+      setViewCount({});
     }
-    setLikeCount(initialLikeCount);
-  }, []);
 
-  useEffect(() => {
-    const storedviewCount = localStorage.getItem("viewCount");
-    if (storedviewCount) {
-      setViewCount(JSON.parse(storedviewCount));
+    const storedLikeCount = localStorage.getItem("likeCount");
+    if (storedLikeCount) {
+      setLikeCount(JSON.parse(storedLikeCount));
+    } else {
+      setLikeCount({});
     }
   }, []);
 
   const increaseViewCount = (num) => {
     if (localStorage.getItem("userData")) {
-      const newviewCount = { ...viewCount };
-      newviewCount[num] = (newviewCount[num] || 0) + 1;
-      setViewCount(newviewCount);
-      localStorage.setItem("viewCount", JSON.stringify(newviewCount));
+      const newViewCount = { ...viewCount };
+      newViewCount[num] = (newViewCount[num] || 0) + 1;
+      setViewCount(newViewCount);
+      localStorage.setItem("viewCount", JSON.stringify(newViewCount));
     } else {
       alert("로그인을 해주세요.");
     }
@@ -72,39 +71,20 @@ const Recipeboard = () => {
             }
           );
 
+          let newLikeCount = { ...likeCount };
           if (!response.data.data) {
             await axios.post(`http://localhost:8080/user/auth/like/delete`, {
               recipeNum: num,
               email: userData.user.email,
             });
+            newLikeCount[num] = Math.max((newLikeCount[num] || 0) - 1, 0);
+          } else {
+            newLikeCount[num] = (newLikeCount[num] || 0) + 1;
           }
-          console.log(response);
-
-          const responseNum = await axios.post(
-            "http://localhost:8080/user/auth/like/getByNum",
-            num,
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-
-          const responseEmail = await axios.post(
-            "http://localhost:8080/user/auth/like/getByEmail",
-            userData.user.email,
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          // console.log(responseNum.data.data[0]);
-          // if (responseNum.data.data[0]) console.log(userData.user.email);
+          setLikeCount(newLikeCount);
+          localStorage.setItem("likeCount", JSON.stringify(newLikeCount));
         } catch (error) {
           console.error("데이터를 불러오는 중 오류 발생:", error);
-        } finally {
-          setLoading(false);
         }
       }
     }
