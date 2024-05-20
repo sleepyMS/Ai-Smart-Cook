@@ -22,6 +22,7 @@ const Recipeboard = () => {
           }
         );
         setRecipes(recipeResponse.data.data);
+        setLikeCount({});
       } catch (error) {
         console.error("데이터를 불러오는 중 오류 발생:", error);
       } finally {
@@ -30,6 +31,15 @@ const Recipeboard = () => {
     };
 
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    const dataLength = recipes.length;
+    const initialLikeCount = {};
+    for (let i = 0; i < dataLength; i++) {
+      initialLikeCount[i] = 0;
+    }
+    setLikeCount(initialLikeCount);
   }, []);
 
   useEffect(() => {
@@ -50,7 +60,7 @@ const Recipeboard = () => {
     }
   };
 
-  const increaseLikeCount = async (num, idx) => {
+  const increaseLikeCount = async (num) => {
     if (localStorage.getItem("userData")) {
       if (num) {
         try {
@@ -67,14 +77,7 @@ const Recipeboard = () => {
               recipeNum: num,
               email: userData.user.email,
             });
-
-            const newLikeCount = { ...likeCount };
-            newLikeCount[idx] =
-              newLikeCount[idx] + (response.data.data ? 1 : -1);
-            console.log(newLikeCount);
-            setLikeCount(newLikeCount);
           }
-          alert(num);
           console.log(response);
 
           const responseNum = await axios.post(
@@ -121,7 +124,7 @@ const Recipeboard = () => {
         ) : (
           <ul className="board-list">
             {recipes.length > 0 &&
-              recipes.map((recipe, idx) => (
+              recipes.map((recipe) => (
                 <li key={recipe.num} className="board-item">
                   <Link
                     to={
@@ -135,10 +138,10 @@ const Recipeboard = () => {
                   </Link>
                   <p>{recipe.nick}</p>
                   <p>조회수: {viewCount[recipe.num] || 0}</p>
-                  <button onClick={() => increaseLikeCount(recipe.num, idx)}>
+                  <button onClick={() => increaseLikeCount(recipe.num)}>
                     좋아요
                   </button>
-                  <p>좋아요: {likeCount[idx] || 0}</p>
+                  <p>좋아요: {likeCount[recipe.num] || 0}</p>
                 </li>
               ))}
           </ul>
