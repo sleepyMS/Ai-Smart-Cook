@@ -18,6 +18,7 @@ public class QnADTO {
     private String que;
     private String pass;
     private LocalDateTime time;
+    private String nick;
 }
 /*
 * Q&A

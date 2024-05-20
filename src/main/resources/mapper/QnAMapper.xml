@@ -9,20 +9,28 @@
     </insert>
     <!--  유저의 qna 조회 -->
     <select id="getQnAByEmail" parameterType="string" resultType="QnADTO">
-        SELECT *
+        SELECT qna.*, users.nick
         FROM `qna`
-        WHERE email = #{email};
+            INNER JOIN users
+            ON users.email = qna.email
+        WHERE qna.email = #{email};
     </select>
     <!-- num으로 qna 조회 -->
     <select id="getQnAByNum" parameterType="int" resultType="QnADTO">
-        SELECT *
+        SELECT qna.*, users.nick
         FROM `qna`
-        WHERE num = #{num};
+            INNER JOIN users
+            ON users.email = qna.email
+        WHERE qna.num = #{num};
     </select>
 
     <!-- qna 조회 from~to -->
     <select id="getQnA" parameterType="GetQnARequest" resultType="QnADTO">
-        SELECT * FROM `qna` limit #{from}, #{to};
+        SELECT qna.*, users.nick
+        FROM `qna`
+            INNER JOIN users
+            ON users.email = qna.email
+        limit #{from}, #{to};
     </select>
 
     <!-- num로 qna 정보 업데이트 -->
