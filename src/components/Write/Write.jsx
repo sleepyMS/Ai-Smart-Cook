@@ -1,7 +1,5 @@
 import React from "react";
-import "../../내가만든css/media.css";
-import "../../내가만든css/style.css";
-import style from "./loginpage.module.css";
+import "./Write.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
 import axios from "axios";
@@ -122,32 +120,34 @@ const Write = () => {
 
   return (
     <>
-      <h1 className="header_logo">
-        <a href="/">
-          <span>MOTIV</span>
-        </a>
-        <button onClick={handleLogout}>{peopleName}</button>
-      </h1>
-      <div>
-        <form onSubmit={onSubmit}>
-          <h3>게시판 글 등록</h3>
-          <div className="board_write">
-            <div className="title">
-              <label>제목</label>
-              <input type="text" placeholder="제목" ref={titleRef} />
+      <div className="qna">
+        <h1 className="header_logo">
+          <a href="/">
+            <span>MOTIV</span>
+          </a>
+          <button onClick={handleLogout}>{peopleName}</button>
+        </h1>
+        <div>
+          <form onSubmit={onSubmit}>
+            <h3>게시판 글 등록</h3>
+            <div className="board_write">
+              <div className="title">
+                <label>제목</label>
+                <input type="text" placeholder="제목" ref={titleRef} />
+              </div>
+              <div className="title">
+                <label>비밀번호</label>
+                <input type="text" placeholder="비밀번호" ref={passRef} />
+              </div>
+              <div className="info">글쓴이</div>
+              <div className="cont">
+                <label>글 내용</label>
+                <textarea placeholder="내용입력" ref={postRef}></textarea>
+              </div>
+              <button>등록하기</button>
             </div>
-            <div className="title">
-              <label>비밀번호</label>
-              <input type="text" placeholder="비밀번호" ref={passRef} />
-            </div>
-            <div className="info">글쓴이</div>
-            <div className="cont">
-              <label>글 내용</label>
-              <textarea placeholder="내용입력" ref={postRef}></textarea>
-            </div>
-            <button>등록하기</button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </>
   );
