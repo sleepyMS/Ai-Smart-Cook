@@ -2,6 +2,7 @@ import React from "react";
 import "./Write.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
 import axios from "axios";
 
 const Write = () => {

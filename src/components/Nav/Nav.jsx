@@ -4,6 +4,8 @@ import data from "../../db/data.json";
 import gpt_nav from "../../api/gpt_nav";
 import LoadingModal from "../Loadingmodal/Loadingmodal"; // LoadingModal 추가
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./Nav.css";
 
 const Nav = () => {
@@ -85,7 +87,6 @@ const Nav = () => {
 
   return (
     <div className="nav-container">
-      {" "}
       {/* nav-container 클래스 추가 */}
       <nav id="nav">
         <div>
