@@ -12,7 +12,6 @@ const Recipewrite = lazy(() => import("./components/Recipewrite/Recipewrite"));
 const Questionboard = lazy(() =>
   import("./components/QuestionBoard/Questionboard")
 );
-
 const Koreafood = lazy(() => import("./components/Koreafood/Koreafood"));
 const Fastfood = lazy(() => import("./components/Fastfood/Fastfood"));
 const Chinafood = lazy(() => import("./components/Chinafood/Chinafood"));
@@ -22,7 +21,6 @@ const Dessert = lazy(() => import("./components/Dessert/Dessert"));
 const Bread = lazy(() => import("./components/Bread/Bread"));
 const Snackfood = lazy(() => import("./components/Snackfood/Snackfood"));
 const Asiafood = lazy(() => import("./components/Asiafood/Asiafood"));
-
 const Recipe = lazy(() => import("./components/Recipe/Recipe"));
 const Inboard = lazy(() => import("./components/Inboard/Inboard"));
 const Write = lazy(() => import("./components/Write/Write"));

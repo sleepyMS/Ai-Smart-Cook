@@ -6,6 +6,14 @@ import LoadingModal from "../Loadingmodal/Loadingmodal"; // LoadingModal 추가
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faDrumstickBite,
+  faCarrot,
+  faFish,
+  faVials,
+  faBowlRice,
+} from "@fortawesome/free-solid-svg-icons";
 import "./Nav.css";
 
 const Nav = () => {
@@ -86,11 +94,13 @@ const Nav = () => {
   };
 
   return (
-    <div className="nav-container">
+    <div className="side-bar">
       {/* nav-container 클래스 추가 */}
       <nav id="nav">
         <div>
-          <div onClick={toggleMeatCategory}>육류</div>
+          <div onClick={toggleMeatCategory}>
+            <FontAwesomeIcon icon={faDrumstickBite} />
+          </div>
           {meatCategoryExpanded && (
             <ul className="item-container">
               {" "}
@@ -115,7 +125,9 @@ const Nav = () => {
           )}
         </div>
         <div>
-          <div onClick={toggleVegetableCategory}>야채</div>
+          <div onClick={toggleVegetableCategory}>
+            <FontAwesomeIcon icon={faCarrot} />
+          </div>
           {vegetableCategoryExpanded && (
             <ul className="item-container">
               {" "}
@@ -140,7 +152,9 @@ const Nav = () => {
           )}
         </div>
         <div>
-          <div onClick={toggleFishCategory}>생선</div>
+          <div onClick={toggleFishCategory}>
+            <FontAwesomeIcon icon={faFish} />
+          </div>
           {fishesCategoryExpanded && (
             <ul className="item-container">
               {" "}
@@ -165,7 +179,9 @@ const Nav = () => {
           )}
         </div>
         <div>
-          <div onClick={toggleSourceCategory}>양념</div>
+          <div onClick={toggleSourceCategory}>
+            <FontAwesomeIcon icon={faVials} />
+          </div>
           {sourceCategoryExpanded && (
             <ul className="item-container">
               {" "}
@@ -190,7 +206,9 @@ const Nav = () => {
           )}
         </div>
         <div>
-          <div onClick={toggleGrainCategory}>곡물</div>
+          <div onClick={toggleGrainCategory}>
+            <FontAwesomeIcon icon={faBowlRice} />
+          </div>
           {grainCategoryExpanded && (
             <ul className="item-container">
               {" "}
@@ -214,7 +232,9 @@ const Nav = () => {
             </ul>
           )}
         </div>
-        <button onClick={onSubmit}>AI 호출</button>
+        <button className="gpt-btn" onClick={onSubmit}>
+          AI 호출
+        </button>
         {isLoading && <LoadingModal />}{" "}
         {/* isLoading이 true일 때 LoadingModal을 렌더링 */}
       </nav>

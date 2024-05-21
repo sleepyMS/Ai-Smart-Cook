@@ -1,9 +1,45 @@
+.side-bar {
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+  min-height: 100vh;
+  width: 100px;
+  background-color: blue;
+  text-align: center;
+}
+
 #nav {
   position: fixed;
+  top: 10%;
   left: 0;
-  width: 250px;
-  height: 100%;
-  z-index: 9000;
-  background-color: #999;
-  overflow-y: auto; /* 세로 스크롤 추가 */
+  width: 100px;
+  height: 80%;
+  color: #fff;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s;
+  background-color: red;
+}
+
+#nav:hover {
+  width: 300px;
+}
+
+#nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#nav li {
+  padding: 10px 20px;
+}
+
+#nav li:hover {
+  background-color: #555;
+  cursor: pointer;
+}
+
+.gpt-btn {
+  position: absolute;
+  bottom: 0;
 }
