@@ -1,20 +1,20 @@
-import React from 'react'
+import React from "react";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import Nav from "../Nav/Nav";
+import "./Section.css";
 
-import Header from './Header'
-import Footer from './Footer'
-import Nav from './Nav'
-
-const Main = ( props ) => {
-    return (
-        <>
-            <Header />
-            <Nav/>
-            <main id="main" role="main">
-                {props.children}
-            </main>
-            <Footer />
-        </>
-    )
-}
+const Main = (props) => {
+  return (
+    <>
+      <Header />
+      <Nav />
+      <main id="main" role="main">
+        {props.children}
+      </main>
+      <Footer />
+    </>
+  );
+};
 
 export default Main;
