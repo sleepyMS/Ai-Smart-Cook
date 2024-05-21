@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Main from "../section/Main";
 import { useLocation } from "react-router-dom";
-import Modal from "react-modal";
+import Modal from "react-modal"; // 모달 관련 라이브러리 import
 import "./Buttonrecipe.css";
 
 const Buttonrecipe = () => {
@@ -54,7 +54,7 @@ const Buttonrecipe = () => {
   const openModal = (index) => {
     setCurrentData(index);
     setModalSlideIndex(0);
-    setIsOpen(true);
+    setIsOpen(true); // 모달을 열도록 설정
   };
 
   const closeModal = () => {
@@ -86,14 +86,15 @@ const Buttonrecipe = () => {
       <div className="btnrecipe">
         <div className="slider-container">
           {recipes.map((recipe, index) => (
-            <div
+            <button
               key={index}
               className={`slide ${index === currentData ? "active" : ""}`}
               onClick={() => openModal(index)}
             >
               {recipe.title}
-            </div>
+            </button>
           ))}
+
           <button className="prev-button" onClick={prevSlide}>
             Prev
           </button>
@@ -104,6 +105,7 @@ const Buttonrecipe = () => {
             {currentData + 1}/{recipes.length}
           </div>
         </div>
+        {/* 모달 대화 상자 주석 처리 */}
         <Modal
           isOpen={isOpen}
           onRequestClose={closeModal}
