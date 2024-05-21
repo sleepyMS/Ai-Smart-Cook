@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "./Recipeinboard.css"; // CSS 파일을 가져옵니다.
 
 const Recipeinboard = () => {
-  //const postList = dummy.boards.filter(board => board.id === id)
   const [posts, setPosts] = useState([]);
   const { num } = useParams();
 
@@ -19,22 +19,22 @@ const Recipeinboard = () => {
           });
       } catch (error) {
         console.error("데이터를 불러오는 중 오류 발생:", error);
-      } finally {
       }
     };
 
-    fetchData(); // fetchData 함수 호출
-  }, []);
+    fetchData();
+  }, [num]);
 
   return (
-    <div>
+    <div className="recipeinboard">
       <h1 className="header_logo">
         <a href="/">
           <span>MOTIV</span>
         </a>
       </h1>
-      <div>{posts.recipe}</div>
-      <Link to={`/recipeboard`}>
+      <div className="post_content">글쓴이: {posts.nick}</div>
+      <div className="post_content">{posts.recipe}</div>
+      <Link to={`/recipeboard`} className="styled_link">
         <h2>게시판 이동</h2>
       </Link>
     </div>

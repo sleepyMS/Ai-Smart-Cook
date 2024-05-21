@@ -137,8 +137,8 @@ const Header = () => {
           <button onClick={() => navigate("/recipeboard")}>
             레시피 게시판
           </button>
-          <button onClick={() => navigate("/questionboard")}>Q&A 게시판</button>
           <button onClick={() => navigate("/write")}>Q&A 등록</button>
+          <button onClick={() => navigate("/questionboard")}>Q&A 게시판</button>
         </div>
       </div>
       {isInputEmpty && <Aialert1 onCancel={handleCancel} />}

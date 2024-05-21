@@ -1,24 +1,73 @@
-.board-container {
-    margin: 20px;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  .board-list {
-    list-style-type: none;
-    padding: 0;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .board-item {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
   }
-  
-  .board-item h3 {
-    margin-top: 0;
+  50% {
+    transform: translateY(-10px);
   }
-  
-  .board-item p {
-    margin-bottom: 5px;
-  }
-  
+}
+
+.qnaboard .header_logo {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.qnaboard .header_logo a {
+  text-decoration: none;
+  color: #4a90e2; /* 하늘색 톤으로 변경 */
+  font-size: 3em;
+  font-family: "Arial", sans-serif;
+  animation: fadeIn 1s ease-in;
+}
+
+.qnaboard .header_logo a:hover {
+  color: #77c0f0; /* 더 진한 하늘색 톤으로 변경 */
+}
+
+.qnaboard .board-container {
+  margin: 20px;
+}
+
+.qnaboard .board-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.qnaboard .board-item {
+  border: 1px solid #77c0f0; /* 하늘색 테두리로 변경 */
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #edf5fd; /* 연한 하늘색 배경색으로 변경 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.qnaboard .board-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.qnaboard .board-item h3 {
+  margin-top: 0;
+  font-size: 1.8em;
+  color: #333;
+}
+
+.qnaboard .board-item p {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #666;
+}

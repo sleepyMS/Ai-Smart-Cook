@@ -90,7 +90,7 @@ const Recipeboard = () => {
   };
 
   return (
-    <div>
+    <div className="recipeboard">
       <h1 className="header_logo">
         <Link to="/">MOTIV</Link>
       </h1>

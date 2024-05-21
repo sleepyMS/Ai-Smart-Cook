@@ -50,7 +50,7 @@ const Question = () => {
   };
 
   return (
-    <div>
+    <div className="qnaboard">
       <h1 className="header_logo">
         <Link to="/">MOTIV</Link>
       </h1>
