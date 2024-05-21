@@ -1,22 +1,25 @@
 /* koreafood.css */
 .clickable {
-    cursor: pointer; /* 커서 모양을 포인터로 변경하여 사용자에게 클릭 가능함을 시각적으로 보여줍니다. */
-  }
+  cursor: pointer; /* 커서 모양을 포인터로 변경하여 사용자에게 클릭 가능함을 시각적으로 보여줍니다. */
+}
 .grid-container {
-    display: grid; /* 그리드 컨테이너로 설정 */
-    grid-template-columns: repeat(3, auto); /* 3개의 열을 생성합니다. 각 열의 너비는 자동으로 설정됩니다. */
-    grid-auto-rows: 250px; /* 행의 높이는 100px로 설정 */
-    gap: 40px; /* 아이템 사이의 간격 조절 */
-    justify-content: center; /* 가로 방향으로 정중앙 정렬 */
-    align-items: center; /* 세로 방향으로 정중앙 정렬 */
-  }
-  
-  .grid-item {
-    width: 200px;
-    height: 200px;
-    background-color: lightblue; /* 배경색 설정 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
+  display: grid; /* 그리드 컨테이너로 설정 */
+  grid-template-columns: repeat(
+    3,
+    auto
+  ); /* 3개의 열을 생성합니다. 각 열의 너비는 자동으로 설정됩니다. */
+  grid-auto-rows: 250px; /* 행의 높이는 100px로 설정 */
+  gap: 40px; /* 아이템 사이의 간격 조절 */
+  justify-content: center; /* 가로 방향으로 정중앙 정렬 */
+  align-items: center; /* 세로 방향으로 정중앙 정렬 */
+}
+
+.grid-item {
+  width: 200px;
+  height: 200px;
+  background-color: lightblue; /* 배경색 설정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 47% 24% 48% 26% / 23% 47% 24% 48%;
+}

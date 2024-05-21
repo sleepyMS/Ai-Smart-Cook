@@ -1,0 +1,6 @@
+#main {
+  max-width: 2000px;
+  min-height: 100vh;
+  margin: 150px 0 0 250px; /* 수정된 부분: 왼쪽 여백 추가 */
+  background-color: #333;
+}
