@@ -1,44 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import "./Recipeinboard.css"; // CSS 파일을 가져옵니다.
 
 const Recipeinboard = () => {
-  const { id } = useParams();
-  //const postList = dummy.boards.filter(board => board.id === id)
   const [posts, setPosts] = useState([]);
+  const { num } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:817/recipes?id=${id}`);
-        const data = await response.json();
-        setPosts(data);
-
-        if (!response.ok) {
-          throw new Error("데이터를 불러오는데 실패했습니다");
-        }
+        axios
+          .post(`http://localhost:8080/recipe/getByNum/${num}`, {})
+          .then((response) => {
+            console.log(response.data.data);
+            setPosts(response.data.data);
+          });
       } catch (error) {
         console.error("데이터를 불러오는 중 오류 발생:", error);
-      } finally {
       }
     };
 
-    fetchData(); // fetchData 함수 호출
-  }, [id]);
+    fetchData();
+  }, [num]);
 
   return (
-    <div>
+    <div className="recipeinboard">
       <h1 className="header_logo">
         <a href="/">
           <span>MOTIV</span>
         </a>
       </h1>
-      <div>
-        {posts.map((recipe) => (
-          <div key={recipe.id}>{recipe.post}</div>
-        ))}
-      </div>
-      <Link to={`/recipeboard`}>
+      <div className="post_content">글쓴이: {posts.nick}</div>
+      <div className="post_content">{posts.recipe}</div>
+      <Link to={`/recipeboard`} className="styled_link">
         <h2>게시판 이동</h2>
       </Link>
     </div>

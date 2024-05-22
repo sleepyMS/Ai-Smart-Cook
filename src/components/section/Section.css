@@ -1,0 +1,11 @@
+#main {
+  max-width: 2000px;
+  min-height: 100vh;
+  margin: 150px 0 0 250px; /* 수정된 부분: 왼쪽 여백 추가 */
+  background-color: #333;
+  background-image: url(../../../public/MainPagePic4.jpg);
+  background-size: cover; /* 배경 이미지를 컨테이너에 맞게 조절 */
+  background-position: center; /* 배경 이미지를 가운데 정렬 */
+  background-repeat: no-repeat;
+  overflow: hidden; /* 이미지가 컨테이너를 넘어갈 경우 잘리지 않도록 설정 */
+}

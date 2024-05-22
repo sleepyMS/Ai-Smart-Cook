@@ -26,7 +26,7 @@ a {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url("../../../public/MainPagePic4.jpg") no-repeat;
+  background: url("../../../public/loginImg.jpg") no-repeat;
   background-size: cover;
   background-position: bottom;
 }
@@ -39,7 +39,7 @@ a {
   backdrop-filter: blur(20px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 가로이동 세로이동 퍼짐정도 (R, G, B, A(투명도)) */
   width: 420px;
-  color: black;
+  color: white;
   border-radius: 10px;
   padding: 30px 40px; /* 가로 세로 */
 }
@@ -63,16 +63,15 @@ a {
   background-color: transparent;
   outline: none;
   border: none;
-  border-color: black;
   border: 2px solid rgba(255, 255, 255, 0.2); /* R, G, B, A(투명도) */
   border-radius: 40px;
   font-size: 16px;
-  color: black;
+  color: white;
   padding: 20px 40px 20px 20px; /* 상, 우, 하, 좌 -> 위에부터 시계방향으로 진행 */
 }
 
 .login-box .input-box > input::placeholder {
-  color: black;
+  color: white;
 }
 
 .login-box .input-box > box-icon {
@@ -93,12 +92,12 @@ a {
 }
 
 .remember-forgod > label > input {
-  accent-color: black;
+  accent-color: white;
   margin-right: 3px;
 }
 
 .remember-forgod a {
-  color: black;
+  color: white;
 }
 
 .remember-forgod a:hover {
@@ -130,7 +129,7 @@ a {
 }
 
 .login-box .register-link > p > a {
-  color: black;
+  color: white;
   font-weight: 600;
 }
 

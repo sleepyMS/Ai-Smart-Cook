@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import "./loginpage.module.css";
+import "./Registerpage.css";
 import axios from "axios";
 
 const Registerpage1 = () => {
@@ -93,9 +93,7 @@ const Registerpage1 = () => {
     <>
       <h1 className="header_logo">
         <a href="/">
-          
           <span>MOTIV</span>
-          
         </a>
       </h1>
       <div

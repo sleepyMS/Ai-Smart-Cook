@@ -4,7 +4,7 @@
   width: 250px;
   height: 100%;
   z-index: 9000;
-
+  background-color: #999;
 }
 
 .item-container {
@@ -13,12 +13,10 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
-
 }
 
 .item-container li {
   flex: 0 0 33.33%; /* 각 항목을 가로로 3개씩 배치 */
   max-width: 33.33%;
   box-sizing: border-box; /* 내용 크기 조절을 위해 박스 크기 포함 */
-  
 }

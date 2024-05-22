@@ -1,58 +1,136 @@
-/* Mypage.css */
-
 /* 전체 컨테이너 스타일 */
 .mypage-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(135deg, #f0f0f0, #fafafa);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* 페이드 인 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* 사용자 정보 스타일 */
-.user-info {
-    margin-bottom: 20px;
+.mypage-user-info {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.mypage-user-info:hover {
+  transform: scale(1.02);
 }
 
 /* 각 정보 항목 라벨 스타일 */
-.info-label {
-    font-weight: bold;
+.mypage-info-label {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
 }
 
 /* 비밀번호 변경 링크 스타일 */
-.change-password-link {
-    margin-top: 5px;
+.mypage-change-password-link {
+  margin-top: 10px;
+  display: inline-block;
 }
 
 /* 비밀번호 변경 버튼 스타일 */
-.change-password {
-    color: blue;
-    cursor: pointer;
+.mypage-change-password {
+  color: #007bff;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.mypage-change-password:hover {
+  color: #0056b3;
 }
 
 /* 숨겨진 정보(이메일, 비밀번호, 전화번호) 스타일 */
-.hidden-info {
-    display: none;
+.mypage-hidden-info {
+  display: none;
 }
 
 /* 사용자 게시물 목록 스타일 */
-.user-posts {
-    border-top: 1px solid #ccc;
-    padding-top: 20px;
+.mypage-user-posts {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+  margin-top: 20px;
 }
 
 /* 각 게시물 스타일 */
-.post {
-    margin-bottom: 10px;
+.mypage-post {
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.mypage-post:hover {
+  background-color: #f9f9f9;
 }
 
 /* 게시물 제목 링크 스타일 */
-.post-link {
-    color: #333;
-    text-decoration: none;
+.mypage-post-link {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.mypage-post-link:hover {
+  color: #007bff;
 }
 
 /* 게시물 제목 스타일 */
-.post-title {
-    margin: 0;
-    font-size: 18px;
+.mypage-post-title {
+  margin: 0;
+  font-size: 18px;
+}
+
+/* 게시물 버튼 스타일 */
+.mypage-post-button {
+  margin-right: 10px;
+  padding: 8px 12px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.mypage-post-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* 헤더 로고 스타일 */
+.mypage-header_logo {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.mypage-header_logo a {
+  text-decoration: none;
+  color: #007bff;
+  transition: color 0.3s;
+}
+
+.mypage-header_logo a:hover {
+  color: #0056b3;
 }
