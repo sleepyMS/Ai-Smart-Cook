@@ -6,6 +6,8 @@ import gpt_nav from '../../api/gpt_nav';
 import LoadingModal from "../Loadingmodal/Loadingmodal"; // LoadingModal 추가
 import { useNavigate } from 'react-router-dom';
 
+
+
 const Nav = () => {
   const navigate = useNavigate();
   const [meatCategoryExpanded, setMeatCategoryExpanded] = useState(false);
@@ -23,19 +25,19 @@ const Nav = () => {
 
   useEffect(() => {
     if (data && data.meats) {
-      setMeats(data.meats.map(meat => ({ ...meat, expanded: false })));
+      setMeats(data.meats);
     }
     if (data && data.vegetables) {
-      setVegetables(data.vegetables.map(vegetable => ({ ...vegetable, expanded: false })));
+      setVegetables(data.vegetables);
     }
     if (data && data.fishes) {
-      setFishes(data.fishes.map(fish => ({ ...fish, expanded: false })));
+      setFishes(data.fishes);
     }
     if (data && data.sources) {
-      setSoures(data.sources.map(source => ({ ...source, expanded: false })));
+      setSoures(data.sources);
     }
     if (data && data.grains) {
-      setGrains(data.grains.map(grain => ({ ...grain, expanded: false })));
+      setGrains(data.grains);
     }
   }, []);
 
@@ -59,6 +61,7 @@ const Nav = () => {
     setGrainCategoryExpanded(!grainCategoryExpanded);
   };
 
+  
   const onSubmit = async (e) => {
     e.preventDefault(); // 기본 제출 행동 방지
 
@@ -82,19 +85,13 @@ const Nav = () => {
       setIsLoading(false);
     }
   };
-
   return (
-  
     <div className={styles["nav-container"]}> {/* nav-container 클래스 추가 */}
       <nav id='nav'>
-        <ui>
         <div>
-          <a><i className='fa_solid fa_cat'></i></a>
-          <div className={styles['category-title']} onClick={toggleMeatCategory}>
-            {meatCategoryExpanded ? '▼' : '▶'} 육류
-          </div>
+          <div onClick={toggleMeatCategory}>육류</div>
           {meatCategoryExpanded && (
-            <ul className={styles["item-container"]}> {/* item-container 클래스 추가 */}
+             <ul className={styles["item-container"]}> {/* item-container 클래스 추가 */}
               {meats.map((meat, index) => (
                 <li key={index}>
                   <Checkbox
@@ -102,11 +99,8 @@ const Nav = () => {
                     onChange={(checked) => setMeats(prevMeats => {
                       const updatedMeats = [...prevMeats];
                       updatedMeats[index].state = checked;
-                      
                       return updatedMeats;
-                      
                     })}
-                    
                   >
                     {meat.name}
                   </Checkbox>
@@ -115,13 +109,11 @@ const Nav = () => {
             </ul>
           )}
         </div>
-        </ui>
+
         <div>
-          <div className={styles['category-title']} onClick={toggleVegetableCategory}>
-            {vegetableCategoryExpanded ? '▼' : '▶'} 야채
-          </div>
+          <div onClick={toggleVegetableCategory}>야채</div>
           {vegetableCategoryExpanded && (
-            <ul className={styles["item-container"]}> {/* item-container 클래스 추가 */}
+             <ul className={styles["item-container"]}> {/* item-container 클래스 추가 */}
               {vegetables.map((vegetable, index) => (
                 <li key={index}>
                   <Checkbox
@@ -139,11 +131,9 @@ const Nav = () => {
             </ul>
           )}
         </div>
-          
+
         <div>
-          <div className={styles['category-title']} onClick={toggleFishCategory}>
-            {fishesCategoryExpanded ? '▼' : '▶'} 생선
-          </div>
+          <div onClick={toggleFishCategory}>생선</div>
           {fishesCategoryExpanded && (
             <ul className={styles["item-container"]}> {/* item-container 클래스 추가 */}
               {fishes.map((fish, index) => (
@@ -165,9 +155,7 @@ const Nav = () => {
         </div>
         
         <div>
-          <div className={styles['category-title']} onClick={toggleSourceCategory}>
-            {sourceCategoryExpanded ? '▼' : '▶'} 양념
-          </div>
+          <div onClick={toggleSourceCategory}>양념</div>
           {sourceCategoryExpanded && (
             <ul className={styles["item-container"]}> {/* item-container 클래스 추가 */}
               {sources.map((source, index) => (
@@ -189,11 +177,9 @@ const Nav = () => {
         </div>
         
         <div>
-          <div className={styles['category-title']} onClick={toggleGrainCategory}>
-            {grainCategoryExpanded ? '▼' : '▶'} 곡물
-          </div>
+          <div onClick={toggleGrainCategory}>곡물</div>
           {grainCategoryExpanded && (
-            <ul className={styles["item-container"]}> {/* item-container 클래스 추가 */}
+             <ul className={styles["item-container"]}> {/* item-container 클래스 추가 */}
               {grains.map((grain, index) => (
                 <li key={index}>
                   <Checkbox
@@ -211,15 +197,11 @@ const Nav = () => {
             </ul>
           )}
         </div>
-        
-        <div className='AIbutton'>
+
         <button onClick={onSubmit}>AI 호출</button>
         {isLoading && <LoadingModal />} {/* isLoading이 true일 때 LoadingModal을 렌더링 */}
-        </div>
-        
       </nav>
     </div>  
-    
   );
 };
 

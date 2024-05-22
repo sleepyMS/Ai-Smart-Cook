@@ -5,6 +5,7 @@
         min-width: 320px;
         padding: 0 30px;
         box-sizing: border-box;
+        background-color: #007bff;
     }
 
     .board_list .num,
@@ -88,7 +89,7 @@
 }
 }
 body {
-    background-color: #ffffff; /* 배경색을 회색(예시)으로 설정 */
+    background-color: #f0f0f0; /* 배경색을 회색(예시)으로 설정 */
 }
 
 input[type='email'],

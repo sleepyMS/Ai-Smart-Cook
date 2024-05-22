@@ -21,6 +21,7 @@ button {
   cursor: pointer; /* 마우스를 올렸을 때 포인터 모양으로 변경 */
 }
 
+
 button:hover {
   background-color: #0056b3; /* 버튼에 마우스를 올렸을 때 배경색 변경 */
 }

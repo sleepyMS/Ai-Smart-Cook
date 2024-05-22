@@ -3,18 +3,18 @@ import Main from "../section/Main";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 
-const Buttonrecipe = () => {
+const Fastfood = () => {
   const location = useLocation();
   const message = location.state?.message || "";
   const data = JSON.parse(message);
-  console.log(data);
-  const titles = [
-    data.title[0],
-    data.title[1],
-    data.title[2],
-    data.title[3],
-    data.title[4],
+  const images = [
+    "../../image1.jpg",
+    "../../image2.jpg",
+    "../../image3.jpg",
+    "../../image4.jpg",
   ];
+
+  console.log(data);
 
   // 현재 이미지 인덱스를 상태로 관리합니다.
   const [currentData, setCurrentData] = useState(0);
@@ -22,20 +22,20 @@ const Buttonrecipe = () => {
   // 다음 이미지로 이동하는 함수
   const nextSlide = () => {
     setCurrentData((prevIndex) =>
-      prevIndex === titles.length - 1 ? 0 : prevIndex + 1
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   // 이전 이미지로 이동하는 함수
   const prevSlide = () => {
     setCurrentData((prevIndex) =>
-      prevIndex === 0 ? titles.length - 1 : prevIndex - 1
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
 
   return (
     <Main>
-      <div style={{ color: "white" }}>{data.title[0]}</div>
+      <div style={{ color: "white" }}>{data.title}</div>
       <div
         style={{
           width: "400px",
@@ -45,7 +45,7 @@ const Buttonrecipe = () => {
         }}
       >
         {/* 이미지 목록을 순회하며 현재 인덱스에 맞게 이미지를 보여줍니다. */}
-        {titles.map((image, index) => (
+        {images.map((image, index) => (
           <div
             key={index}
             style={{
@@ -92,4 +92,4 @@ const Buttonrecipe = () => {
   );
 };
 
-export default Buttonrecipe;
+export default Fastfood;

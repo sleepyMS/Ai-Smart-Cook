@@ -46,7 +46,7 @@ const Loadingmodal = ({ onClose }) => {
             name: user.name,
             pwd: newPassword ,
             birth: user.birth,
-            num: user.num,
+            phone: user.phone,
             nick: user.nick
         })
       });

@@ -5,10 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Koreafood = () => {
     const navigate = useNavigate(); 
-
-    function onSubmitKoreafood() {
-        navigate('/koreafood'); 
-    }
     
   return (
     <Main>

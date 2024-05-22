@@ -41,10 +41,9 @@ const Inboard = () => {
           </div>
           )}
       </div>
-      <Link to={`/board`}>
+      <Link to={`/questionboard`}>
           <h2>게시판 이동</h2>
       </Link>
-     
     </div>
   );
 };
