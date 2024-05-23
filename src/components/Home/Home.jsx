@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import Main from "../section/Main";
 import "./koreafood.css"; // CSS 파일을 import하여 스타일링
 import { useNavigate } from "react-router-dom";
 import LoadingModal from "../Loadingmodal/Loadingmodal";
 import gpt from "../../api/gpt";
-import { useState } from "react";
 
 const Home = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const categories = [
+    "패스트푸드",
+    "한식",
+    "중식",
+    "일식",
+    "양식",
+    "디저트",
+    "빵",
+    "분식",
+    "아시안"
+  ];
 
   const onSubmitCategory = async (category) => {
     try {
@@ -36,47 +48,25 @@ const Home = () => {
     }
   };
 
-  // 각 카테고리에 대한 함수 호출
-  const onSubmitKoreafood = () => onSubmitCategory("koreafood");
-  const onSubmitFastfood = () => onSubmitCategory("fastfood");
-  const onSubmitChinafood = () => onSubmitCategory("chinafood");
-  const onSubmitJapanfood = () => onSubmitCategory("japanfood");
-  const onSubmitEuropefood = () => onSubmitCategory("europefood");
-  const onSubmitDessert = () => onSubmitCategory("dessert");
-  const onSubmitBread = () => onSubmitCategory("bread");
-  const onSubmitSnackfood = () => onSubmitCategory("snackfood");
-  const onSubmitAsiafood = () => onSubmitCategory("asiafood");
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === categories.length - 1 ? 0 : prevIndex + 1));
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? categories.length - 1 : prevIndex - 1));
+  };
 
   return (
     <Main>
       <div className="grid-container">
-        {/* 3x3 그리드 아이템 */}
-        <div onClick={onSubmitFastfood} className="grid-item">
-          패스트푸드
-        </div>
-        <div onClick={onSubmitKoreafood} className="grid-item">
-          한식
-        </div>
-        <div onClick={onSubmitChinafood} className="grid-item">
-          중식
-        </div>
-        <div onClick={onSubmitJapanfood} className="grid-item">
-          일식
-        </div>
-        <div onClick={onSubmitEuropefood} className="grid-item">
-          양식
-        </div>
-        <div onClick={onSubmitDessert} className="grid-item">
-          디저트
-        </div>
-        <div onClick={onSubmitBread} className="grid-item">
-          빵
-        </div>
-        <div onClick={onSubmitSnackfood} className="grid-item">
-          분식
-        </div>
-        <div onClick={onSubmitAsiafood} className="grid-item">
-          아시안
+        {categories.map((category, index) => (
+          <div key={index} onClick={() => onSubmitCategory(category)} className={`grid-item ${index === currentIndex ? "active" : ""}`}>
+            {category.toUpperCase()}
+          </div>
+        ))}
+        <div className="slider-controls">
+          <button onClick={prevSlide} className="slider-button">Prev</button>
+          <button onClick={nextSlide} className="slider-button">Next</button>
         </div>
       </div>
       {isLoading && <LoadingModal />}

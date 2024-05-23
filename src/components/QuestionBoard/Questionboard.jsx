@@ -54,6 +54,7 @@ const Question = () => {
       <h1 className="header_logo">
         <Link to="/">MOTIV</Link>
       </h1>
+      <hr className="hr"/>
       <div className="board-container">
         <h2>게시물 목록</h2>
         {loading ? (

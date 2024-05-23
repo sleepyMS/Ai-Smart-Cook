@@ -120,7 +120,7 @@ const Header = () => {
           {peopleName !== "로그인" && (
             <button onClick={handleLogout}>로그아웃</button>
           )}
-          </div>
+          </div>  
       <div className="header_section">
         <div className="input-group">
           <form onSubmit={onSubmit} className="form-width">

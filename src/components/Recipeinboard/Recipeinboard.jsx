@@ -32,6 +32,7 @@ const Recipeinboard = () => {
           <span>MOTIV</span>
         </a>
       </h1>
+      
       <div className="post_content">글쓴이: {posts.nick}</div>
       <div className="post_content">{posts.recipe}</div>
       <Link to={`/recipeboard`} className="styled_link">

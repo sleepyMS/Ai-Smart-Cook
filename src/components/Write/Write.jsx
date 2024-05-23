@@ -119,6 +119,7 @@ const Write = () => {
         </a>
         <button onClick={handleLogout}>{peopleName}</button>
       </h1>
+      <hr className="hr"/>
       <div>
         <form onSubmit={onSubmit}>
           <h3>게시판 글 등록</h3>

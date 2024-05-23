@@ -71,3 +71,10 @@
   font-size: 1.2em;
   color: #666;
 }
+
+.hr {
+  border: none; /* 기본 테두리를 제거 */
+  border-top: 3px solid #4a90e2; /* 굵기와 색상을 지정하여 상단 테두리를 설정 */
+  animation: fadeIn 1s ease-in;
+
+}
