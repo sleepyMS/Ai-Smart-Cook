@@ -1,24 +1,108 @@
-.board-container {
-    margin: 20px;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  .board-list {
-    list-style-type: none;
-    padding: 0;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .board-item {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
   }
-  
-  .board-item h3 {
-    margin-top: 0;
+  50% {
+    transform: translateY(-10px);
   }
-  
-  .board-item p {
-    margin-bottom: 5px;
-  }
-  
+}
+
+.recipeboard .header_logo {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.recipeboard .header_logo a {
+  text-decoration: none;
+  color: #ff4081;
+  font-size: 3em;
+  font-family: "Arial", sans-serif;
+  animation: fadeIn 1s ease-in;
+}
+
+.recipeboard .header_logo a:hover {
+  color: #ff6e98;
+}
+
+.recipeboard .board-container {
+  margin: 20px;
+}
+
+.recipeboard .sort-options {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.recipeboard .sort-options label {
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+.recipeboard .sort-options select {
+  padding: 5px 10px;
+  font-size: 1em;
+}
+
+.recipeboard .board-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.recipeboard .board-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.recipeboard .board-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.recipeboard .board-item h3 {
+  margin-top: 0;
+  font-size: 1.8em;
+  color: #333;
+}
+
+.recipeboard .board-item p {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #666;
+}
+
+.recipeboard .board-item button {
+  padding: 10px 20px;
+  background-color: #ff4081;
+  color: #fff;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.recipeboard .board-item button:hover {
+  background-color: #ff6e98;
+}
+
+.recipeboard .board-item .like-count {
+  font-size: 1.2em;
+  color: #666;
+}

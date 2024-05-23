@@ -12,7 +12,6 @@ const Mypage = () => {
   const [qnas, setQnas] = useState([]);
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태를 나타내는 상태
   const [isNickLoading, setIsNickLoading] = useState(false); // 로딩 상태를 나타내는 상태
-  const [profileImage, setProfileImage] = useState(null); // 프로필 이미지를 나타내는 상태
 
   useEffect(() => {
     // 페이지 로드 시 로컬 스토리지에서 사용자 데이터 가져오기
@@ -78,40 +77,6 @@ const Mypage = () => {
     return `${firstPart}***-${secondPart}***`;
   };
 
-  // 이미지 변경
-  const handleImageChange = async (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setProfileImage(reader.result);
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-    try {
-      // const res = await fetch(`http://localhost:817/peoples/`, {
-      //         method: 'PUT',
-      //         headers: {
-      //             'Content-Type': 'application/json',
-      //         },
-      //         body: JSON.stringify({
-      //             ID: user.ID,
-      //             name: user.name,
-      //             pwd: user.pwd,
-      //             birth: user.birth,
-      //             phone: user.phone,
-      //             nick: user.nick,
-      //             img: profileImage
-      //         }),
-      //     });
-      //     if (res.ok) {
-      //         alert("생성이 완료되었습니다.");
-      //     }
-    } catch {}
-  };
-
   // 비밀번호 변경 클릭 시
   const handlePasswordChange = () => {
     setIsLoading(true);
@@ -153,79 +118,67 @@ const Mypage = () => {
 
   return (
     <div className="mypage-container">
-      <h1 className="header_logo">
+      <h1 className="mypage-header_logo">
         <Link to="/">MOTIV</Link>
       </h1>
-      <div className="user-info">
-        <div className="info-label">
+      <div className="mypage-user-info">
+        <div className="mypage-info-label">
           프로필: {userData.user && userData.user.name}
         </div>
-        {/* 프로필 이미지 출력 */}
-        {profileImage && (
-          <img
-            src={profileImage}
-            alt="프로필 이미지"
-            className="profile-image"
-          />
-        )}
-        {/* 파일 선택(input type="file") 추가 */}
-        <input type="file" accept="image/*" onChange={handleImageChange} />
-        <div className="info-label">이름: {userData.user.name}</div>
-        <div className="info-label">
+        <div className="mypage-info-label">이름: {userData.user.name}</div>
+        <div className="mypage-info-label">
           이메일: {hideEmail(userData.user.email)}
         </div>
-        <div className="info-label">닉네임: {userData.user.nick}</div>
-        <Link className="change-password-link" onClick={handleNickChange}>
-          <div className="change-password">닉네임 변경</div>
-        </Link>
-        <div className="info-label">
-          비밀번호: {hidePassword(userData.user.password)}
-        </div>
-        <Link className="change-password-link" onClick={handlePasswordChange}>
-          <div className="change-password">비밀번호 변경</div>
-        </Link>
-        <div className="hidden-info">{userData.user.password}</div>
-        <div className="info-label">
+        <div className="mypage-info-label">닉네임: {userData.user.nick}</div>
+        {/* <Link
+          className="mypage-change-password-link"
+          onClick={handleNickChange}
+        >
+          <div className="mypage-change-password">닉네임 변경</div>
+        </Link> */}
+        <div className="mypage-hidden-info">{userData.user.password}</div>
+        <div className="mypage-info-label">
           전화번호: {hidePhoneNumber(userData.user.phone)}
         </div>
-        <div className="hidden-info">{userData.user.phone}</div>
+        <div className="mypage-hidden-info">{userData.user.phone}</div>
       </div>
-      <div className="user-posts">
+      <Link
+        className="mypage-change-password-link"
+        onClick={handlePasswordChange}
+      >
+        <div className="mypage-change-password">비밀번호 변경</div>
+      </Link>
+      <div className="mypage-user-posts">
         <h2>나의 레시피</h2>
         {posts.map((board) => (
-          <div key={board.num} className="post">
-            <Link to={`/recipeinboard/${board.num}`} className="post-link">
-              <h3 className="post-title">제목: {board.title}</h3>
+          <div key={board.num} className="mypage-post">
+            <Link
+              to={`/recipeinboard/${board.num}`}
+              className="mypage-post-link"
+            >
+              <h3 className="mypage-post-title">제목: {board.title}</h3>
             </Link>
-            <button onClick={() => delRecipe(board.num)}>삭제</button>
+            <button
+              className="mypage-post-button"
+              onClick={() => delRecipe(board.num)}
+            >
+              삭제
+            </button>
             <Link to={`/recipewrite/${board.num}`}>
-              <button>변경</button>
+              <button className="mypage-post-button">변경</button>
             </Link>
           </div>
         ))}
       </div>
-      <div className="user-posts">
+      <div className="mypage-user-posts">
         <h2>나의 Q&A</h2>
         {qnas.map((board) => (
-          <div key={board.num} className="post">
-            <Link to={`/inboard/${board.num}`} className="post-link">
-              <h3 className="post-title">제목: {board.title}</h3>
+          <div key={board.num} className="mypage-post">
+            <Link to={`/inboard/${board.num}`} className="mypage-post-link">
+              <h3 className="mypage-post-title">제목: {board.title}</h3>
             </Link>
             <Link to={`/write/${board.num}`}>
-              <button>변경</button>
-            </Link>
-          </div>
-        ))}
-      </div>
-      <div className="user-posts">
-        <h2>내가 좋아요 한 레시피</h2>
-        {qnas.map((board) => (
-          <div key={board.num} className="post">
-            <Link to={`/inboard/${board.num}`} className="post-link">
-              <h3 className="post-title">제목: {board.title}</h3>
-            </Link>
-            <Link to={`/write/${board.num}`}>
-              <button>변경</button>
+              <button className="mypage-post-button">변경</button>
             </Link>
           </div>
         ))}

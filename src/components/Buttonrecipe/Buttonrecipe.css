@@ -1,0 +1,67 @@
+.btnrecipe {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.btnrecipe .slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  height: 200px;
+  align-content: center;
+  pointer-events: auto; /* 클릭 이벤트를 허용합니다. */
+}
+
+.btnrecipe .slide {
+  display: none;
+  width: 100%;
+  text-align: center;
+  pointer-events: auto; /* 클릭 이벤트를 허용합니다. */
+}
+
+.btnrecipe .slide.active {
+  display: block;
+  pointer-events: auto; /* 클릭 이벤트를 허용합니다. */
+}
+
+.btnrecipe .slide-content {
+  padding: 20px;
+}
+
+.btnrecipe .prev-button,
+.btnrecipe .next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btnrecipe .prev-button:hover,
+.btnrecipe .next-button:hover {
+  background-color: #0056b3;
+}
+
+.btnrecipe .prev-button {
+  left: 0;
+}
+
+.btnrecipe .next-button {
+  right: 0;
+}
+
+.btnrecipe .slide-indicator {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  color: #555;
+  font-size: 14px;
+}

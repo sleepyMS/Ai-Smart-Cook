@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Checkbox from "../Checkbox";
 import data from "../../db/data.json";
-import gpt_nav from "../../api/gpt_nav";
+import styles from "../../내가만든css/Nav.module.css"; // CSS 모듈 불러오기
+import gpt from "../../api/gpt";
 import LoadingModal from "../Loadingmodal/Loadingmodal"; // LoadingModal 추가
-import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faDrumstickBite,
-  faCarrot,
-  faFish,
-  faVials,
-  faBowlRice,
-} from "@fortawesome/free-solid-svg-icons";
 import "./Nav.css";
+import { useNavigate } from "react-router-dom";
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -80,7 +73,7 @@ const Nav = () => {
         .map((ingredient) => ingredient.name);
 
       const prompt = selectedIngredientNames.join(", "); // 선택된 재료들을 쉼표로 구분하여 문자열로 변환
-      const message = await gpt_nav({ prompt });
+      const message = await gpt({ prompt });
 
       console.log(message);
       console.log(prompt);
@@ -94,147 +87,151 @@ const Nav = () => {
   };
 
   return (
-    <div className="side-bar">
+    <div className={styles["nav-container"]}>
+      {" "}
       {/* nav-container 클래스 추가 */}
       <nav id="nav">
-        <div>
-          <div onClick={toggleMeatCategory}>
-            <FontAwesomeIcon icon={faDrumstickBite} />
+        <div className="category-wrap">
+          <div>
+            <div className="category" onClick={toggleMeatCategory}>
+              육류
+            </div>
+            {meatCategoryExpanded && (
+              <ul className={styles["item-container"]}>
+                {" "}
+                {/* item-container 클래스 추가 */}
+                {meats.map((meat, index) => (
+                  <li key={index}>
+                    <Checkbox
+                      checked={meat.state}
+                      onChange={(checked) =>
+                        setMeats((prevMeats) => {
+                          const updatedMeats = [...prevMeats];
+                          updatedMeats[index].state = checked;
+                          return updatedMeats;
+                        })
+                      }
+                    >
+                      {meat.name}
+                    </Checkbox>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-          {meatCategoryExpanded && (
-            <ul className="item-container">
-              {" "}
-              {/* item-container 클래스 추가 */}
-              {meats.map((meat, index) => (
-                <li key={index}>
-                  <Checkbox
-                    checked={meat.state}
-                    onChange={(checked) =>
-                      setMeats((prevMeats) => {
-                        const updatedMeats = [...prevMeats];
-                        updatedMeats[index].state = checked;
-                        return updatedMeats;
-                      })
-                    }
-                  >
-                    {meat.name}
-                  </Checkbox>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        <div>
-          <div onClick={toggleVegetableCategory}>
-            <FontAwesomeIcon icon={faCarrot} />
+          <div>
+            <div className="category" onClick={toggleVegetableCategory}>
+              야채
+            </div>
+            {vegetableCategoryExpanded && (
+              <ul className={styles["item-container"]}>
+                {" "}
+                {/* item-container 클래스 추가 */}
+                {vegetables.map((vegetable, index) => (
+                  <li key={index}>
+                    <Checkbox
+                      checked={vegetable.state}
+                      onChange={(checked) =>
+                        setVegetables((prevVegetables) => {
+                          const updatedVegetables = [...prevVegetables];
+                          updatedVegetables[index].state = checked;
+                          return updatedVegetables;
+                        })
+                      }
+                    >
+                      {vegetable.name}
+                    </Checkbox>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-          {vegetableCategoryExpanded && (
-            <ul className="item-container">
-              {" "}
-              {/* item-container 클래스 추가 */}
-              {vegetables.map((vegetable, index) => (
-                <li key={index}>
-                  <Checkbox
-                    checked={vegetable.state}
-                    onChange={(checked) =>
-                      setVegetables((prevVegetables) => {
-                        const updatedVegetables = [...prevVegetables];
-                        updatedVegetables[index].state = checked;
-                        return updatedVegetables;
-                      })
-                    }
-                  >
-                    {vegetable.name}
-                  </Checkbox>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        <div>
-          <div onClick={toggleFishCategory}>
-            <FontAwesomeIcon icon={faFish} />
+          <div>
+            <div className="category" onClick={toggleFishCategory}>
+              생선
+            </div>
+            {fishesCategoryExpanded && (
+              <ul className={styles["item-container"]}>
+                {" "}
+                {/* item-container 클래스 추가 */}
+                {fishes.map((fish, index) => (
+                  <li key={index}>
+                    <Checkbox
+                      checked={fish.state}
+                      onChange={(checked) =>
+                        setFishes((prevFishes) => {
+                          const updatedFishes = [...prevFishes];
+                          updatedFishes[index].state = checked;
+                          return updatedFishes;
+                        })
+                      }
+                    >
+                      {fish.name}
+                    </Checkbox>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-          {fishesCategoryExpanded && (
-            <ul className="item-container">
-              {" "}
-              {/* item-container 클래스 추가 */}
-              {fishes.map((fish, index) => (
-                <li key={index}>
-                  <Checkbox
-                    checked={fish.state}
-                    onChange={(checked) =>
-                      setFishes((prevFishes) => {
-                        const updatedFishes = [...prevFishes];
-                        updatedFishes[index].state = checked;
-                        return updatedFishes;
-                      })
-                    }
-                  >
-                    {fish.name}
-                  </Checkbox>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        <div>
-          <div onClick={toggleSourceCategory}>
-            <FontAwesomeIcon icon={faVials} />
+          <div>
+            <div className="category" onClick={toggleSourceCategory}>
+              양념
+            </div>
+            {sourceCategoryExpanded && (
+              <ul className={styles["item-container"]}>
+                {" "}
+                {/* item-container 클래스 추가 */}
+                {sources.map((source, index) => (
+                  <li key={index}>
+                    <Checkbox
+                      checked={source.state}
+                      onChange={(checked) =>
+                        setSoures((prevSources) => {
+                          const updatedprevSources = [...prevSources];
+                          updatedprevSources[index].state = checked;
+                          return updatedprevSources;
+                        })
+                      }
+                    >
+                      {source.name}
+                    </Checkbox>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-          {sourceCategoryExpanded && (
-            <ul className="item-container">
-              {" "}
-              {/* item-container 클래스 추가 */}
-              {sources.map((source, index) => (
-                <li key={index}>
-                  <Checkbox
-                    checked={source.state}
-                    onChange={(checked) =>
-                      setSoures((prevSources) => {
-                        const updatedprevSources = [...prevSources];
-                        updatedprevSources[index].state = checked;
-                        return updatedprevSources;
-                      })
-                    }
-                  >
-                    {source.name}
-                  </Checkbox>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        <div>
-          <div onClick={toggleGrainCategory}>
-            <FontAwesomeIcon icon={faBowlRice} />
+          <div>
+            <div className="category" onClick={toggleGrainCategory}>
+              곡물
+            </div>
+            {grainCategoryExpanded && (
+              <ul className={styles["item-container"]}>
+                {" "}
+                {/* item-container 클래스 추가 */}
+                {grains.map((grain, index) => (
+                  <li key={index}>
+                    <Checkbox
+                      checked={grain.state}
+                      onChange={(checked) =>
+                        setGrains((prevGrains) => {
+                          const updatedprevGrains = [...prevGrains];
+                          updatedprevGrains[index].state = checked;
+                          return updatedprevGrains;
+                        })
+                      }
+                    >
+                      {grain.name}
+                    </Checkbox>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-          {grainCategoryExpanded && (
-            <ul className="item-container">
-              {" "}
-              {/* item-container 클래스 추가 */}
-              {grains.map((grain, index) => (
-                <li key={index}>
-                  <Checkbox
-                    checked={grain.state}
-                    onChange={(checked) =>
-                      setGrains((prevGrains) => {
-                        const updatedprevGrains = [...prevGrains];
-                        updatedprevGrains[index].state = checked;
-                        return updatedprevGrains;
-                      })
-                    }
-                  >
-                    {grain.name}
-                  </Checkbox>
-                </li>
-              ))}
-            </ul>
-          )}
         </div>
-        <button className="gpt-btn" onClick={onSubmit}>
+        <div className="line-1"></div>
+        <Button onClick={onSubmit} className="ai-btn" variant="dark">
           AI 호출
-        </button>
+        </Button>
         {isLoading && <LoadingModal />}{" "}
         {/* isLoading이 true일 때 LoadingModal을 렌더링 */}
       </nav>

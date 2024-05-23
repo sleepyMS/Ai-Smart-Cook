@@ -8,6 +8,7 @@ const Recipeboard = () => {
   const [loading, setLoading] = useState(true);
   const [viewCount, setViewCount] = useState({});
   const [likeCount, setLikeCount] = useState({});
+  const [sortOption, setSortOption] = useState("default"); // 기본값을 "default"로 설정
   const userData = JSON.parse(localStorage.getItem("userData"));
 
   useEffect(() => {
@@ -90,12 +91,35 @@ const Recipeboard = () => {
     }
   };
 
+  const handleSortChange = (e) => {
+    setSortOption(e.target.value);
+  };
+
+  const sortedRecipes = [...recipes].sort((a, b) => {
+    if (sortOption === "view") {
+      return (viewCount[b.num] || 0) - (viewCount[a.num] || 0);
+    } else if (sortOption === "like") {
+      return (likeCount[b.num] || 0) - (likeCount[a.num] || 0);
+    } else if (sortOption === "default") {
+      return 0; // 기본 순서 유지
+    }
+    return 0;
+  });
+
   return (
-    <div>
+    <div className="recipeboard">
       <h1 className="header_logo">
         <Link to="/">MOTIV</Link>
       </h1>
       <div className="board-container">
+        <div className="sort-options">
+          <label htmlFor="sort">정렬 기준: </label>
+          <select id="sort" value={sortOption} onChange={handleSortChange}>
+            <option value="default">기본 순서</option>
+            <option value="view">조회수 순</option>
+            <option value="like">좋아요 순</option>
+          </select>
+        </div>
         <h2>레시피 목록</h2>
         {loading ? (
           <div>
@@ -103,8 +127,8 @@ const Recipeboard = () => {
           </div>
         ) : (
           <ul className="board-list">
-            {recipes.length > 0 &&
-              recipes.map((recipe) => (
+            {sortedRecipes.length > 0 &&
+              sortedRecipes.map((recipe) => (
                 <li key={recipe.num} className="board-item">
                   <Link
                     to={

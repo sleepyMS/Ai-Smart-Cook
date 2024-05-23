@@ -1,8 +1,23 @@
+.main-wrap {
+  margin-left: 250px;
+}
+
+.main-wrap > #main {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
 #main {
-  max-width: 2000px;
   min-height: 100vh;
-  margin: 0px auto 0 auto; /* Centered margin */
-  padding: 20px;
-  background-color: #f8f9fa;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  min-width: calc(100vw - 250px);
+  /* background-image: url(../../../public/MainPagePic4.jpg);
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; */
+  overflow: hidden; /* 이미지가 컨테이너를 넘어갈 경우 잘리지 않도록 설정 */
+  overflow-y: auto; /* 세로 스크롤 추가 */
+}
+
+.footer-wrap {
 }

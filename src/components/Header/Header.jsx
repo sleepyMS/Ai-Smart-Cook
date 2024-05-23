@@ -4,6 +4,8 @@ import gpt from "../../api/gpt";
 import LoadingModal from "../Loadingmodal/Loadingmodal";
 import "./Header.css";
 import Aialert1 from "../Aialert/Aialert1";
+import { Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -110,6 +112,24 @@ const Header = () => {
           </p>
         </div>
       </Link>
+      <div className="RightButton">
+        <Button onClick={onSubmitLogin} variant="outline-success">
+          {peopleName}
+        </Button>
+        {peopleName === "로그인" && (
+          <Button
+            onClick={() => navigate("/registerpage1")}
+            variant="outline-success"
+          >
+            회원가입
+          </Button>
+        )}
+        {peopleName !== "로그인" && (
+          <Button onClick={handleLogout} variant="outline-success">
+            로그아웃
+          </Button>
+        )}
+      </div>
       <div className="header_section">
         <div className="input-group">
           <form onSubmit={onSubmit} className="form-width">
@@ -126,21 +146,12 @@ const Header = () => {
           </form>
         </div>
         <div className="buttonMagin">
-          <button onClick={onSubmitLogin}>{peopleName}</button>
-          {peopleName === "로그인" && (
-            <button onClick={() => navigate("/registerpage1")}>
-              회원가입 창으로 이동
-            </button>
-          )}
-          {peopleName !== "로그인" && (
-            <button onClick={handleLogout}>로그아웃</button>
-          )}
           <button onClick={() => navigate("/recipewrite")}>레시피 등록</button>
           <button onClick={() => navigate("/recipeboard")}>
             레시피 게시판
           </button>
-          <button onClick={() => navigate("/questionboard")}>Q&A 게시판</button>
           <button onClick={() => navigate("/write")}>Q&A 등록</button>
+          <button onClick={() => navigate("/questionboard")}>Q&A 게시판</button>
         </div>
       </div>
       {isInputEmpty && <Aialert1 onCancel={handleCancel} />}

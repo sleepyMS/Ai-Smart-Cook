@@ -12,28 +12,28 @@ const Buttonrecipe = () => {
   const recipes = [
     {
       title: data.title[0],
-      ingredients: data.ingredient[0],
-      recipe: data.procedure[0],
+      ingredients: data.ingredients[0],
+      recipe: data.procedures[0],
     },
     {
       title: data.title[1],
-      ingredients: data.ingredient[1],
-      recipe: data.procedure[1],
+      ingredients: data.ingredients[1],
+      recipe: data.procedures[1],
     },
     {
       title: data.title[2],
-      ingredients: data.ingredient[2],
-      recipe: data.procedure[2],
+      ingredients: data.ingredients[2],
+      recipe: data.procedures[2],
     },
     {
       title: data.title[3],
-      ingredients: data.ingredient[3],
-      recipe: data.procedure[3],
+      ingredients: data.ingredients[3],
+      recipe: data.procedures[3],
     },
     {
       title: data.title[4],
-      ingredients: data.ingredient[4],
-      recipe: data.procedure[4],
+      ingredients: data.ingredients[4],
+      recipe: data.procedures[4],
     },
   ];
 

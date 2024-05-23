@@ -3,43 +3,88 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #555;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative; /* 상대 위치 설정 */
 }
 
 .input-group {
   display: flex;
-  width: 100%;
-  justify-content: center;
-  margin-bottom: 20px;
+  justify-content: center; /* 중앙 정렬 */
+  width: 50%; /* 필요에 따라 너비를 조정 */
 }
 
-.input-group-append {
+.input-group form {
   display: flex;
+  width: 80%;
+  top: -10px;
 }
 
 .form-width {
   display: flex;
-  width: 1000px;
-  max-width: 100%;
-  min-width: 300px;
+  align-items: center; /* 중앙 정렬 */
+  width: 100%;
 }
 
 .button-width {
-  width: 90px;
+  width: auto; /* 너비 자동 조정 */
   line-height: 2.2;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  padding-left: 10px; /* 패딩 조정 */
+  padding-right: 10px; /* 패딩 조정 */
+  background-color: #007bff; /* 버튼 배경색 추가 */
+  color: #fff; /* 버튼 텍스트 색상 변경 */
+  border: none; /* 버튼 테두리 제거 */
+  border-radius: 5px; /* 버튼 모서리 둥글게 */
+  cursor: pointer; /* 커서 변경 */
+  transition: background-color 0.3s ease; /* 배경색 전환 효과 */
+}
+
+.button-width:hover {
+  background-color: #0056b3; /* 호버 시 배경색 변경 */
+}
+
+.header_logo {
+  margin-bottom: 10px; /* 로고와 검색창 사이의 여백 */
+}
+
+.header_logo span {
+  font-size: 2rem; /* 폰트 크기 조정 */
+  font-weight: 1000;
+  padding-left: 15px;
+  color: #007bff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 로고에 그림자 효과 추가 */
+  transform: rotate(-5deg); /* 로고를 약간 회전시켜 입체적으로 보이도록 설정 */
+}
+
+.RightButton {
+  display: flex;
+  align-items: center;
+  position: absolute; /* 절대 위치 설정 */
+  right: 10px; /* 오른쪽 끝에서 약간 떨어진 위치 */
+  top: 23px;
+
+  transform: translateY(-50%); /* 수직 중앙 정렬을 위해 변환 */
+}
+
+.RightButton button {
+  margin-left: 10px; /* 버튼 간의 간격을 설정 */
+  padding: 10px 20px; /* 버튼 패딩 조정 */
+  background-color: #28a745; /* 버튼 배경색 추가 */
+  color: #fff; /* 버튼 텍스트 색상 변경 */
+  border: none; /* 버튼 테두리 제거 */
+  border-radius: 5px; /* 버튼 모서리 둥글게 */
+  cursor: pointer; /* 커서 변경 */
+  font-size: 15px;
+
+  transition: background-color 0.3s ease; /* 배경색 전환 효과 */
+}
+
+.RightButton button:hover {
+  background-color: #218838; /* 호버 시 배경색 변경 */
 }
 
 .form-control {
   flex: 1;
   padding: 0.375rem 0.75rem;
-  width: 70%;
+  width: 100%; /* 너비를 100%로 설정 */
   font-size: 1rem;
   line-height: 1.5;
   color: #495057;
@@ -47,6 +92,7 @@
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
+  cursor: pointer;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -55,33 +101,28 @@
   justify-content: center;
   flex-wrap: wrap;
   margin: 15px;
+  cursor: pointer;
 }
 
 .buttonMagin button {
-  margin: 10px;
+  margin-left: 40px; /* 필요에 따라 여백 조정 */
+  padding: 10px 20px; /* 버튼 패딩 조정 */
+  background-color: #ffc107; /* 버튼 배경색 추가 */
+  color: #212529; /* 버튼 텍스트 색상 변경 */
+  border: none; /* 버튼 테두리 제거 */
+  border-radius: 5px; /* 버튼 모서리 둥글게 */
+  cursor: pointer; /* 커서 변경 */
+  transition: background-color 0.3s ease; /* 배경색 전환 효과 */
+  font-size: 14px;
+}
+
+.buttonMagin button:hover {
+  background-color: #e0a800; /* 호버 시 배경색 변경 */
 }
 
 #header {
-  display: flex;
-  top: 0;
+  /* position: fixed; */
   width: 100%;
-  height: auto;
-  z-index: 9999;
-  background-color: #555;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 10px 0;
-}
-
-#header .header_logo {
-  display: inline-block;
-  font-size: 2.5rem;
-  font-weight: 900;
-  padding: 10px;
-  color: white;
-}
-
-#header .header_logo span {
-  color: blue;
+  height: 180px;
+  z-index: 10001;
 }

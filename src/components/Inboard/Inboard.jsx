@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "./inboard.css";
 
 const Inboard = () => {
   const { num } = useParams();
@@ -31,14 +32,14 @@ const Inboard = () => {
   }, [num]);
 
   return (
-    <div>
+    <div className="qnainboard">
       <h1 className="header_logo">
         <a href="/">
           <span>MOTIV</span>
         </a>
       </h1>
-      <div>{posts.que}</div>
-      <Link to={`/questionboard`}>
+      <div className="post_content">{posts.que}</div>
+      <Link to={`/questionboard`} className="styled_link">
         <h2>게시판 이동</h2>
       </Link>
     </div>
