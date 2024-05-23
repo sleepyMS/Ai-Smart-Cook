@@ -9,10 +9,14 @@ const Main = (props) => {
     <>
       <Header />
       <Nav />
-      <main id="main" role="main">
-        {props.children}
-      </main>
-      <Footer />
+      <div className="main-wrap">
+        <main id="main" role="main">
+          {props.children}
+        </main>
+      </div>
+      <div className="footer-wrap">
+        <Footer />
+      </div>
     </>
   );
 };
