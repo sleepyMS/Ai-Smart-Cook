@@ -108,6 +108,15 @@ const Header = () => {
           <span>MOTIV</span>
         </h1>
       </Link>
+      <div className="RightButton">
+        <button onClick={onSubmitLogin}>{peopleName}</button>
+        {peopleName === "로그인" && (
+          <button onClick={() => navigate("/registerpage1")}>회원가입</button>
+        )}
+        {peopleName !== "로그인" && (
+          <button onClick={handleLogout}>로그아웃</button>
+        )}
+      </div>
       <div className="header_section">
         <div className="input-group">
           <form onSubmit={onSubmit} className="form-width">
@@ -124,15 +133,6 @@ const Header = () => {
           </form>
         </div>
         <div className="buttonMagin">
-          <button onClick={onSubmitLogin}>{peopleName}</button>
-          {peopleName === "로그인" && (
-            <button onClick={() => navigate("/registerpage1")}>
-              회원가입 창으로 이동
-            </button>
-          )}
-          {peopleName !== "로그인" && (
-            <button onClick={handleLogout}>로그아웃</button>
-          )}
           <button onClick={() => navigate("/recipewrite")}>레시피 등록</button>
           <button onClick={() => navigate("/recipeboard")}>
             레시피 게시판
