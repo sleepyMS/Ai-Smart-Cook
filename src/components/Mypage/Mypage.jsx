@@ -130,27 +130,24 @@ const Mypage = () => {
           이메일: {hideEmail(userData.user.email)}
         </div>
         <div className="mypage-info-label">닉네임: {userData.user.nick}</div>
-        <Link
+        {/* <Link
           className="mypage-change-password-link"
           onClick={handleNickChange}
         >
           <div className="mypage-change-password">닉네임 변경</div>
-        </Link>
-        <div className="mypage-info-label">
-          비밀번호: {hidePassword(userData.user.password)}
-        </div>
-        <Link
-          className="mypage-change-password-link"
-          onClick={handlePasswordChange}
-        >
-          <div className="mypage-change-password">비밀번호 변경</div>
-        </Link>
+        </Link> */}
         <div className="mypage-hidden-info">{userData.user.password}</div>
         <div className="mypage-info-label">
           전화번호: {hidePhoneNumber(userData.user.phone)}
         </div>
         <div className="mypage-hidden-info">{userData.user.phone}</div>
       </div>
+      <Link
+        className="mypage-change-password-link"
+        onClick={handlePasswordChange}
+      >
+        <div className="mypage-change-password">비밀번호 변경</div>
+      </Link>
       <div className="mypage-user-posts">
         <h2>나의 레시피</h2>
         {posts.map((board) => (

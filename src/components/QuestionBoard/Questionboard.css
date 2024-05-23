@@ -40,6 +40,21 @@
   margin: 20px;
 }
 
+.qnaboard .sort-options {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.qnaboard .sort-options label {
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+.qnaboard .sort-options select {
+  padding: 5px 10px;
+  font-size: 1em;
+}
+
 .qnaboard .board-list {
   list-style-type: none;
   padding: 0;
