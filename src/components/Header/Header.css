@@ -47,7 +47,7 @@
 
 .header_logo span {
   font-size: 2rem; /* 폰트 크기 조정 */
-  font-weight: bold;
+  font-weight: 1000;
   padding-left: 15px;
   color: #007bff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 로고에 그림자 효과 추가 */
@@ -59,6 +59,7 @@
   align-items: center;
   position: absolute; /* 절대 위치 설정 */
   right: 10px; /* 오른쪽 끝에서 약간 떨어진 위치 */
+  top: 23px;
 
   transform: translateY(-50%); /* 수직 중앙 정렬을 위해 변환 */
 }
@@ -120,10 +121,8 @@
 }
 
 #header {
-  position: fixed;
-  top: 0;
+  /* position: fixed; */
   width: 100%;
-  height: 16%;
-  z-index: 9000;
-  /* background-color: #e9e9e9; */
+  height: 180px;
+  z-index: 10001;
 }

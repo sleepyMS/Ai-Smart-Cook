@@ -4,6 +4,8 @@ import gpt_main from "../../api/gpt_main";
 import LoadingModal from "../Loadingmodal/Loadingmodal";
 import "./Header.css";
 import Aialert1 from "../Aialert/Aialert1";
+import { Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -109,12 +111,21 @@ const Header = () => {
         </h1>
       </Link>
       <div className="RightButton">
-        <button onClick={onSubmitLogin}>{peopleName}</button>
+        <Button onClick={onSubmitLogin} variant="outline-success">
+          {peopleName}
+        </Button>
         {peopleName === "로그인" && (
-          <button onClick={() => navigate("/registerpage1")}>회원가입</button>
+          <Button
+            onClick={() => navigate("/registerpage1")}
+            variant="outline-success"
+          >
+            회원가입
+          </Button>
         )}
         {peopleName !== "로그인" && (
-          <button onClick={handleLogout}>로그아웃</button>
+          <Button onClick={handleLogout} variant="outline-success">
+            로그아웃
+          </Button>
         )}
       </div>
       <div className="header_section">
