@@ -87,9 +87,10 @@ const gpt = async ({ prompt }) => {
                      
                       Translate into Korean and Use the output in the following JSON format:
                       
-                      The contents of title, inredient, procedure, tip, and extra are respectively
+                      The contents of title, inredients, procedures, tips, and extras are respectively
                       Save the data in the following format: title = [title1,title2,title3...].
                       Save ingredients, procedures, tips, and extras in the same format as above.
+              
                      `,
     },
     { role: "user", content: `${prompt}를 활용한 요리를 알려줘.` },

@@ -1,67 +1,68 @@
-.btnrecipe {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 30px;
-}
+/* buttonrecipe.css */
 
-.btnrecipe .slider-container {
+.btnrecipe-container {
+  width: 400px;
+  height: 400px;
   position: relative;
-  width: 100%;
   overflow: hidden;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+}
+
+.btnrecipe {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.5s ease-in-out;
+  width: 300px;
   height: 200px;
-  align-content: center;
-  pointer-events: auto; /* 클릭 이벤트를 허용합니다. */
+  cursor: pointer;
+  opacity: 0;
+  z-index: 0;
 }
 
-.btnrecipe .slide {
-  display: none;
-  width: 100%;
-  text-align: center;
-  pointer-events: auto; /* 클릭 이벤트를 허용합니다. */
+.btnrecipe.active {
+  opacity: 1;
+  z-index: 1;
 }
 
-.btnrecipe .slide.active {
-  display: block;
-  pointer-events: auto; /* 클릭 이벤트를 허용합니다. */
-}
-
-.btnrecipe .slide-content {
-  padding: 20px;
-}
-
-.btnrecipe .prev-button,
-.btnrecipe .next-button {
+.prev-button,
+.next-button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.btnrecipe .prev-button:hover,
-.btnrecipe .next-button:hover {
-  background-color: #0056b3;
+.prev-button {
+  left: 10px;
 }
 
-.btnrecipe .prev-button {
-  left: 0;
+.next-button {
+  right: 10px;
 }
 
-.btnrecipe .next-button {
-  right: 0;
-}
-
-.btnrecipe .slide-indicator {
+.pagination {
   position: absolute;
-  bottom: 8px;
-  right: 8px;
-  color: #555;
-  font-size: 14px;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+}
+
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  width: 400px;
+  height: 300px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.modal-content button {
+  margin-top: 20px;
 }

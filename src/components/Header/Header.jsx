@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import gpt from "../../api/gpt";
+import gpt_main from "../../api/gpt_main";
 import LoadingModal from "../Loadingmodal/Loadingmodal";
 import "./Header.css";
 import Aialert1 from "../Aialert/Aialert1";
@@ -81,7 +81,7 @@ const Header = () => {
         }
         return;
       }
-      const message = await gpt({
+      const message = await gpt_main({
         prompt: `${searchInput}`,
       });
       navigate("/recipe", { state: { message } });
