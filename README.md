@@ -7,5 +7,5 @@
 
 main 반응형 페이지 수정
 header css jsx 페이지 반응형 수정 
-등록, 게시판 선 추가 
+등록, 게시판 선 추가 css jsx 수정 
 
