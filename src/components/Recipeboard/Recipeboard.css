@@ -26,14 +26,14 @@
 
 .recipeboard .header_logo a {
   text-decoration: none;
-  color: #ff4081;
+  color: #1a1718;
   font-size: 3em;
   font-family: "Arial", sans-serif;
   animation: fadeIn 1s ease-in;
 }
 
 .recipeboard .header_logo a:hover {
-  color: #ff6e98;
+  color: #818181;
 }
 
 .recipeboard .board-container {
@@ -61,7 +61,7 @@
 }
 
 .recipeboard .board-item {
-  border: 1px solid #ccc;
+  border: 2px solid #000000;
   border-radius: 5px;
   padding: 20px;
   margin-bottom: 20px;
@@ -89,7 +89,7 @@
 
 .recipeboard .board-item button {
   padding: 10px 20px;
-  background-color: #ff4081;
+  background-color: #000000;
   color: #fff;
   font-size: 1.2em;
   border: none;
@@ -99,7 +99,7 @@
 }
 
 .recipeboard .board-item button:hover {
-  background-color: #ff6e98;
+  background-color: #686868;
 }
 
 .recipeboard .board-item .like-count {

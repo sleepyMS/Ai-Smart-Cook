@@ -37,6 +37,9 @@ const Recipeinboard = () => {
       <Link to={`/recipeboard`} className="styled_link">
         <h2>게시판 이동</h2>
       </Link>
+      <Link to={`/recipewrite`} className="styled_link">
+        <h2>레시피 작성</h2>
+      </Link>
     </div>
   );
 };

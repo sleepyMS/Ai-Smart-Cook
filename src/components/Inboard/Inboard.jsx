@@ -42,6 +42,9 @@ const Inboard = () => {
       <Link to={`/questionboard`} className="styled_link">
         <h2>게시판 이동</h2>
       </Link>
+      <Link to={`/write`} className="styled_link">
+        <h2>Q&A 작성</h2>
+      </Link>
     </div>
   );
 };

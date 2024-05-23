@@ -49,13 +49,13 @@
 
 /* 비밀번호 변경 버튼 스타일 */
 .mypage-change-password {
-  color: #007bff;
+  color: #ff0000;
   cursor: pointer;
   transition: color 0.3s;
 }
 
 .mypage-change-password:hover {
-  color: #0056b3;
+  color: #575757;
 }
 
 /* 숨겨진 정보(이메일, 비밀번호, 전화번호) 스타일 */
@@ -92,7 +92,7 @@
 }
 
 .mypage-post-link:hover {
-  color: #007bff;
+  color: #ef1e1e;
 }
 
 /* 게시물 제목 스타일 */
@@ -106,7 +106,7 @@
   margin-right: 10px;
   padding: 8px 12px;
   border: none;
-  background-color: #007bff;
+  background-color: #010101;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
@@ -114,7 +114,7 @@
 }
 
 .mypage-post-button:hover {
-  background-color: #0056b3;
+  background-color: #6b6b6b;
   transform: scale(1.05);
 }
 
@@ -127,10 +127,10 @@
 
 .mypage-header_logo a {
   text-decoration: none;
-  color: #007bff;
+  color: #070707;
   transition: color 0.3s;
 }
 
 .mypage-header_logo a:hover {
-  color: #0056b3;
+  color: #636363;
 }

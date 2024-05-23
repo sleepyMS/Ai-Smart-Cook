@@ -57,7 +57,7 @@
 .recipeinboard .styled_link h2 {
   display: inline-block;
   padding: 15px 30px;
-  background-color: #ff4081;
+  background-color: #000000;
   color: #fff;
   font-size: 1.2em;
   border-radius: 30px;
@@ -67,7 +67,7 @@
 }
 
 .recipeinboard .styled_link h2:hover {
-  background-color: #ff6e98;
+  background-color: #656565;
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   animation: bounce 0.5s;

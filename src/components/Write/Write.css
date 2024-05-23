@@ -45,12 +45,12 @@ body {
   border: none;
   font-size: 16px;
   cursor: pointer;
-  color: #007bff;
+  color: #1d1e1f;
   transition: color 0.3s;
 }
 
 .qna .header_logo button:hover {
-  color: #0056b3;
+  color: #c91111;
 }
 
 .qna .board_write {
@@ -113,8 +113,8 @@ body {
 .qna .board_write input[type="text"]:focus,
 .qna .board_write select:focus,
 .qna .board_write textarea:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: #ef1d1d;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
 }
 
 .qna .board_write textarea {
@@ -125,7 +125,7 @@ body {
 .qna .board_write button {
   width: 100%;
   padding: 15px;
-  background-color: #007bff;
+  background-color: #131415;
   color: white;
   border: none;
   border-radius: 4px;
@@ -135,7 +135,7 @@ body {
 }
 
 .qna .board_write button:hover {
-  background-color: #0056b3;
+  background-color: #453a3a;
   transform: translateY(-2px);
 }
 
