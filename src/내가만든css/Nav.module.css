@@ -4,7 +4,7 @@
   width: 250px;
   height: 100%;
   z-index: 9000;
-  background-color: #999;
+  /* background-color: #999; */
 }
 
 .item-container {
