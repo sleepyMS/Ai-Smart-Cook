@@ -106,9 +106,11 @@ const Header = () => {
   return (
     <header id="header" role="banner">
       <Link to="/">
-        <h1 className="header_logo">
-          <span>MOTIV</span>
-        </h1>
+        <div className="header_logo">
+          <p>
+            MO<span>T</span>IV
+          </p>
+        </div>
       </Link>
       <div className="RightButton">
         <Button onClick={onSubmitLogin} variant="outline-success">

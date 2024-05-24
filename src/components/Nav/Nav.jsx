@@ -85,6 +85,7 @@ const Nav = () => {
       setIsLoading(false);
     }
   };
+
   return (
     <div className={styles["nav-container"]}>
       {" "}
