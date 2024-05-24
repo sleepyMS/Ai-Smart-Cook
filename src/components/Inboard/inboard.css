@@ -29,6 +29,10 @@
   }
 }
 
+.qnainboard {
+  margin: 0px 50px;
+}
+
 .qnainboard .header_logo {
   text-align: center;
   margin-top: 40px;
@@ -47,29 +51,35 @@
 }
 
 .qnainboard .post_content {
-  text-align: center;
-  margin: 40px auto;
+  margin: 5px;
   padding: 20px;
   font-size: 1.8em;
   color: #444;
-  background-color: #58a1f5;
+  background-color: 0;
   border-radius: 10px;
+  border: 2px solid;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   animation: fadeIn 1s ease-in;
 }
 
-.qnainboard .styled_link {
-  display: inline-block;
+.qnainboard .links_container {
+  display: flex;
+  justify-content: flex-end;
   margin-top: 50px;
+}
+
+.qnainboard .styled_link {
+  margin-left: 10px; /* Add some space between the links */
 }
 
 .qnainboard .styled_link h2 {
   display: inline-block;
   padding: 15px 30px;
-  background-color: #080808;
+  background-color: #000000;
   color: #fff;
+  margin: 0px 5px;
   font-size: 1.2em;
-  border-radius: 30px;
+  border-radius: 5px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   text-decoration: none;
   transition: all 0.3s ease;

@@ -14,7 +14,6 @@ const Recipeinboard = () => {
         axios
           .post(`http://localhost:8080/recipe/getByNum/${num}`, {})
           .then((response) => {
-            console.log(response.data.data);
             setPosts(response.data.data);
           });
       } catch (error) {
@@ -32,14 +31,30 @@ const Recipeinboard = () => {
           <span>MOTIV</span>
         </a>
       </h1>
-      <div className="post_content">글쓴이: {posts.nick}</div>
-      <div className="post_content">{posts.recipe}</div>
-      <Link to={`/recipeboard`} className="styled_link">
-        <h2>게시판 이동</h2>
-      </Link>
-      <Link to={`/recipewrite`} className="styled_link">
-        <h2>레시피 작성</h2>
-      </Link>
+      <div
+        style={{ fontSize: "1.2rem", fontWeight: "bold", marginLeft: "10px" }}
+      >
+        작성자: {posts.nick}
+      </div>
+      <div className="post_content">
+        <div>재료</div>
+        {posts.ingredient}
+      </div>
+      <div className="post_content">
+        <div>레시피</div>
+        {posts.recipe &&
+          posts.recipe
+            .split("\n")
+            .map((step, index) => <div key={index}>{step.trim()}</div>)}
+      </div>
+      <div className="links_container">
+        <Link to={`/recipeboard`} className="styled_link">
+          <h2>게시판 이동</h2>
+        </Link>
+        <Link to={`/recipewrite`} className="styled_link">
+          <h2>레시피 작성</h2>
+        </Link>
+      </div>
     </div>
   );
 };

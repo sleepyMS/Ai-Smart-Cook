@@ -1,6 +1,6 @@
 import React from "react";
 import Main from "../section/Main";
-import "./koreafood.css"; // CSS 파일을 import하여 스타일링
+import "./Home.css"; // CSS 파일을 import하여 스타일링
 import { useNavigate } from "react-router-dom";
 import LoadingModal from "../Loadingmodal/Loadingmodal";
 import gpt from "../../api/gpt";
@@ -52,31 +52,31 @@ const Home = () => {
       <div className="grid-container">
         {/* 3x3 그리드 아이템 */}
         <div onClick={onSubmitFastfood} className="grid-item fast-food">
-          패스트푸드
+          <span>패스트푸드</span>
         </div>
         <div onClick={onSubmitKoreafood} className="grid-item korea-food">
-          한식
+          <span>한식</span>
         </div>
         <div onClick={onSubmitChinafood} className="grid-item china-food">
-          중식
+          <span>중식</span>
         </div>
         <div onClick={onSubmitJapanfood} className="grid-item japan-food">
-          일식
+          <span>일식</span>
         </div>
         <div onClick={onSubmitEuropefood} className="grid-item europe-food">
-          양식
+          <span>양식</span>
         </div>
         <div onClick={onSubmitDessert} className="grid-item dessert">
-          디저트
+          <span>디저트</span>
         </div>
         <div onClick={onSubmitBread} className="grid-item bread">
-          빵
+          <span>빵</span>
         </div>
         <div onClick={onSubmitSnackfood} className="grid-item snack">
-          분식
+          <span>분식</span>
         </div>
         <div onClick={onSubmitAsiafood} className="grid-item asian">
-          아시안
+          <span>아시안</span>
         </div>
       </div>
       {isLoading && <LoadingModal />}

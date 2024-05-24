@@ -134,7 +134,7 @@ const Buttonrecipe = () => {
           }}
           onClick={prevSlide}
         >
-          이전
+          ◀
         </button>
         <button
           style={{
@@ -151,7 +151,7 @@ const Buttonrecipe = () => {
           }}
           onClick={nextSlide}
         >
-          다음
+          ▶
         </button>
         <div
           style={{
@@ -185,6 +185,7 @@ const Buttonrecipe = () => {
             background: "black",
             color: "white",
             zIndex: 10000,
+            overflow: "visible",
           },
         }}
       >
@@ -218,9 +219,37 @@ const Buttonrecipe = () => {
             <div>{recipes[currentData].extra}</div>
           </div>
         )}
-        <div style={{ marginTop: "20px", display: "flex", gap: "10px" }}>
-          <button onClick={prevModalSlide}>Prev</button>
-          <button onClick={nextModalSlide}>Next</button>
+        <div
+          style={{
+            marginTop: "20px",
+            display: "flex",
+            gap: "10px",
+            position: "absolute",
+            userSelect: "none",
+          }}
+        >
+          <button
+            style={{
+              width: "70px",
+              height: "50px",
+              position: "absolute",
+              left: "-350px",
+            }}
+            onClick={prevModalSlide}
+          >
+            ◀
+          </button>
+          <button
+            style={{
+              width: "70px",
+              height: "50px",
+              position: "absolute",
+              right: "-350px",
+            }}
+            onClick={nextModalSlide}
+          >
+            ▶
+          </button>
         </div>
       </Modal>
     </Main>

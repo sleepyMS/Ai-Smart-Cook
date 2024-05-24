@@ -5,10 +5,6 @@
   align-items: center;
   position: relative; /* 상대 위치 설정 */
 }
-/* 전체 페이지에 커스텀 커서 적용 */
-* {
-  cursor: url("../../../public/cursor.jpg"), auto; /* 커서 이미지 경로를 실제 경로로 수정 */
-}
 
 .input-group {
   display: flex;
@@ -53,10 +49,9 @@
   font-size: 2rem; /* 폰트 크기 조정 */
   font-weight: 1000;
   padding-left: 15px;
-  color: #121314;
+  color: #007bff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 로고에 그림자 효과 추가 */
   transform: rotate(-5deg); /* 로고를 약간 회전시켜 입체적으로 보이도록 설정 */
-  cursor: pointer;
 }
 
 .RightButton {

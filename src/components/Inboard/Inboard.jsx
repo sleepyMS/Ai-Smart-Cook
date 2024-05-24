@@ -6,7 +6,6 @@ import "./inboard.css";
 
 const Inboard = () => {
   const { num } = useParams();
-  //const postList = dummy.boards.filter(board => board.id === id)
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -38,13 +37,23 @@ const Inboard = () => {
           <span>MOTIV</span>
         </a>
       </h1>
-      <div className="post_content">{posts.que}</div>
-      <Link to={`/questionboard`} className="styled_link">
-        <h2>게시판 이동</h2>
-      </Link>
-      <Link to={`/write`} className="styled_link">
-        <h2>Q&A 작성</h2>
-      </Link>
+      <div
+        style={{ fontSize: "1.2rem", fontWeight: "bold", marginLeft: "10px" }}
+      >
+        작성자: {posts.nick}
+      </div>
+      <div className="post_content">
+        <div>Q&A</div>
+        {posts.que}
+      </div>
+      <div className="links_container">
+        <Link to={`/questionboard`} className="styled_link">
+          <h2>게시판 이동</h2>
+        </Link>
+        <Link to={`/write`} className="styled_link">
+          <h2>Q&A 작성</h2>
+        </Link>
+      </div>
     </div>
   );
 };

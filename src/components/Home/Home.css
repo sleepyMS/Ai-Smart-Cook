@@ -14,6 +14,9 @@
   justify-content: center; /* 가로 방향으로 정중앙 정렬 */
   align-items: center; /* 세로 방향으로 정중앙 정렬 */
 }
+.grid-container span {
+  opacity: 0;
+}
 
 .grid-item {
   width: 200px;
@@ -24,6 +27,7 @@
   align-items: center;
   border-radius: 47% 24% 48% 26% / 23% 47% 24% 48%;
   box-shadow: 3px 3px 10px black;
+  cursor: pointer;
 }
 
 .fast-food {

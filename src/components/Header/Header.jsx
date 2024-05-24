@@ -6,6 +6,8 @@ import "./Header.css";
 import Aialert1 from "../Aialert/Aialert1";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -108,7 +110,7 @@ const Header = () => {
       <Link to="/">
         <div className="header_logo">
           <p>
-            MO<span>T</span>IV
+            <span>MOTIV</span>
           </p>
         </div>
       </Link>
@@ -134,6 +136,9 @@ const Header = () => {
         <div className="input-group">
           <form onSubmit={onSubmit} className="form-width">
             <input
+              style={{
+                width: "60%",
+              }}
               className="form-control"
               type="text"
               placeholder="재료 -> 음식 or 음식 -> 재료를 검색하시오."
@@ -141,7 +146,8 @@ const Header = () => {
               onChange={handleChange}
             ></input>
             <button className="button-width" type="submit">
-              검색
+              <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
           </form>
         </div>
