@@ -111,19 +111,19 @@ const Header = () => {
         </h1>
       </Link>
       <div className="RightButton">
-        <Button onClick={onSubmitLogin} variant="outline-success">
+        <Button onClick={onSubmitLogin} variant="outline-dark">
           {peopleName}
         </Button>
         {peopleName === "로그인" && (
           <Button
             onClick={() => navigate("/registerpage1")}
-            variant="outline-success"
+            variant="outline-dark"
           >
             회원가입
           </Button>
         )}
         {peopleName !== "로그인" && (
-          <Button onClick={handleLogout} variant="outline-success">
+          <Button onClick={handleLogout} variant="outline-dark">
             로그아웃
           </Button>
         )}
@@ -143,13 +143,13 @@ const Header = () => {
             </button>
           </form>
         </div>
-        <div className="buttonMagin">
-          <button onClick={() => navigate("/recipewrite")}>레시피 등록</button>
-          <button onClick={() => navigate("/recipeboard")}>
-            레시피 게시판
-          </button>
-          <button onClick={() => navigate("/write")}>Q&A 등록</button>
-          <button onClick={() => navigate("/questionboard")}>Q&A 게시판</button>
+        <div className="header-bar con-min-width">
+          <ul className="con header-bar__header-box-1">
+            <li onClick={() => navigate("/recipewrite")}>레시피 등록</li>
+            <li onClick={() => navigate("/recipeboard")}>레시피 게시판</li>
+            <li onClick={() => navigate("/write")}>Q&A 등록</li>
+            <li onClick={() => navigate("/questionboard")}>Q&A 게시판</li>
+          </ul>
         </div>
       </div>
       {isInputEmpty && <Aialert1 onCancel={handleCancel} />}
