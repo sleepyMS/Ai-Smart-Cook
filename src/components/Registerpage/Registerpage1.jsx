@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Registerpage.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Registerpage1 = () => {
   const navigate = useNavigate();
@@ -17,7 +18,8 @@ const Registerpage1 = () => {
   const handleBirthDateChange = (e) => {
     setBirthDate(e.target.value);
   };
-  //폰 번호 유효성 검사
+
+  // 폰 번호 유효성 검사
   const handlePhoneNumberChange = (e) => {
     const value = e.target.value;
     const formattedPhoneNumber = value.replace(/\D/g, "");
@@ -91,24 +93,13 @@ const Registerpage1 = () => {
 
   return (
     <>
-      <h1 className="header_logo">
-        <a href="/">
+      <Link to="/">
+        <h1 className="register-header_logo">
           <span>MOTIV</span>
-        </a>
-      </h1>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          height: "100vh",
-        }}
-      >
-        <form
-          style={{ display: "flex", flexDirection: "column" }}
-          onSubmit={onSubmit}
-        >
+        </h1>
+      </Link>
+      <div className="registerpage-container">
+        <form className="register-form" onSubmit={onSubmit}>
           <label>이름</label>
           <input type="text" placeholder="김정호" ref={nameRef} required />
           <label>별명</label>
