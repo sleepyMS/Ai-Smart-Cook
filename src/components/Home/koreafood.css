@@ -23,5 +23,68 @@
   justify-content: center;
   align-items: center;
   border-radius: 47% 24% 48% 26% / 23% 47% 24% 48%;
-  cursor: pointer;
+  box-shadow: 3px 3px 10px black;
+}
+
+.fast-food {
+  background-image: url("../../../public/img/foodCategory/fastFood.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.korea-food {
+  background-image: url("../../../public/img/foodCategory/koreaFood.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.china-food {
+  background-image: url("../../../public/img/foodCategory/chinaFood.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.japan-food {
+  background-image: url("../../../public/img/foodCategory/japanFood.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.europe-food {
+  background-image: url("../../../public/img/foodCategory/europeFood.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.dessert {
+  background-image: url("../../../public/img/foodCategory/dessert.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bread {
+  background-image: url("../../../public/img/foodCategory/bread.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.snack {
+  background-image: url("../../../public/img/foodCategory/snack.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.asian {
+  background-image: url("../../../public/img/foodCategory/asian.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
