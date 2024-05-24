@@ -99,6 +99,7 @@
 .mypage-post-title {
   margin: 0;
   font-size: 18px;
+  cursor: pointer;
 }
 
 /* 게시물 버튼 스타일 */
@@ -111,6 +112,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 8px;
 }
 
 .mypage-post-button:hover {

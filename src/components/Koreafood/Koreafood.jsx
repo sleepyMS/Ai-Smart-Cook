@@ -134,7 +134,7 @@ const Koreafood = () => {
           }}
           onClick={prevSlide}
         >
-          Prev
+          이전
         </button>
         <button
           style={{
@@ -151,7 +151,7 @@ const Koreafood = () => {
           }}
           onClick={nextSlide}
         >
-          Next
+          다음
         </button>
         <div
           style={{

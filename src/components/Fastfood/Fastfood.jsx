@@ -104,7 +104,7 @@ const Fastfood = () => {
           }}
           onClick={prevSlide}
         >
-          Prev
+          이전
         </button>
         <button
           style={{
@@ -121,7 +121,7 @@ const Fastfood = () => {
           }}
           onClick={nextSlide}
         >
-          Next
+          다음
         </button>
         <div
           style={{
