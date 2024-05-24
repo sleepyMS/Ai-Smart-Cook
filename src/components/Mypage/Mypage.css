@@ -133,4 +133,5 @@
 
 .mypage-header_logo a:hover {
   color: #636363;
+  cursor: pointer;
 }

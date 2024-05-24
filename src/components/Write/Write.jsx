@@ -131,7 +131,7 @@ const Write = () => {
               <label>비밀번호</label>
               <input type="text" placeholder="비밀번호" ref={passRef} />
             </div>
-            <div className="info">글쓴이</div>
+            <div className="info">글쓴이: {peopleName}</div>
             <div className="cont">
               <label>글 내용</label>
               <textarea placeholder="내용입력" ref={postRef}></textarea>

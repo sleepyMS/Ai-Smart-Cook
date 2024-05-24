@@ -34,6 +34,7 @@
 
 .qnaboard .header_logo a:hover {
   color: #7a7a7a; /* 더 진한 하늘색 톤으로 변경 */
+  cursor: pointer;
 }
 
 .qnaboard .board-container {
@@ -53,6 +54,7 @@
 .qnaboard .sort-options select {
   padding: 5px 10px;
   font-size: 1em;
+  cursor: pointer;
 }
 
 .qnaboard .board-list {
@@ -78,10 +80,38 @@
   margin-top: 0;
   font-size: 1.8em;
   color: #333;
+  cursor: pointer;
 }
 
 .qnaboard .board-item p {
   margin-bottom: 10px;
   font-size: 1.2em;
   color: #666;
+}
+
+/* 새로운 스타일 추가 */
+.qnaboard .header-with-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.qnaboard .header-with-button h2 {
+  margin: 0;
+}
+
+.qnaboard .view-button1 {
+  padding: 10px 20px;
+  background-color: #000000;
+  color: #fff;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.qnaboard .view-button1:hover {
+  background-color: #686868;
 }

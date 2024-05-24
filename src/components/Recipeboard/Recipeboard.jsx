@@ -119,7 +119,12 @@ const Recipeboard = () => {
             <option value="like">좋아요 순</option>
           </select>
         </div>
-        <h2>레시피 목록</h2>
+        <div className="header-with-button">
+          <h2>레시피 목록</h2>
+          <Link to="/recipewrite">
+            <button className="view-button">레시피 작성</button>
+          </Link>
+        </div>
         {loading ? (
           <div>
             <p>Loading...</p>

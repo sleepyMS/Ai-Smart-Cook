@@ -173,11 +173,36 @@ const Snackfood = () => {
           },
         }}
       >
-        {modalSlideIndex === 0 && <div>{recipes[currentData].title}</div>}
-        {modalSlideIndex === 1 && <div>{recipes[currentData].ingredients}</div>}
-        {modalSlideIndex === 2 && <div>{recipes[currentData].recipe}</div>}
-        {modalSlideIndex === 3 && <div>{recipes[currentData].tip}</div>}
-        {modalSlideIndex === 4 && <div>{recipes[currentData].extra}</div>}
+        {modalSlideIndex === 0 && (
+          <div>
+            <h3>Title</h3>
+            <div>{recipes[currentData].title}</div>
+          </div>
+        )}
+        {modalSlideIndex === 1 && (
+          <div>
+            <h3>Ingredient</h3>
+            <div>{recipes[currentData].ingredients}</div>
+          </div>
+        )}
+        {modalSlideIndex === 2 && (
+          <div>
+            <h3>Recipe</h3>
+            <div>{recipes[currentData].recipe}</div>
+          </div>
+        )}
+        {modalSlideIndex === 3 && (
+          <div>
+            <h3>Tip</h3>
+            <div>{recipes[currentData].tip}</div>
+          </div>
+        )}
+        {modalSlideIndex === 4 && (
+          <div>
+            <h3>Advice</h3>
+            <div>{recipes[currentData].extra}</div>
+          </div>
+        )}
         <div style={{ marginTop: "20px" }}>
           <button onClick={prevModalSlide}>Prev</button>
           <button onClick={nextModalSlide}>Next</button>

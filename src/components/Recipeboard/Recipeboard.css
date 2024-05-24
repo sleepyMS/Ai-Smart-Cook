@@ -30,6 +30,7 @@
   font-size: 3em;
   font-family: "Arial", sans-serif;
   animation: fadeIn 1s ease-in;
+  cursor: pointer;
 }
 
 .recipeboard .header_logo a:hover {
@@ -53,6 +54,7 @@
 .recipeboard .sort-options select {
   padding: 5px 10px;
   font-size: 1em;
+  cursor: pointer;
 }
 
 .recipeboard .board-list {
@@ -79,6 +81,7 @@
   margin-top: 0;
   font-size: 1.8em;
   color: #333;
+  cursor: pointer;
 }
 
 .recipeboard .board-item p {
@@ -105,4 +108,30 @@
 .recipeboard .board-item .like-count {
   font-size: 1.2em;
   color: #666;
+}
+
+.recipeboard .header-with-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.recipeboard .header-with-button h2 {
+  margin: 0;
+}
+
+.recipeboard .view-button {
+  padding: 10px 20px;
+  background-color: #000000;
+  color: #fff;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.recipeboard .view-button:hover {
+  background-color: #686868;
 }

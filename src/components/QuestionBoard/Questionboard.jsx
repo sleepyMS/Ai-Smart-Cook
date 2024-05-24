@@ -76,7 +76,12 @@ const Question = () => {
             <option value="view">조회수 순</option>
           </select>
         </div>
-        <h2>게시물 목록</h2>
+        <div className="header-with-button">
+          <h2>Q&A 목록</h2>
+          <Link to="/write">
+            <button className="view-button1">Q%A 작성</button>
+          </Link>
+        </div>
         {loading ? (
           <p>Loading...</p>
         ) : (
