@@ -20,28 +20,34 @@ const Loginpage = () => {
       return;
     }
 
-    // const emailPattern = /\S+@\S+\.\S+/;
-    // if (!emailPattern.test(IDRef.current.value)) {
-    //     alert("올바른 이메일 주소를 입력해주세요.");
-    //     IDRef.current.focus();
-    //     return;
-    // }
+    const emailPattern = /\S+@\S+\.\S+/;
+    if (!emailPattern.test(IDRef.current.value)) {
+      alert("올바른 이메일 주소를 입력해주세요.");
+      IDRef.current.focus();
+      return;
+    }
 
-    // const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
-    // if (!passwordPattern.test(pwdRef.current.value)) {
-    //     alert("패스워드는 영어, 숫자, 특수문자를 포함한 6~20자 이내로 입력해주세요.");
-    //     pwdRef.current.focus();
-    //     return;
-    // }
+    const passwordPattern =
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
+    if (!passwordPattern.test(pwdRef.current.value)) {
+      alert(
+        "패스워드는 영어, 숫자, 특수문자를 포함한 6~20자 이내로 입력해주세요."
+      );
+      pwdRef.current.focus();
+      return;
+    }
 
-    // const user = peoplesData.peoples.find(person => person.ID === IDRef.current.value && person.pwd === pwdRef.current.value);
+    // const user = peoplesData.peoples.find(
+    //   (person) =>
+    //     person.ID === IDRef.current.value && person.pwd === pwdRef.current.value
+    // );
 
     // if (user) {
-    //     alert("로그인 성공!");
-    //     localStorage.setItem('user', JSON.stringify(user));
-    //     navigate('/');
+    //   alert("로그인 성공!");
+    //   localStorage.setItem("user", JSON.stringify(user));
+    //   navigate("/");
     // } else {
-    //     alert("이메일 주소 또는 비밀번호가 올바르지 않습니다.");
+    //   alert("이메일 주소 또는 비밀번호가 올바르지 않습니다.");
     // }
 
     try {

@@ -22,32 +22,32 @@ const Write = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          `http://localhost:8080/qna/getByNum`,
-          { num },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const data = response.data.data;
-        setNewQna(data);
-        if (titleRef.current) titleRef.current.value = data.title;
-        if (passRef.current) passRef.current.value = data.pass;
-        if (postRef.current) postRef.current.value = data.que;
-      } catch (error) {
-        console.error("데이터를 불러오는 중 오류 발생:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.post(
+  //         `http://localhost:8080/qna/getByNum`,
+  //         { num },
+  //         {
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //         }
+  //       );
+  //       const data = response.data.data;
+  //       setNewQna(data);
+  //       if (titleRef.current) titleRef.current.value = data.title;
+  //       if (passRef.current) passRef.current.value = data.pass;
+  //       if (postRef.current) postRef.current.value = data.que;
+  //     } catch (error) {
+  //       console.error("데이터를 불러오는 중 오류 발생:", error);
+  //     }
+  //   };
 
-    if (num) {
-      fetchData(); // fetchData 함수 호출
-    }
-  }, [num]);
+  //   if (num) {
+  //     fetchData(); // fetchData 함수 호출
+  //   }
+  // }, [num]);
 
   //로그인/로그아웃 기능
   const handleLogout = () => {

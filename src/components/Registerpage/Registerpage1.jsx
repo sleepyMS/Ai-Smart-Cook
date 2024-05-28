@@ -52,20 +52,23 @@ const Registerpage1 = () => {
     e.preventDefault();
 
     // 이메일 형식 검사
-    // const emailPattern = /\S+@\S+\.\S+/;
-    // if (!emailPattern.test(IDRef.current.value)) {
-    //     alert("올바른 이메일 주소를 입력해주세요.");
-    //     IDRef.current.focus();
-    //     return;
-    // }
+    const emailPattern = /\S+@\S+\.\S+/;
+    if (!emailPattern.test(IDRef.current.value)) {
+      alert("올바른 이메일 주소를 입력해주세요.");
+      IDRef.current.focus();
+      return;
+    }
 
     // 패스워드 유효성 검사
-    // const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
-    // if (!passwordPattern.test(pwdRef.current.value)) {
-    //     alert("패스워드는 영어, 숫자, 특수문자를 포함한 6~20자 이내로 입력해주세요.");
-    //     pwdRef.current.focus();
-    //     return;
-    // }
+    const passwordPattern =
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
+    if (!passwordPattern.test(pwdRef.current.value)) {
+      alert(
+        "패스워드는 영어, 숫자, 특수문자를 포함한 6~20자 이내로 입력해주세요."
+      );
+      pwdRef.current.focus();
+      return;
+    }
 
     // 유효성 검사 통과시에만 회원가입 요청
     try {

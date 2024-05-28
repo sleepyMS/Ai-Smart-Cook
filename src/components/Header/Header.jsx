@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import gpt_main from "../../api/gpt_main";
+import gpt from "../../api/gpt";
 import LoadingModal from "../Loadingmodal/Loadingmodal";
 import "./Header.css";
 import Aialert1 from "../Aialert/Aialert1";
@@ -85,7 +85,7 @@ const Header = () => {
         }
         return;
       }
-      const message = await gpt_main({
+      const message = await gpt({
         prompt: `${searchInput}`,
       });
       navigate("/recipe", { state: { message } });
@@ -146,7 +146,6 @@ const Header = () => {
               onChange={handleChange}
             ></input>
             <button className="button-width" type="submit">
-              <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
           </form>

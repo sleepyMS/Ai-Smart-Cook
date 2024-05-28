@@ -51,7 +51,11 @@ const Home = () => {
     <Main>
       <div className="grid-container">
         {/* 3x3 그리드 아이템 */}
-        <div onClick={onSubmitFastfood} className="grid-item fast-food">
+        <div
+          style={{ position: "relative" }}
+          onClick={onSubmitFastfood}
+          className="grid-item fast-food"
+        >
           <span>패스트푸드</span>
         </div>
         <div onClick={onSubmitKoreafood} className="grid-item korea-food">

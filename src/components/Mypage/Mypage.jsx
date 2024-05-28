@@ -178,7 +178,7 @@ const Mypage = () => {
               <h3 className="mypage-post-title">제목: {board.title}</h3>
             </Link>
             <Link to={`/write/${board.num}`}>
-              <button className="mypage-post-button">변경</button>
+              <button className="mypage-post-button">삭제</button>
             </Link>
           </div>
         ))}
